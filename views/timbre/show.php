@@ -1,4 +1,5 @@
-<!-- ['timbre' => $selectId, 'images' => $selectImages , '$pays' => $selectPays['nom'], '$user' => $userData , 'timbreCat' => $selectCat['nom'], 'etat' => $selectEtat['nom'], 'date_limite' => $selectEncheres['date_limite']] -->
+
+{{ include('layouts/header.php', { title: 'Timbre'})}}
 
 <main class="main-produit">
       <div class="page-produit">
@@ -56,3 +57,5 @@
         </div>
       </div>
     </main>
+
+    {{ include('layouts/footer.php') }}

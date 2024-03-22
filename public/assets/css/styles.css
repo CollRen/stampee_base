@@ -1,0 +1,48 @@
+/* Variables */
+@import url("./variables/reset.css");
+@import url("./variables/mediaqueries.css");
+
+/* Couleurs */
+@import url("./variables/colors.css");
+/* Typo */
+@import url("./variables/typography.css");
+
+@import url("./variables/typography.css");
+
+/* Espacement */
+@import url("./variables/spacing.css");
+
+/* Composantes individuelles (Ex: bouton) */
+@import url("./components/navigation.css");
+@import url("./components/icon.css");
+@import url("./components/bouton.css");
+@import url("./components/card.css");
+@import url("./components/lien.css");
+@import url("./components/menu.css");
+
+/*navigation principal*/
+@import url("components/navigation.css");
+
+/* Modules/mise en page spéciale (Ex: Grilles, formulaires)*/
+@import url("./layout/general.css");
+@import url("./layout/footer.css");
+
+/* Exceptions pour certaines pages */
+@import url("./components/carrousel.css");
+/* @import url("./pages/catalogue.css"); */
+
+/*Header*/
+@import url("layout/header.css");
+
+/*Fomulaire de contact*/
+@import url("./layout/contact-form.css");
+
+/* Page Produit */
+@import url("./layout/produit.css");
+
+/* Page index */
+@import url("./layout/index.css");
+
+/*page A propos*/
+@import url("./layout/apropos.css");
+@import url("./layout/login.css");

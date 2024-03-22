@@ -1,4 +1,4 @@
-{{ include('layouts/header.php', { title: 'Liste etats'})}}
+{{ include('layouts/header.php', { title: 'Liste etats', css: 'admin'})}}
     <div class="container">
         <h2>Etats</h2>
         <hr>

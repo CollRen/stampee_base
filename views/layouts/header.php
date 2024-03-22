@@ -8,11 +8,8 @@
       name="description"
       content="Bienvenue sur Lord Stampee - Votre destination exclusive pour les enchères de timbres rares."
     />
-    <meta name="author" content="La Seule Agence" />
-    <meta
-      name="keywords"
-      content="enchères, timbres, collection, philatélie, rare, Lord Stampee"
-    />
+    <meta name="author" content="René de Montigny" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -28,8 +25,9 @@
     />
     <!-- Pour production -->
     <!-- <link rel="stylesheet" href="build/css/stylesfinaux.css"> -->
-    <link rel="stylesheet" href="./assets/css/styles.css" />
-    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ asset }}/css/styles.css" />
+    <link rel="stylesheet" href="{{ asset }}/css/{{ css }}.css" />
+    <title>{{ titre }}</title>
     <link rel="stylesheet" href="{{ asset }}/css/style.css">
     <link rel="stylesheet" href="{{ asset }}/css/main.css">
 </head>
@@ -62,7 +60,6 @@
             {% endif %}
         </ul>
     </nav>
-    <main>
 
 
         {% if guest is empty %}

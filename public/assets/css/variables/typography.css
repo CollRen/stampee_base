@@ -1,0 +1,65 @@
+
+@font-face {
+    font-family: "Inknut_Antiqua";
+    src: 
+    url("../../fonts/Inknut_Antiqua/InknutAntiqua-Bold.ttf") format("truetype");
+}
+@font-face{
+    font-family: "Krub";
+    src: 
+    url("../../fonts/Krub/Krub-Regular.ttf") format("truetype");
+   
+}
+:root {
+    --police-principale: "Krub";
+    --police-xxxs: 0.346rem;
+    --police-xxs: 0.694rem;
+    --police-xs: 0.833rem;
+    --police-s: 1.4rem;
+    --police-m: 2rem;
+    --police-g: 3rem;
+    --police-xg: 4rem;
+
+    --police-secondaire:"Inknut_Antiqua";
+}
+
+p {
+    font-family: var(--police-principale);
+    line-height: 2rem;
+    font-size: var(--police-xs);
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--police-secondaire);
+    
+}
+
+h1 {
+    font-size: var(--police-g);
+    line-height: 3.4rem;
+}
+
+h2 {
+    font-size: var(--police-m);
+}
+
+h3{
+    font-size: var(--police-s);
+}
+
+h4{
+    font-size: var(--police-xs);
+}
+
+.btn {
+    font-size: var(--police-xs);
+    font-family: var(--police-principale);
+}
+
+a, a:visited{
+    color: var(--blanc);
+}
+a:hover{
+    color: var(--dore);
+}
+

@@ -1,0 +1,112 @@
+.header-top {
+    background-color: var(--fonce);
+    box-shadow: 0px 2px 1px 2px black;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.header-top__superieur {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+.header-top_img {
+    max-width: 14rem;
+}
+
+.header-top_icons {
+    display: flex;
+    gap: var(--space-m);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.icon_img1 {
+    color: var(--dore);
+}
+
+.barre-recherche {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    & i {
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}
+
+.barre-recherche__champ {
+    background-color: color-mix(in oklab, var(--vert-fonce) 90%, var(--blanc) 10%);
+    border-radius: 1rem;
+    color: white;
+    font-size: 1.4rem;
+    height: 2rem;
+    line-height: 2rem;
+    padding: 1rem;
+    width: 30rem;
+
+}
+
+.fa-bars {
+    opacity: 0%;
+    font-size: 25px;
+    color: var(--dore);
+    padding-bottom: 33px;
+}
+
+.header-nav {
+
+    & ul {
+
+        & li {
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            font-family: var(--police-secondaire);
+        }
+
+    }
+
+    & li:hover {
+        color: var(--dore);
+    }
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+    header {
+
+        & .barre-recherche__champ {
+            display: none;
+        }
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    header {
+
+        & .header-top_icons,
+        ul,
+        .fa-magnifying-glass {
+            display: none;
+        }
+
+        & .fa-bars {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 100%;
+            cursor: pointer;
+        }
+
+        & .header-top_img {
+            max-width: 9rem;
+        }
+    }
+}

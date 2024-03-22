@@ -1,4 +1,4 @@
-{{ include('layouts/header.php', { title: 'Create'})}}
+{{ include('layouts/header.php', { title: 'Create'}, {css: 'home'})}}
 
     <h1>{{ var }}</h1>
 

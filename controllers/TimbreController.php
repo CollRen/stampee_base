@@ -87,7 +87,7 @@ class TimbreController
 
 
 
-            return View::render('timbre/show', ['timbre' => $selectId, 'images' => $selectImages, '$pays' => $selectPays['nom'], '$user' => $userData, 'timbreCat' => $selectCat['nom'], 'etat' => $selectEtat['nom']]);
+            return View::render('timbre/show', ['timbre/show' => 'defini', 'timbre' => $selectId, 'images' => $selectImages, '$pays' => $selectPays['nom'], '$user' => $userData, 'timbreCat' => $selectCat['nom'], 'etat' => $selectEtat['nom']]);
         } else {
 
             /* On fait quoi ici */

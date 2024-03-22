@@ -1,0 +1,37 @@
+@keyframes animation_logo {
+    0% {
+        opacity: 0.1;
+        transform: translate(-600px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+
+.icon{
+    margin-right: var(--space-xxs);
+}
+
+.footer_social-media {
+    fill: var(--color-footer);
+}
+
+.footer__logo {
+    width: 9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    & #vagues{
+        animation: animation_logo 500ms ease-in-out;
+    }
+
+}
+
+
+.fa-chevron-left .fa-chevron-right {
+    color: var(--dore);
+    cursor: pointer;
+  }
+  

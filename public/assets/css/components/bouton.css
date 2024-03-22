@@ -1,0 +1,25 @@
+.btn {
+    width: fit-content;
+    padding: 1rem;
+    background-color: var(--dore);
+    color: var(--fonce);
+    border-radius: 1rem;
+    box-shadow: 3px 3px 3px var(--fonce);
+    cursor: pointer;
+    
+
+    &:hover {
+        background-color: #133636;
+        color: #d3b427;
+    }
+
+    &:focus {
+        background-color: var(--vert-fonce);
+    }
+
+    &.inactive {
+        background-color: var(--vert-fonce);
+        pointer-events: none;
+        cursor: none;
+    }
+}
