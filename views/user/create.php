@@ -28,7 +28,7 @@
             <select name="privilege_id">
                 <option value="">Select Privilege</option>
                 {% for privilege in privileges %}
-                    <option value="{{ privilege.id }}" {% if privilege.id == user.privilege_id %} selected {% endif %}>{{ privilege.privilege }}</option>
+                    <option value="{{ privilege.id }}" {% if privilege.id == user.privilege_id %} selected {% endif %}>{{ privilege.nom }}</option>
                 {% endfor %}
             </select>
         </label>

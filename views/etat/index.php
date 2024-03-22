@@ -3,15 +3,13 @@
     <table>
         <thead>
             <tr>
-                <th>Prénom</th>
-                <th>Nom</th>
+                <th>Nom de l'état</th>
             </tr>
         </thead>
         <tbody>
         {% for etat in etats %}
             <tr>
-                <td><a href="{{ base }}/etat/show?id={{ etat.id }}">{{ etat.prenom }}</a></td>
-                <td>{{ etat.nom }}</td>
+                <td><a href="{{ base }}/etat/show?id={{ etat.id }}">{{ etat.nom }}</a></td>
             </tr>
         {% endfor %}
         </tbody>

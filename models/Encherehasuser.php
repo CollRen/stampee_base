@@ -9,7 +9,7 @@ class Encherehasuser extends CRUD
     protected $table = 'enchere_has_user';
     protected $primaryKey = 'id';
     protected $isAuth = [1, 2, 3]; // Ici juste 1 pour la ligne 14 du CRUD mais faudra 2
-    protected $fillable = ['recette_id', 'etat_id', 'quantite', 'unite_mesure_id'];
+    protected $fillable = ['recette_id', 'etat_conservation_id', 'quantite', 'unite_mesure_id'];
 
 
     public function delete($value)

@@ -115,9 +115,9 @@ class RecettehasetatController
     }
 
     public function edit($data = [])
-    {   //print_r($data); die(); // Array ( [recette_id] => 10 [etat_id] => 1 [id] => 25 )
+    {   //print_r($data); die(); // Array ( [recette_id] => 10 [etat_conservation_id] => 1 [id] => 25 )
 
-        if (isset($data['id']) && $data['etat_id'] != null) {
+        if (isset($data['id']) && $data['etat_conservation_id'] != null) {
 
 
             $encherehasuser = new Encherehasuser;
@@ -125,7 +125,7 @@ class RecettehasetatController
             // print_r($data['id']); die();
             // 25
             //print_r($selectId); die();
-            // Array ( [id] => 25 [0] => 25 [recette_id] => 10 [1] => 10 [etat_id] => 1 [2] => 1 [quantite] => 0.5 [3] => 0.5 [unite_mesure_id] => 1 [4] => 1 )
+            // Array ( [id] => 25 [0] => 25 [recette_id] => 10 [1] => 10 [etat_conservation_id] => 1 [2] => 1 [quantite] => 0.5 [3] => 0.5 [unite_mesure_id] => 1 [4] => 1 )
             $pays = new Pays;
             $selectPays = $pays->select();
             // print_r($selectPays); die();
@@ -150,7 +150,7 @@ class RecettehasetatController
         $data['recette_id'] = $get['recette_id'];
 
         $validator = new Validator;
-        $validator->fieldkeys('etat_id', $data['etat_id'], 'recette_id', $get['recette_id'])->uniquekeys('Encherehasuser');
+        $validator->fieldkeys('etat_conservation_id', $data['etat_conservation_id'], 'recette_id', $get['recette_id'])->uniquekeys('Encherehasuser');
 
 
         

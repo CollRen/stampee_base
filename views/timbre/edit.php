@@ -18,11 +18,11 @@
             <input type="text" name="temps_cuisson" value="{{ timbre.temps_cuisson }}">
         </label>
 
-        <label for="etat_id">Etat:</label>
-        <select name="etat_id" id="etat_id">
+        <label for="etat_conservation_id">Etat:</label>
+        <select name="etat_conservation_id" id="etat_conservation_id">
             {% for etat in etats %}
 
-                <option value="{{ etat.id }}" {% if etat.id == timbre.etat_id %} selected {% endif %}>{{ etat.nom }}</option>
+                <option value="{{ etat.id }}" {% if etat.id == timbre.etat_conservation_id %} selected {% endif %}>{{ etat.nom }}</option>
 
             {% endfor %}
         </select>

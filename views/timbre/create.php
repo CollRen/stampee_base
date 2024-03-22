@@ -29,8 +29,8 @@
 
 
 
-        <label for="etat_id"></label>Etat
-        <select name="etat_id" id="">
+        <label for="etat_conservation_id"></label>Etat
+        <select name="etat_conservation_id" id="">
 
 
             {% for timbreEtat in timbreEtats %}

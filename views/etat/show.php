@@ -2,8 +2,7 @@
     <div class="container">
         <h2>Etats</h2>
         <hr>
-        <p><strong>Prénom:</strong> {{ etat.prenom }}</p>
-        <p><strong>Nom:</strong> {{ etat.nom }}</p>
+        <p><strong>Nom de l'état:</strong> {{ etat.nom }}</p>
 
         <a href="{{base}}/etat/edit?id={{etat.id}}" class="btn block">Edit</a>
         <form action="{{base}}/etat/delete" method="post">

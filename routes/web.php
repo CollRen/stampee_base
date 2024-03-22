@@ -94,8 +94,6 @@ Route::post('/timbrehasenchere/update', 'TimbreController@show');
 Route::post('/timbrehasenchere/delete', 'TimbrehasenchereController@delete');
 
 
-Route::get('/journal', 'JournalController@index');
-
 
 Route::get('/login', 'AuthController@index');
 Route::post('/login', 'AuthController@store');

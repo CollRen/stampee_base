@@ -2,12 +2,7 @@
     <div class="container">
         <h2>Édition de l'etat</h2>
         <form method="post">
-        <label>Prénom
-                <input type="text" name="prenom" value="{{ etat.prenom }}">
-            </label>
-            {% if errors.prenom is defined %}
-                <span class="error">{{ errors.prenom }}</span>
-            {% endif %}
+
             <label>Nom
                 <input type="text" name="nom" value="{{ etat.nom }}">
             </label>

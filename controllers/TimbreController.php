@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Providers\JournalStore;
 use App\Providers\Auth;
 use App\Models\Timbre;
+use App\Models\User;
+use App\Models\Image;
 use App\Models\Etat;
 use App\Models\TimbreCategorie;
 use App\Models\Pays;
@@ -40,8 +42,14 @@ class TimbreController
         $timbreCats = new TimbreCategorie;
         $selectCat = $timbreCats->select();
 
+        $user = new User;
+        $selectUsers = $user->select();
+
+        $pays = new Pays;
+        $selectPays = $pays->select();
+
         if ($select) {
-            return View::render('timbre/index', ['timbres' => $select, 'timbreCats' => $selectCat, 'etats' => $selectEtats]);
+            return View::render('timbre/index', ['timbres' => $select, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
         } else {
             return View::render('error');
         }
@@ -49,57 +57,41 @@ class TimbreController
 
 
     public function show($data = [])
-    {       // id vaut pour timbre_id
-        if (isset($data['id']) && $data['id'] != null) {
+    {
+       if (isset($data['id']) && $data['id'] != null) {
             $timbre = new Timbre;
             $selectId = $timbre->selectId($data['id']);
-            $timbreCat = new TimbreCategorie;
-            $selectCatId = $timbreCat->selectId($data['timbre_categorie_id']);
 
-            $etat = new Etat;
-            $selectEtatId = $etat->selectId($data['etat_id']);
+            $images = new Image;
+            $selectImages = $images->selectId($data['id'], 'timbre_id');
 
             $pays = new Pays;
-            $selectPays = $pays->select();
+            $selectPays = $pays->selectId($selectId['pays_id']);
+
+            $user = new User;
+            $selectUser = $user->selectId($selectId['user_id']);
+            $userData = ['name' => $selectUser['name'], 'id' => $selectUser['id'], 'email' => $selectUser['email']];
+
+            $timbreCat = new TimbreCategorie;
+            $selectCat = $timbreCat->selectId($selectId['timbre_categorie_id']);
+            
+            $etat = new Etat;
+            $selectEtat = $etat->selectId($selectId['etat_conservation_id']);
 
             $enchere = new Enchere;
-            $selectEncheres = $enchere->select();
-
-            $timbrehasenchere = new Timbrehasenchere;
-            $selectRHI = $timbrehasenchere->selectId($data['id'], 'timbre_id');
-
-
+            $selectEncheres = $enchere->selectId($data['id'], 'timbre_id');
 
             $timbreHis[] = '';
             $i = 0;
 
-            // Préparer l'affichage Timbre à 1 ingrédient
-            if (is_array($selectRHI) && isset($selectRHI['id'])) {
-                $nomEncheres = $enchere->selectId($selectRHI['enchere_id']);
-                $nomPays = $pays->selectId($selectRHI['unite_mesure_id']);
-                $nomEncheres = $enchere->selectId($selectRHI['enchere_id']);
-                $timbreHis = ['quantite' => $selectRHI['quantite'], 'id' => $selectRHI['id'], 'timbre_id' => $selectRHI['timbre_id'], 'unite_mesure_id' => $selectRHI['unite_mesure_id'], 'enchere_id' => $selectRHI['enchere_id'], 'unite_mesure_nom' => $nomPays['nom'], 'enchere_nom' => $nomEncheres['nom']];
-                return View::render('timbre/show', ['timbre' => $selectId, 'timbreCat' => $selectCatId, 'etat' => $selectEtatId, 'timbrehasenchere' => $timbreHis, 'encheres' => $selectEncheres, 'pays' => $selectPays]);
+                return View::render('timbre/show', ['timbre' => $selectId, 'images' => $selectImages , '$pays' => $selectPays['nom'], '$user' => $userData , 'timbreCat' => $selectCat['nom'], 'etat' => $selectEtat['nom'], 'date_limite' => $selectEncheres['date_limite']]);
 
-                // Préparer l'affichage Timbre à 2 ingrédients
-            } elseif (isset($selectRHI[0][0])) {
-                foreach ($selectRHI as $row) {
-
-                    $nomEncheres[$i] = $enchere->selectId($row['enchere_id']);
-                    $nomPays[$i] = $pays->selectId($row['unite_mesure_id']);
-                    $nomEncheres[$i] = $enchere->selectId($row['enchere_id']);
-                    $timbreHis[$i] = ['quantite' => $row['quantite'], 'id' => $row['id'], 'timbre_id' => $row['timbre_id'], 'unite_mesure_id' => $row['unite_mesure_id'], 'enchere_id' => $row['enchere_id'], 'unite_mesure_nom' => $nomPays[$i]['nom'], 'enchere_nom' => $nomEncheres[$i]['nom']];
-                    $i++;
-                };
-                return View::render('timbre/show', ['timbre' => $selectId, 'timbreCat' => $selectCatId, 'etat' => $selectEtatId, 'timbrehasencheres' => $timbreHis, 'encheres' => $selectEncheres, 'pays' => $selectPays]);
-
-                // Préparer l'affichage d'une Timbre qui n'a pas ingrédient
             } else {
 
-                return View::render('timbre/show', ['timbre' => $selectId, 'timbreCat' => $selectCatId, 'etat' => $selectEtatId]);
+                /* On fait quoi ici */
             }
         }
-    }
+    
 
 
 
@@ -120,12 +112,8 @@ class TimbreController
         $enchere = new Enchere;
         $selectEnchere = $enchere->select();
 
-        $timbrehasenchere = new Timbrehasenchere;
-        $selectRHI = $timbrehasenchere->select();
 
-
-
-        return View::render('timbre/create', ['timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect, 'timbrehasencheres' => $selectRHI, 'pays' => $selectPays, 'encheres' => $selectEnchere]);
+        return View::render('timbre/create', ['timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect, 'pays' => $selectPays, 'encheres' => $selectEnchere]);
     }
 
 
@@ -140,7 +128,7 @@ class TimbreController
         $validator->field('temps_preparation', $data['temps_preparation'])->max(4)->number()->required();
         $validator->field('temps_cuisson', $data['temps_cuisson'])->max(4)->number()->required();
         $validator->field('timbre_categorie_id', $data['timbre_categorie_id'])->max(5)->int()->required();
-        $validator->field('etat_id', $data['etat_id'])->max(5)->int()->required();
+        $validator->field('etat_conservation_id', $data['etat_conservation_id'])->max(5)->int()->required();
 
         if ($validator->isSuccess()) {
             $timbre = new Timbre;
@@ -148,17 +136,13 @@ class TimbreController
 
             if ($insert) {
 
-                //On enregristre un premier ingrédient ici ?
-                /*             $timbreHasI = new Timbrehasenchere;
-            $insertHasI = $timbreHasI->insert($data); */
-
                 $pays = new Pays;
                 $selectPays = $pays->select();
 
                 $enchere = new Enchere;
                 $selectEnchere = $enchere->select();
 
-                return View::redirect('timbrehasenchere/create?id=' . $insert);
+                return View::redirect('enchere/create?id=' . $insert);
             } else {
                 return View::render('error');
             }
@@ -214,13 +198,13 @@ class TimbreController
         $validator->field('temps_preparation', $data['temps_preparation'])->max(4)->number()->required();
         $validator->field('temps_cuisson', $data['temps_cuisson'])->max(4)->number()->required();
         $validator->field('timbre_categorie_id', $data['timbre_categorie_id'])->max(5)->int()->required();
-        $validator->field('etat_id', $data['etat_id'])->max(5)->int()->required();
+        $validator->field('etat_conservation_id', $data['etat_conservation_id'])->max(5)->int()->required();
 
         if ($validator->isSuccess()) {
             $timbre = new Timbre;
             $update = $timbre->update($data, $get['id']);
             if ($update) {
-                return View::redirect('timbre/show?id=' . $get['id'] . '&timbre_categorie_id=' . $data['timbre_categorie_id'] . '&etat_id=' . $data['etat_id']);
+                return View::redirect('timbre/show?id=' . $get['id'] . '&timbre_categorie_id=' . $data['timbre_categorie_id'] . '&etat_conservation_id=' . $data['etat_conservation_id']);
             } else {
                 return View::render('error');
             }
@@ -241,16 +225,6 @@ class TimbreController
     {
         $arrayCanEnter = [1, 2, 3];
         Auth::verifyAcces($arrayCanEnter);
-
-        $timbrehasenchere = new Timbrehasenchere;
-        $selectRHI = $timbrehasenchere->select();
-
-        $i = 0;
-        foreach ($selectRHI as $row) {
-            if ($row['timbre_id'] == $data['id']) {
-                $RHIdelete = $timbrehasenchere->delete($row['timbre_id']);
-            }
-        }
 
 
         $timbre = new  Timbre;
