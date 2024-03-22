@@ -15,8 +15,8 @@ CREATE TABLE timbre(
 id INT AUTO_INCREMENT PRIMARY KEY,
 titre VARCHAR(60),
 description TEXT,
-temps_preparation DOUBLE,
-temps_cuisson DOUBLE,
+annee DOUBLE,
+prix_depart DOUBLE,
 timbre_categorie_id INT NOT NULL,
 etat_conservation_id INT
 );
@@ -78,7 +78,7 @@ INSERT INTO `timbres`.`etat` (`nom`, `prenom`) VALUES
 ('Larrivée', 'Ricardo'),
 ('Dubé', 'Nancy');
 
-INSERT INTO `timbres`.`timbre` (`id`, `titre`, `description`, `temps_preparation`, `temps_cuisson`, `timbre_categorie_id`, `etat_conservation_id`) VALUES 
+INSERT INTO `timbres`.`timbre` (`id`, `titre`, `description`, `annee`, `prix_depart`, `timbre_categorie_id`, `etat_conservation_id`) VALUES 
 (NULL, 'Dessert cool','Ceci décrivant celà', 11, 11, 1, 1),
 (NULL, 'Ceci décrivant celà', 'Dessert cool', 10, 10, 1, 1);
 

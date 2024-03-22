@@ -5,8 +5,8 @@ use App\Models\CRUD;
 class Timbre extends CRUD{
     protected $table = 'timbre';
     protected $primaryKey = 'id';
-    protected $isAuth = [1, 3, 4];
-    protected $fillable = ['titre', 'description', 'temps_preparation', 'temps_cuisson', 'timbre_categorie_id', 'etat_conservation_id'];
+    protected $isAuth = [1, 2];
+    protected $fillable = ['titre', 'description', 'annee', 'timbre_categorie_id', 'user_id', 'pays_id', 'prix_depart', 'authentifie','etat_conservation_id'];
 
 
     /**

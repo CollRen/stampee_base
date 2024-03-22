@@ -9,12 +9,8 @@
             <input type="text" name="description" value="{{ timbre.description }}">
         </label>
 
-        <label>Temps de préparation <small>(En minutes)</small>
-            <input type="text" name="temps_preparation" value="{{ timbre.temps_preparation }}">
-        </label>
-
-        <label>temps_cuisson <small>(En minutes)</small>
-            <input type="text" name="temps_cuisson" value="{{ timbre.temps_cuisson }}">
+        <label for="annee">Année
+            <input type="number" name="annee" value="{{ timbre.annee }}">
         </label>
 
         <label for="timbre_categorie_id"></label>Catégorie
@@ -27,9 +23,30 @@
             {% endfor %}
         </select>
 
+        <label for="pays_id"></label>Pays de provenence
+        <select name="pays_id" id="pays_id">
+
+            {% for pays in payss %}
+
+            <option value="{{ pays.id }}">{{ pays.nom }}</option>
+
+            {% endfor %}
+        </select>
+        <label for="prix_depart">Prix de départ
+            <input type="number" name="prix_depart" step=".01" value="{{ timbre.prix_depart }}">
+        </label>
+
+        {% if errors.nom is defined %}
+        <span class="error">{{ errors.nom }}</span>
+        {% endif %}
 
 
-        <label for="etat_conservation_id"></label>Etat
+
+        <label for="authentifie">Est-ce que ce timbre est authentifié
+            <input type="checkbox" id="authentifie" name="authentifie" value="1">
+        </label>
+
+        <label for="etat_conservation_id"></label>État générale du timbre
         <select name="etat_conservation_id" id="">
 
 
@@ -53,5 +70,11 @@
         <input type="submit" class="btn" value="Save">
     </form>
 </div>
+
+{% for validator in validators %}
+
+{{ validator.nom }}
+
+{% endfor %}
 
 {{ include('layouts/footer.php') }}

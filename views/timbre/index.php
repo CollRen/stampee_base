@@ -40,7 +40,7 @@
             {% endif %}
             {% endfor %}
             
-            <td>{{ timbre.prix_depart }}</td>
+            <td>{{ timbre.prix_depart }} <small>$</small></td>
             <td>{{ timbre.authentifie }}</td>
 
             {% for etat in etats %}

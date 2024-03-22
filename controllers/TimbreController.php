@@ -25,8 +25,7 @@ class TimbreController
     {
         $timbre = new Timbre;
         $arrayAuth = $timbre->isAuth();
-        Auth::verifyAcces($arrayAuth);
-        ;
+        Auth::verifyAcces($arrayAuth);;
     }
 
     public function index()
@@ -35,6 +34,7 @@ class TimbreController
 
         $timbre = new Timbre;
         $select = $timbre->select();
+        // print_r($select); die();
 
         $etat = new Etat;
         $selectEtats = $etat->select();
@@ -58,7 +58,7 @@ class TimbreController
 
     public function show($data = [])
     {
-       if (isset($data['id']) && $data['id'] != null) {
+        if (isset($data['id']) && $data['id'] != null) {
             $timbre = new Timbre;
             $selectId = $timbre->selectId($data['id']);
 
@@ -74,24 +74,26 @@ class TimbreController
 
             $timbreCat = new TimbreCategorie;
             $selectCat = $timbreCat->selectId($selectId['timbre_categorie_id']);
-            
+
             $etat = new Etat;
             $selectEtat = $etat->selectId($selectId['etat_conservation_id']);
 
             $enchere = new Enchere;
             $selectEncheres = $enchere->selectId($data['id'], 'timbre_id');
+            if($selectEncheres) $selectId['date_limite'] = $selectEncheres['date_limite'];
 
             $timbreHis[] = '';
             $i = 0;
 
-                return View::render('timbre/show', ['timbre' => $selectId, 'images' => $selectImages , '$pays' => $selectPays['nom'], '$user' => $userData , 'timbreCat' => $selectCat['nom'], 'etat' => $selectEtat['nom'], 'date_limite' => $selectEncheres['date_limite']]);
 
-            } else {
 
-                /* On fait quoi ici */
-            }
+            return View::render('timbre/show', ['timbre' => $selectId, 'images' => $selectImages, '$pays' => $selectPays['nom'], '$user' => $userData, 'timbreCat' => $selectCat['nom'], 'etat' => $selectEtat['nom']]);
+        } else {
+
+            /* On fait quoi ici */
         }
-    
+    }
+
 
 
 
@@ -113,38 +115,42 @@ class TimbreController
         $selectEnchere = $enchere->select();
 
 
-        return View::render('timbre/create', ['timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect, 'pays' => $selectPays, 'encheres' => $selectEnchere]);
+        return View::render('timbre/create', ['timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect, 'payss' => $selectPays, 'encheres' => $selectEnchere]);
     }
 
 
     public function store($data)
     {
+        if(!isset($data['authentifie'])) $data['authentifie'] = '0';
         $arrayCanEnter = [1, 2, 3];
         Auth::verifyAcces($arrayCanEnter);
 
         $validator = new Validator;
         $validator->field('titre', $data['titre'])->min(2)->max(60)->required();
         $validator->field('description', $data['description'])->max(256)->required();
-        $validator->field('temps_preparation', $data['temps_preparation'])->max(4)->number()->required();
-        $validator->field('temps_cuisson', $data['temps_cuisson'])->max(4)->number()->required();
-        $validator->field('timbre_categorie_id', $data['timbre_categorie_id'])->max(5)->int()->required();
-        $validator->field('etat_conservation_id', $data['etat_conservation_id'])->max(5)->int()->required();
+        $validator->field('annee', $data['annee'])->max(4)->required();
+        $validator->field('timbre_categorie_id', $data['timbre_categorie_id'])->max(5)->required();
+        $validator->field('pays_id', $data['pays_id'])->required();
+        $validator->field('prix_depart', $data['prix_depart'])->max(12)->required();
+        $validator->field('etat_conservation_id', $data['etat_conservation_id'])->required();
 
         if ($validator->isSuccess()) {
+            $data['user_id'] = $_SESSION['user_id'];
+            $data['annee'] = $data['annee'] . '-11-11';
             $timbre = new Timbre;
             $insert = $timbre->insert($data);
 
             if ($insert) {
-
                 $pays = new Pays;
                 $selectPays = $pays->select();
 
                 $enchere = new Enchere;
                 $selectEnchere = $enchere->select();
 
-                return View::redirect('enchere/create?id=' . $insert);
+                return View::redirect('timbre/show?id=' . $insert);
             } else {
                 return View::render('error');
+                die();
             }
         } else {
 
@@ -156,7 +162,13 @@ class TimbreController
             $timbreEtat = new Etat;
             $timbreEtatSelect = $timbreEtat->select();
 
-            return View::render('timbre/create', ['errors' => $errors, 'timbre' => $data, 'timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect]);
+            $pays = new Pays;
+            $selectPays = $pays->select();
+
+            $enchere = new Enchere;
+            $selectEnchere = $enchere->select();
+
+            return View::render('timbre/create', ['timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect, 'payss' => $selectPays, 'encheres' => $selectEnchere]);
         }
     }
 
@@ -195,8 +207,8 @@ class TimbreController
         $validator = new Validator;
         $validator->field('titre', $data['titre'])->min(2)->max(60)->required();
         $validator->field('description', $data['description'])->max(256)->required();
-        $validator->field('temps_preparation', $data['temps_preparation'])->max(4)->number()->required();
-        $validator->field('temps_cuisson', $data['temps_cuisson'])->max(4)->number()->required();
+        $validator->field('annee', $data['annee'])->max(4)->number()->required();
+        $validator->field('prix_depart', $data['prix_depart'])->max(4)->number()->required();
         $validator->field('timbre_categorie_id', $data['timbre_categorie_id'])->max(5)->int()->required();
         $validator->field('etat_conservation_id', $data['etat_conservation_id'])->max(5)->int()->required();
 

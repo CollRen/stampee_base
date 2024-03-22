@@ -1,10 +1,12 @@
+<!-- ['timbre' => $selectId, 'images' => $selectImages , '$pays' => $selectPays['nom'], '$user' => $userData , 'timbreCat' => $selectCat['nom'], 'etat' => $selectEtat['nom'], 'date_limite' => $selectEncheres['date_limite']] -->
+
 <main class="main-produit">
       <div class="page-produit">
         <div class="timbre">
           <div class="timbre-photo">
             <i class="fa-solid fa-chevron-left"></i>
             <div class="photo-produit-g">
-              <img src="../assets/img/photos/sennaf1.webp" alt="timbre Senna F1" />
+              <img src="../assets/img/photos/{{ images }}" alt="{{ image.alt }}" /> <!-- {{ image.alt }} sera éventuellement ajouté -->
             </div>
             <i class="fa-solid fa-chevron-right"></i>
           </div>
@@ -24,13 +26,9 @@
         </div>
         <div class="detail-produit">
           <div class="section-detail">
-            <h3>Senna F1</h3>
+            <h3>{{ timbre.titre }}</h3>
             <p>
-              Le timbre de collection dédié à Ayrton Senna est une pièce
-              artistique captivante, mettant en valeur le célèbre pilote de
-              Formule 1 au volant de sa voiture emblématique. Les détails
-              minutieux et les couleurs dynamiques capturent l'énergie vibrante
-              des courses.
+              {{ timbre.description }}
             </p>
             <div class="produit-quantite">
               <label for="quantity">Quantite</label>
@@ -41,7 +39,7 @@
                 min="1"
                 value="1"
               />
-              <div class="prix">Prix 1994.05</div>
+              <div class="prix">Prix de départ {{ timbre.prix_depart }}&nbsp;<small>$</small></div>
             </div>
 
             <div class="btn btn-produit">Ajouter au Panier</div>

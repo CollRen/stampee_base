@@ -11,11 +11,11 @@
         </label>
 
         <label>Temps de préparation
-            <input type="text" name="temps_preparation" value="{{ timbre.temps_preparation }}">
+            <input type="text" name="annee" value="{{ timbre.annee }}">
         </label>
 
         <label>Temps de cuisson
-            <input type="text" name="temps_cuisson" value="{{ timbre.temps_cuisson }}">
+            <input type="text" name="prix_depart" value="{{ timbre.prix_depart }}">
         </label>
 
         <label for="etat_conservation_id">Etat:</label>
