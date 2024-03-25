@@ -27,7 +27,8 @@
     <!-- <link rel="stylesheet" href="build/css/stylesfinaux.css"> -->
 <!--     <link rel="stylesheet" href="{{ asset }}/css/styles.css" /> -->
 {% if session.privilege_id == 1 %}
-<link rel="stylesheet" href="{{ asset_admin }}/css/{{ css }}.css" />
+<!-- <link rel="stylesheet" href="{{ asset_admin }}/css/{{ css }}.css" /> -->
+<link rel="stylesheet" href="{{ asset }}/css/{{ css }}.css" />
 {% else %}
 <link rel="stylesheet" href="{{ asset }}/css/{{ css }}.css" />
 {% endif %}
@@ -38,6 +39,7 @@
 
 <body class="body-index">
     <header class="header-top">
+      
       <div class="header-top__superieur">
         <div class="header-top__logo">
           <a href="{{ base }}"
