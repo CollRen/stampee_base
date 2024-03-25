@@ -14,7 +14,7 @@
         </select>
 
 
-        <label for="date_limite">Année
+        <label for="date_limite">Date limite
             <input type="number" name="date_limite">
         </label>
             {% if errors.name is defined %}

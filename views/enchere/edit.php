@@ -2,9 +2,9 @@
     <div class="container">
         <h2>Pays Edit</h2>
         <form method="post">
-        <label>Nom
-                <input type="text" name="nom" value="{{ pays.nom }}">
-            </label>
+        <label for="date_limite">Date limite
+            <input type="number" name="date_limite">
+        </label>
             {% if errors.name is defined %}
                 <span class="error">{{ errors.nom }}</span>
             {% endif %}
