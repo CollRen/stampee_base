@@ -48,7 +48,7 @@
           </div>
           <!-- <img
             class="footer__logo"
-            src="../assets/img/logos/stampee_logo_footer.svg"
+            src="{{ asset }}/img/logos/stampee_logo_footer.svg"
             alt="logo Stampee"
           /> -->
           <?xml version="1.0" encoding="utf-8"?>

@@ -8,7 +8,7 @@
             <div class="index-hero-photo-g">
               <img
                 class="hero-photo"
-                src="./assets/img/timbres/timbreCA.webp"
+                src="{{ asset }}/img/timbres/timbreCA.webp"
                 loading="lazy"
                 alt="image du timbre aux enchères de derniere minute"
               />
@@ -20,7 +20,7 @@
             <div class="vedette-p">
               <img
                 class="vedette-photo"
-                src="./assets/img/timbres/timbre1.webp"
+                src="{{ asset }}/img/timbres/timbre1.webp"
                 loading="lazy"
                 alt="image du timbre aux enchères du jour"
               />
@@ -28,7 +28,7 @@
             <div class="vedette-p">
               <img
                 class="vedette-photo"
-                src="./assets/img/timbres/timbre2.webp"
+                src="{{ asset }}/img/timbres/timbre2.webp"
                 loading="lazy"
                 alt="image du timbre aux enchères du jour"
               />
@@ -36,7 +36,7 @@
             <div class="vedette-p">
               <img
                 class="vedette-photo"
-                src="./assets/img/timbres/timbre3.webp"
+                src="{{ asset }}/img/timbres/timbre3.webp"
                 loading="lazy"
                 alt="image du timbre aux enchères du jour"
               />
@@ -69,7 +69,7 @@
       <section class="index-services">
         <div class="index-services_icones">
           <img
-            src="./assets/img/icons/collection.svg"
+            src="{{ asset }}/img/icons/collection.svg"
             class="index-services_svg"
             alt="image d'illustration du service de vente"
           />
@@ -77,7 +77,7 @@
         </div>
         <div class="index-services_icones">
           <img
-            src="./assets/img/icons/evaluation.svg"
+            src="{{ asset }}/img/icons/evaluation.svg"
             class="index-services_svg"
             alt="image d'illustration du service de evaluation de timbres"
           />
@@ -85,7 +85,7 @@
         </div>
         <div class="index-services_icones">
           <img
-            src="./assets/img/icons/worldstamp.svg"
+            src="{{ asset }}/img/icons/worldstamp.svg"
             class="index-services_svg"
             alt="image d'illustration pour la page commencez votre collection"
           />
@@ -102,7 +102,7 @@
               <div class="photo-index-produit">
                 <h3>Hiver Canadien</h3>
                 <img
-                  src="./assets/img/timbres/timbre1.webp"
+                  src="{{ asset }}/img/timbres/timbre1.webp"
                   alt="timbre Hiver Canadien"
                 />
                 <p>Prix actuel: 1988.02$</p>
@@ -117,7 +117,7 @@
               <div class="photo-index-produit">
                 <h3>Automne Canada</h3>
                 <img
-                  src="./assets/img/timbres/timbre3.webp"
+                  src="{{ asset }}/img/timbres/timbre3.webp"
                   alt="timbre Automne Canad "
                 />
                 <p>Prix actuel: 1788.10$</p>
@@ -132,7 +132,7 @@
               <div class="photo-index-produit">
                 <h3>Love Canada</h3>
                 <img
-                  src="./assets/img/timbres/timbre2.webp"
+                  src="{{ asset }}/img/timbres/timbre2.webp"
                   alt="timbre Love Canada"
                 />
                 <p>Prix actuel: 1500.99$</p>
@@ -147,7 +147,7 @@
               <div class="photo-index-produit">
                 <h3>Les Animaux</h3>
                 <img
-                  src="./assets/img/timbres/timbre6.webp"
+                  src="{{ asset }}/img/timbres/timbre6.webp"
                   alt="timbre Les Animaux"
                 />
                 <p>Prix actuel: 5497.00$</p>

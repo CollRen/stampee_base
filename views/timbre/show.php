@@ -7,7 +7,7 @@
           <div class="timbre-photo">
             <i class="fa-solid fa-chevron-left"></i>
             <div class="photo-produit-g">
-              <img src="../assets/img/photos/{{ images }}" alt="{{ image.alt }}" /> <!-- {{ image.alt }} sera éventuellement ajouté -->
+              <img src="{{ asset }}/img/photos/{{ images }}" alt="{{ image.alt }}" /> <!-- {{ image.alt }} sera éventuellement ajouté -->
             </div>
             <i class="fa-solid fa-chevron-right"></i>
           </div>
@@ -50,10 +50,10 @@
         <div class="produits-similaires">
           <h3 class="h3-produits-simulaires">Produits Similaires</h3>
           <hr />
-          <img src="../assets/img/photos/senna.webp" alt="timbre Senna" />
-          <img src="../assets/img/photos/frevo.webp" alt="timbre Frevo" />
-          <img src="../assets/img/photos/barao.webp" alt="timbre Barao de Mauá" />
-          <img src="../assets/img/photos/Santos-Dumont.webp" alt="timbre Santos-Dumont" />
+          <img src="{{ asset }}/img/photos/senna.webp" alt="timbre Senna" />
+          <img src="{{ asset }}/img/photos/frevo.webp" alt="timbre Frevo" />
+          <img src="{{ asset }}/img/photos/barao.webp" alt="timbre Barao de Mauá" />
+          <img src="{{ asset }}/img/photos/Santos-Dumont.webp" alt="timbre Santos-Dumont" />
         </div>
       </div>
     </main>

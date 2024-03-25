@@ -19,7 +19,7 @@
     />
     <link
       rel="icon"
-      href="./assets/img/logos/Stampee_logo_pale_header.svg"
+      href="{{ asset }}/img/logos/Stampee_logo_pale_header.svg"
       type="image/x-icon"
       alt="logo Stampee"
     />
@@ -36,9 +36,50 @@
     <!-- <link rel="stylesheet" href="{{ asset }}/css/main.css">  -->
 </head>
 
+<body class="body-index">
+    <header class="header-top">
+      <div class="header-top__superieur">
+        <div class="header-top__logo">
+          <a href="{{ base }}"
+            ><img
+              src="{{ asset }}/img/logos/Stampee_logo_titre.png"
+              alt="logo Stampee"
+              class="header-top_img"
+              alt="logo Stampee"
+            />
+          </a>
+        </div>
 
-<body>
-    <nav>
+        <div class="barre-recherche">
+          <input
+            type="text"
+            class="barre-recherche__champ"
+            placeholder="Recherchez le timbre souhaité"
+          />
+          <i
+            class="fa-solid fa-magnifying-glass icon_img1"
+            alt="icon recherche"
+          ></i>
+        </div>
+        <i class="fa-solid fa-bars" alt="icon menu portable"></i>
+
+        <div class="header-top_icons">
+          <a href="./">
+            <i class="fa-solid fa-house icon_img1" role="img" aria-label="icon page d'accueil"></i
+          ></a>
+          <a href="{{ base }}/login">
+            <i
+              class="fa-solid fa-user icon_img1"
+              role="img" aria-label="icon inscription ou connexion"
+            ></i
+          ></a>
+          <i
+            class="fa-solid fa-cart-shopping icon_img1"
+            role="img" aria-label="icon inscription ou connexion"
+          ></i>
+        </div>
+      </div>
+    <nav class="header-nav">
         <ul>
             <!-- Menu admin -->
             {% if session.privilege_id == 1 %}
