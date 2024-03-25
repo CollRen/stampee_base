@@ -10,13 +10,23 @@
             <input type="text" name="description" value="{{ timbre.description }}">
         </label>
 
-        <label>Temps de préparation
+        <label>Année
             <input type="text" name="annee" value="{{ timbre.annee }}">
         </label>
 
-        <label>Temps de cuisson
+        <label>Prix de départ
             <input type="text" name="prix_depart" value="{{ timbre.prix_depart }}">
         </label>
+
+        <label for="pays_id"></label>Pays de provenence
+        <select name="pays_id" id="pays_id">
+
+            {% for pays in payss %}
+
+            <option value="{{ pays.id }}">{{ pays.nom }}</option>
+
+            {% endfor %}
+        </select>
 
         <label for="etat_conservation_id">Etat:</label>
         <select name="etat_conservation_id" id="etat_conservation_id">

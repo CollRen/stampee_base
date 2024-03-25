@@ -191,9 +191,12 @@ class TimbreController
 
             $timbreEtat = new Etat;
             $timbreEtatSelect = $timbreEtat->select();
+    
+            $pays = new Pays;
+            $selectPays = $pays->select();
 
             if ($selectId) {
-                return View::render('timbre/edit', ['timbre' => $selectId, 'timbreCats' => $timbreCategorieSelect, 'etats' => $timbreEtatSelect]);
+                return View::render('timbre/edit', ['timbre' => $selectId, 'timbreCats' => $timbreCategorieSelect, 'etats' => $timbreEtatSelect, 'timbreCategories' => $timbreCategorieSelect, 'payss' => $selectPays]);
             } else {
                 return View::render('error');
             }
@@ -205,16 +208,24 @@ class TimbreController
 
     public function update($data, $get)
     {
+/*         print_r($data);
+        echo '<br>';
+        print_r($get);
+        die(); */
+
+        /* Array ( [titre] => Premier timbre [description] => Le plus beau au monde [annee] => 2008-11-11 [prix_depart] => 10.14 [etat_conservation_id] => 1 [timbre_categorie_id] => 2 )
+Array ( [id] => 1 ) */
         $arrayCanEnter = [1, 2, 3];
         Auth::verifyAcces($arrayCanEnter);
 
         $validator = new Validator;
         $validator->field('titre', $data['titre'])->min(2)->max(60)->required();
         $validator->field('description', $data['description'])->max(256)->required();
-        $validator->field('annee', $data['annee'])->max(4)->number()->required();
-        $validator->field('prix_depart', $data['prix_depart'])->max(4)->number()->required();
-        $validator->field('timbre_categorie_id', $data['timbre_categorie_id'])->max(5)->int()->required();
-        $validator->field('etat_conservation_id', $data['etat_conservation_id'])->max(5)->int()->required();
+        $validator->field('annee', $data['annee'])->required();
+        $validator->field('timbre_categorie_id', $data['timbre_categorie_id'])->max(5)->required();
+        $validator->field('pays_id', $data['pays_id'])->required();
+        $validator->field('prix_depart', $data['prix_depart'])->max(12)->required();
+        $validator->field('etat_conservation_id', $data['etat_conservation_id'])->required();
 
         if ($validator->isSuccess()) {
             $timbre = new Timbre;

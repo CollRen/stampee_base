@@ -2,8 +2,8 @@
 <div class="timbre">
     <h1 class="timbre__titre">{{ timbre.titre }}</h1>
     <div class="timbre__durees">
-        <p><strong>Temps de préparation:</strong> {{ timbre.annee }}</p>
-        <p><strong>Temps de cuisson:</strong> {{ timbre.prix_depart }}</p>
+        <p><strong>Année:</strong> {{ timbre.annee }}</p>
+        <p><strong>Prix de départ:</strong> {{ timbre.prix_depart }}</p>
         <a href="{{ base }}/timbre/pdf">Imprimer en pdf</a>
     </div>
     <div class="timbre__description">

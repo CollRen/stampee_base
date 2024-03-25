@@ -12,6 +12,12 @@
     <p><strong>Authentification:</strong> {{ timbre.authentifie }}</p>
     <p><strong>État du timbre:</strong> {{ etat.nom }}</p>
 
+    <a href="{{base}}/timbre/edit?id={{timbre.id}}" class="btn block">Edit</a>
+    <form action="{{base}}/timbre/delete" method="post">
+        <input type="hidden" name="id" value="{{ timbre.id }}">
+        <button class="btn block red">Delete</button>
+    </form>
+
 </div>
 
 
