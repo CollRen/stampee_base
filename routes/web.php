@@ -58,15 +58,15 @@ Route::post('/pays/delete', 'PaysController@delete');
 
 
 
-Route::get('/enchereCat', 'EnchereCatController@index');
-Route::get('/enchereCat/show', 'EnchereCatController@show');
+Route::get('/Enchere', 'EnchereController@index');
+Route::get('/Enchere/show', 'EnchereController@show');
 
-Route::get('/enchereCat/create', 'EnchereCatController@create');
-Route::post('/enchereCat/create', 'EnchereCatController@store');
+Route::get('/Enchere/create', 'EnchereController@create');
+Route::post('/Enchere/create', 'EnchereController@store');
 
-Route::get('/enchereCat/edit', 'EnchereCatController@edit');
-Route::post('/enchereCat/edit', 'EnchereCatController@update');
-Route::post('/enchereCat/delete', 'EnchereCatController@delete');
+Route::get('/Enchere/edit', 'EnchereController@edit');
+Route::post('/Enchere/edit', 'EnchereController@update');
+Route::post('/Enchere/delete', 'EnchereController@delete');
 
 
 

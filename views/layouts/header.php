@@ -46,6 +46,7 @@
             <li><a href="{{base}}/etat">Etats</a></li>
             <li><a href="{{base}}/categorie">Catégorie</a></li>
             <li><a href="{{base}}/user/create">Users</a></li>
+            <li><a href="{{base}}/enchere">Enchères</a></li>
             {% endif %}
 
 

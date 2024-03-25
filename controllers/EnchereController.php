@@ -26,7 +26,7 @@ class EnchereController
         $select = $enchere->select();
 
         if ($select) {
-            return View::render('enchere/index', ['encheres' => $select]); // Besoin de ça
+            return View::render('enchere/index', ['encheres' => $select]);
         } else {
             return View::render('error');
         }
@@ -41,7 +41,7 @@ class EnchereController
 
             if ($selectId) {
                 $timbre = new Timbre;
-                $selectCat = $timbre->select();
+                $select = $timbre->select();
                 return View::render('enchere/show', ['enchere' => $selectId]);
             } else {
                 return View::render('error');
@@ -55,8 +55,8 @@ class EnchereController
     {
 
         $timbre = new Timbre;
-        $selectCat = $timbre->select();
-        return View::render('enchere/create', ['encherecats' => $selectCat]);
+        $select = $timbre->select();
+        return View::render('enchere/create', ['timbres' => $select]);
     }
 
     public function store($data)
@@ -64,7 +64,7 @@ class EnchereController
 
         $validator = new Validator;
 
-        $validator->field('nom', $data['nom'], 'Le nom')->min(2)->max(45)->required();
+        $validator->field('timbre_id', $data['timbre_id'])->min(1)->max(45)->int()->required();
 
         if ($validator->isSuccess()) {
             $enchere = new Enchere;
@@ -77,7 +77,7 @@ class EnchereController
         } else {
             $errors = $validator->getErrors();
             $timbre = new Timbre;
-            $selectCat = $timbre->select();
+            $select = $timbre->select();
             return View::render('enchere/create', ['errors' => $errors, 'enchere' => $data]);
         }
     }
@@ -91,7 +91,7 @@ class EnchereController
             $selectId = $enchere->selectId($data['id']);
             if ($selectId) {
                 $timbre = new Timbre;
-                $selectCat = $timbre->select();
+                $select = $timbre->select();
 
                 return View::render('enchere/edit', ['enchere' => $selectId]);
             } else {
