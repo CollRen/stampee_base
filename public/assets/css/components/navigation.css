@@ -1,0 +1,25 @@
+
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 90%;
+        margin: 0 auto;
+    
+      }
+      
+      li {
+        color: var(--blanc);
+        font-family: var(--police-principale);
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      } 
+      
+      li a {
+        display: block;
+        gap: var(--space-m);
+        text-align: center;
+        text-decoration: none;
+      }
+    

@@ -1,0 +1,65 @@
+.aside_menu {
+    max-width: 20rem;
+    padding-top: var(--space-g);
+    padding-bottom: var(--space-g);
+}
+
+.aside_menu p{
+    font-size: var(--police-s);
+}
+
+.aside_menu__form {
+    color: var(--blanc);
+    display: flex;
+    flex-direction: column;
+}
+
+.aside_menu__form span{
+    font-size: 0.6rem;
+}
+
+.aside_menu__input_range {
+    margin: var(--space-s);
+    max-width: 10rem;
+    accent-color: var(--dore);
+}
+
+.aside_menu_input_annee {
+    margin: var(--space-s);
+    margin-left: -1px;
+    accent-color: var(--dore);
+}
+
+.aside_menu_input_pays{
+    margin: var(--space-s);
+    margin-left: -1px;
+    
+    
+}
+
+.aside_menu_input_pays_select {
+    width: 10rem;
+    margin: var(--space-s);
+    accent-color: var(--dore);
+}
+
+.aside_menu_input_condition{
+    display: flex;
+    flex-direction: column;
+    margin: var(--space-s);
+
+}
+
+.aside_menu_input_condition_option{
+    margin: var(--space-s);
+    accent-color: var(--dore);
+}
+
+.aside_menu_input_autentication{
+    margin: var(--space-s);
+}
+
+.aside_menu_input_autentication_options {
+    display: flex;
+    accent-color: var(--dore);
+}
