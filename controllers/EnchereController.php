@@ -33,7 +33,7 @@ class EnchereController
     }
 
     public function show($data = [])
-    {
+    {   
         if (isset($data['id']) && $data['id'] != null) {
 
             $enchere = new Enchere;
@@ -102,11 +102,12 @@ class EnchereController
         }
     }
     public function update($data, $get)
-    {
+    {   
         $id = $_GET['id']; // S'il n'y a pas de changement
 
         $validator = new Validator;
-        $validator->field('nom', $data['nom'], 'Le nom')->min(2)->max(45);
+
+        $validator->field('date_limite', $data['date_limite'])->min(1)->max(10)->required();
 
         if ($validator->isSuccess()) {
             $enchere = new Enchere;
