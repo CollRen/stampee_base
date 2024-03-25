@@ -23,6 +23,7 @@
       type="image/x-icon"
       alt="logo Stampee"
     />
+    <script type="module" src="{{ asset }}/scripts/main.js" defer></script>
     <!-- Pour production -->
     <!-- <link rel="stylesheet" href="build/css/stylesfinaux.css"> -->
 <!--     <link rel="stylesheet" href="{{ asset }}/css/styles.css" /> -->
