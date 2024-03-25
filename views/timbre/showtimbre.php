@@ -1,4 +1,4 @@
-{{ include('layouts/header.php', { title: 'Show'})}}
+{{ include('layouts/header.php', { titre: 'Show', css: 'styles' })}}
 <div class="timbre">
     <h1 class="timbre__titre">{{ timbre.titre }}</h1>
     <div class="timbre__durees">

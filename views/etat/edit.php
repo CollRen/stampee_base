@@ -1,4 +1,4 @@
-{{ include('layouts/header.php', { title: 'Ajuste etat', css: 'admin'})}}
+{{ include('layouts/header.php', { titre: 'Ajuste etat', css: 'styles' })}}
     <div class="container">
         <h2>Édition de l'etat</h2>
         <form method="post">

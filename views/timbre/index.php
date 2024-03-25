@@ -1,4 +1,5 @@
-{{ include('layouts/header.php', { title: 'Timbre'})}}
+{{ include('layouts/header.php', { titre: 'Login', css: 'styles' })}}
+
 <h1>Timbre</h1>
 <table>
     <thead>

@@ -1,4 +1,4 @@
-{{ include('layouts/header.php', { title: 'Create RHI'})}}
+{{ include('layouts/header.php', { titre: 'Create RHI', css: 'styles' })}}
 
 <div class="container">
     <h2>Ajouter maintenant vos ingrédients</h2>

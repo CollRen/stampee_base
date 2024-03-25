@@ -1,5 +1,5 @@
 
-{{ include('layouts/header.php', { title: 'Timbre'})}}
+{{ include('layouts/header.php', { titre: 'Timbre', css: 'styles' })}}
 
 <main class="main-produit">
       <div class="page-produit">

@@ -25,12 +25,17 @@
     />
     <!-- Pour production -->
     <!-- <link rel="stylesheet" href="build/css/stylesfinaux.css"> -->
-    <link rel="stylesheet" href="{{ asset }}/css/styles.css" />
-    <link rel="stylesheet" href="{{ asset }}/css/{{ css }}.css" />
+<!--     <link rel="stylesheet" href="{{ asset }}/css/styles.css" /> -->
+{% if session.privilege_id == 1 %}
+<link rel="stylesheet" href="{{ asset_admin }}/css/{{ css }}.css" />
+{% else %}
+<link rel="stylesheet" href="{{ asset }}/css/{{ css }}.css" />
+{% endif %}
     <title>{{ titre }}</title>
-    <link rel="stylesheet" href="{{ asset }}/css/style.css">
-    <link rel="stylesheet" href="{{ asset }}/css/main.css">
+    <!-- <link rel="stylesheet" href="{{ asset }}/css/style.css">-->
+    <!-- <link rel="stylesheet" href="{{ asset }}/css/main.css">  -->
 </head>
+
 
 <body>
     <nav>

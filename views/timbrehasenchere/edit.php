@@ -1,4 +1,4 @@
-{{ include('layouts/header.php', { title: 'Edit RHI'})}}
+{{ include('layouts/header.php', { titre: 'Edit RHI', css: 'styles' })}}
 
 <div class="container">
     <h2>Ajuster cet ingrédient</h2>

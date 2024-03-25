@@ -1,4 +1,4 @@
-{{ include('layouts/header.php', { title: 'Create'})}}
+{{ include('layouts/header.php', { titre: 'Create', css: 'styles' })}}
 <div class="container">
     <h2>Timbre Create</h2>
     <form method="post">
