@@ -80,17 +80,21 @@ class TimbreController
 
             $enchere = new Enchere;
             $selectEncheres = $enchere->selectId($data['id'], 'timbre_id');
-            if($selectEncheres) $selectId['date_limite'] = $selectEncheres['date_limite'];
+            if ($selectEncheres) $selectId['date_limite'] = $selectEncheres['date_limite'];
 
             $timbreHis[] = '';
             $i = 0;
 
 
 
-            return View::render('timbre/show', ['timbre/show' => 'defini', 'timbre' => $selectId, 'images' => $selectImages, '$pays' => $selectPays['nom'], '$user' => $userData, 'timbreCat' => $selectCat['nom'], 'etat' => $selectEtat['nom']]);
-        } else {
 
-            /* On fait quoi ici */
+            if (isset($_SESSION['user_id'])) {
+                return View::render('timbre/showConnected', ['timbre/show' => 'defini', 'timbre' => $selectId, 'images' => $selectImages, 'pays' => $selectPays, 'user' => $userData, 'categorie' => $selectCat, 'etat' => $selectEtat]);
+            } else {
+                return View::render('timbre/show', ['timbre/show' => 'defini', 'timbre' => $selectId, 'images' => $selectImages, 'pays' => $selectPays, 'user' => $userData, 'categorie' => $selectCat, 'etat' => $selectEtat]);
+            }
+        } else {
+            return View::render('error');
         }
     }
 
@@ -121,7 +125,7 @@ class TimbreController
 
     public function store($data)
     {
-        if(!isset($data['authentifie'])) $data['authentifie'] = '0';
+        if (!isset($data['authentifie'])) $data['authentifie'] = '0';
         $arrayCanEnter = [1, 2, 3];
         Auth::verifyAcces($arrayCanEnter);
 

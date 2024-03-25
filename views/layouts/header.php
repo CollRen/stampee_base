@@ -68,5 +68,5 @@
 
 
         {% if guest is empty %}
-        Bienvenue {{ session.user_name }},
+        <h3 class="mot_bienvenu">Bienvenue {{ session.user_name }},</h3>
         {% endif %}
