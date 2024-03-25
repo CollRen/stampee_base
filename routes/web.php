@@ -5,8 +5,16 @@ use App\Routes\Route;
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@home');
 
+
+Route::get('/user', 'UserController@index');
+Route::get('/user/show', 'UserController@show');
+
 Route::get('/user/create', 'UserController@create');
 Route::post('/user/create', 'UserController@store');
+
+Route::get('/user/edit', 'UserController@edit');
+Route::post('/user/edit', 'UserController@update');
+Route::post('/user/delete', 'UserController@delete');
 
 
 
