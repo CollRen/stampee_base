@@ -1,11 +1,12 @@
 {{ include('layouts/header.php', { titre: 'enchere', css: 'styles' })}}
 <main class="main-index">
-    <h1>enchere</h1>
+    <h1>Enchères</h1>
     <table>
         <thead>
             <tr>
                 <th># d'enchères</th>
                 <th># du timbre</th>
+                <th>Date début</th>
                 <th>Date limite</th>
 
             </tr>
@@ -15,6 +16,7 @@
             <tr>
                 <td><a href="{{ base }}/enchere/show?id={{ enchere.id }}">{{ enchere.id }}</a></td>
                 <td>{{ enchere.timbre_id }}</td>
+                <td>>{{ enchere.date_debut }}</td>
                 <td>>{{ enchere.date_limite }}</td>
 
             </tr>

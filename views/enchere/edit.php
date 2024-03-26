@@ -3,6 +3,10 @@
     <div class="container">
         <h2>Pays Edit</h2>
         <form method="post">
+        <label for="date_debut">Date début
+            <input type="datetime-local" name="date_debut">
+        </label>
+        
         <label for="date_limite">Date limite
             <input type="datetime-local" name="date_limite">
         </label>

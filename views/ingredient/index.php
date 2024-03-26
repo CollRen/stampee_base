@@ -1,6 +1,6 @@
 {{ include('layouts/header.php', { titre: 'Enchere', css: 'styles' })}}
 <main class="main-index">
-<h1>Enchere</h1>
+<h1>Enchère</h1>
 </select>
 <table>
     <thead>

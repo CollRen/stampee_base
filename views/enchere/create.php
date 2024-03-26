@@ -14,10 +14,16 @@
             {% endfor %}
         </select>
 
-
+        <label for="date_debut">Date début
+            <input type="datetime-local" name="date_debut">
+        </label>
+        
         <label for="date_limite">Date limite
             <input type="datetime-local" name="date_limite">
         </label>
+
+
+
             {% if errors.name is defined %}
                 <span class="error">{{ errors.nom }}</span>
             {% endif %}
