@@ -113,6 +113,3 @@
     </nav>
 
 
-        {% if guest is empty %}
-        <h3 class="mot_bienvenu">Bienvenue {{ session.user_name }},</h3>
-        {% endif %}

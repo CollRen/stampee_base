@@ -41,6 +41,19 @@ Le mot de passe est toujours le même, soit: 123456
 > Voir le dossiers / situé à la racine de celui-ci
 
 
+## Intéressant
+
+1. Le session.user_name est intéressant peut-être éventuellement pour l'espace membre en haut à droite
+
+```php 
+        {% if guest is empty %}
+        <h3 class="mot_bienvenu">Bienvenue {{ session.user_name }},</h3>
+        {% endif %}
+
+
+```
+
+
 
 
 
