@@ -49,6 +49,30 @@ abstract class CRUD extends \PDO
         }
     }
 
+    final public function selectIdTwoKeys($value1, $value2, $field1 = null, $field2 = null)
+    {
+        if ($field1 == null) {
+            $field1 = $this->primaryKey;
+        }
+
+        if ($field2 == null) {
+            $field2 = $this->secondaryKey;
+        }
+        $sql = "SELECT * FROM $this->table WHERE $field1 = :$field1 AND $field2 = :$field2 ;";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(":$field1", $value1);
+        $stmt->bindValue(":$field2", $value2);
+        $stmt->execute();
+        $count = $stmt->rowCount();
+        if ($count == 1) {
+            return $stmt->fetch();
+        } else if ($count > 1) {
+            return $stmt->fetchAll();
+        } else {
+            return false;
+        }
+    }
+
 
 
     public function insert($data)

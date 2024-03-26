@@ -1,7 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Accueil', css: 'styles' })}}
 <main class="main-index">
-
-<main class="main-index">
 <hero class="index-hero">
         <div class="index-hero__carroussel">
           <div class="index-hero-photo">
@@ -165,40 +163,15 @@
 
       <section class="nouvelles">
         <h2>Actualités</h2>
-        <hr />
+        {% for actualite in actualites %}
         <div class="nouvelle-p">
           <p>
-            05/03/2024 - Découvrez notre dernière acquisition exceptionnelle :
-            un timbre rare datant du 19e siècle, mettant en lumière une époque
-            fascinante de l'histoire postale. Ajoutez ce trésor unique à votre
-            collection dès maintenant.
+          {{ actualite.date }} - {{ actualite.text }}
           </p>
         </div>
-        <div class="nouvelle-p">
-          <p>
-            22/03/2024 - Lord Stampee est fier d'annoncer le lancement d'une
-            série exclusive de timbres commémoratifs en partenariat avec des
-            artistes renommés. Ces œuvres philatéliques uniques célèbrent la
-            diversité culturelle à travers le monde.
-          </p>
-        </div>
-        <div class="nouvelle-p">
-          <p>
-            30/03/2024 - Notre prochaine vente aux enchères promet d'être
-            extraordinaire avec une collection rare de timbres provenant des
-            coins les plus reculés de la planète. Soyez prêt à saisir
-            l'opportunité d'ajouter des joyaux philatéliques uniques à votre
-            collection.
-          </p>
-        </div>
-        <div class="nouvelle-p">
-          <p>
-            05/04/2024 - Plongez dans l'histoire postale avec notre exposition
-            virtuelle exclusive. Explorez des timbres emblématiques qui ont
-            marqué des moments clés de l'histoire mondiale. Une expérience
-            immersive à ne pas manquer pour les amateurs de philatélie.
-          </p>
-        </div>
+
+        {% endfor %}
+       
       </section>
     </main>
 

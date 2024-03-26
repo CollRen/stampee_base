@@ -78,15 +78,15 @@ Route::post('/pays/delete', 'PaysController@delete');
 
 
 
-Route::get('/Enchere', 'EnchereController@index');
-Route::get('/Enchere/show', 'EnchereController@show');
+Route::get('/enchereFavorie', 'EnchereFavorieController@index');
+Route::get('/enchereFavorie/show', 'EnchereFavorieController@show');
 
-Route::get('/Enchere/create', 'EnchereController@create');
-Route::post('/Enchere/create', 'EnchereController@store');
+Route::get('/enchereFavorie/create', 'EnchereFavorieController@create');
+Route::post('/enchereFavorie/create', 'EnchereFavorieController@store');
 
-Route::get('/Enchere/edit', 'EnchereController@edit');
-Route::post('/Enchere/edit', 'EnchereController@update');
-Route::post('/Enchere/delete', 'EnchereController@delete');
+Route::get('/enchereFavorie/edit', 'EnchereFavorieController@edit');
+Route::post('/enchereFavorie/edit', 'EnchereFavorieController@update');
+Route::post('/enchereFavorie/delete', 'EnchereFavorieController@delete');
 
 
 
