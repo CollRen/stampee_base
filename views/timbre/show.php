@@ -1,5 +1,6 @@
 
 {{ include('layouts/header.php', { titre: 'Timbre', css: 'styles' })}}
+<main class="main-index">
 
 <main class="main-produit">
       <div class="page-produit">
@@ -58,4 +59,5 @@
       </div>
     </main>
 
-    {{ include('layouts/footer.php') }}
+    </main>
+{{ include('layouts/footer.php') }}

@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Accueil', css: 'styles' })}}
+<main class="main-index">
 
 <main class="main-index">
 <hero class="index-hero">
@@ -203,4 +204,5 @@
 
 
 
+</main>
 {{ include('layouts/footer.php') }}

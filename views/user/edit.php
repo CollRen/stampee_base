@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'User', css: 'styles' })}}
+<main class="main-index">
     <div class="container">
         <h2>User Edit</h2>
         <form method="post">
@@ -17,4 +18,5 @@
             <input type="submit" class="btn" value="Update">
         </form>
     </div>
-    {{ include('layouts/footer.php') }}
+    </main>
+{{ include('layouts/footer.php') }}

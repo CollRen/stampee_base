@@ -1,4 +1,5 @@
     {{ include('layouts/header.php', { titre: 'Pays', css: 'styles' })}}
+<main class="main-index">
     <main class="main-apropos">
       <div class="apropos-text">
         <div class="apropos_img_principal">
@@ -88,4 +89,5 @@
         </div>
       </div>
     </main>
-        {{ include('layouts/footer.php') }}
+        </main>
+{{ include('layouts/footer.php') }}

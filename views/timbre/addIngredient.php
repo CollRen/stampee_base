@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Create', css: 'styles' })}}
+<main class="main-index">
 <div class="container">
     <h2>Ajouter maintenant vos ingrédients</h2>
     <form method="post">
@@ -51,4 +52,5 @@
     </form>
 </div>
 
+</main>
 {{ include('layouts/footer.php') }}

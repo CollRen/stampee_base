@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Liste etats', css: 'styles' })}}
+<main class="main-index">
     <div class="container">
         <h2>Etats</h2>
         <hr>
@@ -11,4 +12,5 @@
         </form>
     </div>
 
-    {{ include('layouts/footer.php') }}
+    </main>
+{{ include('layouts/footer.php') }}

@@ -11,4 +11,5 @@
         <h2>Error 404 - Page not found!</h2>
         <strong class="error">{{ message }}</strong>
     </div>
-    {{ include('layouts/footer.php') }}
+    </main>
+{{ include('layouts/footer.php') }}

@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Create', css: 'styles' })}}
+<main class="main-index">
 <div class="container">
     <h2>Timbre Create</h2>
     <form method="post">
@@ -77,4 +78,5 @@
 
 {% endfor %}
 
+</main>
 {{ include('layouts/footer.php') }}

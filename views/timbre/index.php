@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Login', css: 'styles' })}}
+<main class="main-index">
 
 
 <h1>Timbre</h1>
@@ -68,4 +69,5 @@
 
 {% endif %}
 
+</main>
 {{ include('layouts/footer.php') }}

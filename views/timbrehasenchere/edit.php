@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Edit RHI', css: 'styles' })}}
+<main class="main-index">
 
 <div class="container">
     <h2>Ajuster cet ingrédient</h2>

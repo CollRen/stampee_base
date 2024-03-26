@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Enchere', css: 'styles' })}}
+<main class="main-index">
 <h1>Enchere</h1>
 </select>
 <table>
@@ -27,4 +28,5 @@
 </table>
 <a href="{{ base }}/enchere/create" class="btn">Enchere Create</a>
 
+</main>
 {{ include('layouts/footer.php') }}

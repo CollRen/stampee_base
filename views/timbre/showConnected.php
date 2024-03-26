@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Show connected', css: 'styles' })}}
+<main class="main-index">
 <div class="container">
     <h2>Liste timbre, éventuellement, Ma liste de timbre</h2>
 
@@ -21,4 +22,5 @@
 </div>
 
 
+</main>
 {{ include('layouts/footer.php') }}

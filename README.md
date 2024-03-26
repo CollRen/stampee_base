@@ -9,6 +9,20 @@ Ajuster toutes les entrées de dates
 
 Puis en gérant ces données en PHP
 
+
+## SQL
+
+1. À ajouter
+    - enchere:
+        - date_debut
+        - est_coup_coeur_lord
+
+    - timbre
+        - tirage
+        - couler(s)
+        - dimensions
+
+
 ## Projet Stampee
 
 ## Liens

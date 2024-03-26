@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'TimbreCat', css: 'styles' })}}
+<main class="main-index">
     <h1>TimbreCat</h1>
     <table>
         <thead>
@@ -19,4 +20,5 @@
     
     <a href="{{ base }}/enchereCat/create" class="btn" >TimbreCat Create</a>
 
-    {{ include('layouts/footer.php') }}
+    </main>
+{{ include('layouts/footer.php') }}

@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Aj Etat', css: 'styles' })}}
+<main class="main-index">
     <h1>Etats</h1>
     <table>
         <thead>
@@ -16,4 +17,5 @@
     </table>
     <a href="{{ base }}/etat/create" class="btn" >Ajouter un etat</a>
 
-    {{ include('layouts/footer.php') }}
+    </main>
+{{ include('layouts/footer.php') }}

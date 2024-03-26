@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Create', css: 'styles' })}}
+<main class="main-index">
     <div class="container">
         <h2>Créer une enchère</h2>
         <form method="post">
@@ -24,4 +25,5 @@
             <input type="submit" class="btn" value="Save">
         </form>
     </div>
-    {{ include('layouts/footer.php') }}
+    </main>
+{{ include('layouts/footer.php') }}

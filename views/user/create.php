@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Registration', css: 'styles' })}}
+<main class="main-index">
 <div class="container">
     {% if errors is defined %}
     <div class="error">

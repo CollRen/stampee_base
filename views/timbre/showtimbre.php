@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Show', css: 'styles' })}}
+<main class="main-index">
 <div class="timbre">
     <h1 class="timbre__titre">{{ timbre.titre }}</h1>
     <div class="timbre__durees">
@@ -97,4 +98,5 @@
 </div>
 {% endif %}
 
+</main>
 {{ include('layouts/footer.php') }}

@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Timbre', css: 'styles' })}}
+<main class="main-index">
 <div class="container">
     <h2>Timbre Edit</h2>
     <form method="post">
@@ -50,6 +51,7 @@
     </form>
 </div>
 
+</main>
 {{ include('layouts/footer.php') }}
 
 

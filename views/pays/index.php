@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Pays', css: 'styles' })}}
+<main class="main-index">
     <h1>Pays</h1>
     <table>
         <thead>
@@ -18,4 +19,5 @@
     </table>
     <a href="{{ base }}/pays/create" class="btn" >Pays Create</a>
 
-    {{ include('layouts/footer.php') }}
+    </main>
+{{ include('layouts/footer.php') }}

@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Aj Etat', css: 'styles' })}}
+<main class="main-index">
     <div class="container">
         <h2>Création d'un etat</h2>
         <form method="post">
@@ -13,4 +14,5 @@
             <input type="submit" class="btn" value="Save">
         </form>
     </div>
-    {{ include('layouts/footer.php') }}
+    </main>
+{{ include('layouts/footer.php') }}

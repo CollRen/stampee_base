@@ -1,4 +1,5 @@
 {{ include('layouts/header.php', { titre: 'Create RHI', css: 'styles' })}}
+<main class="main-index">
 
 <div class="container">
     <h2>Ajouter maintenant vos ingrédients</h2>
@@ -115,4 +116,5 @@
 
 </div>
 
+</main>
 {{ include('layouts/footer.php') }}
