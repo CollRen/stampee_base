@@ -1,11 +1,11 @@
 
 :root {
-    --space-xxs: 4px;
-    --space-xs: 8px;
-    --space-s: 12px;
-    --space-m: 16px;
-    --space-mg: 24px;
-    --space-g: 32px;
-    --space-xg: 64px;
-    --space-xxg: 128px;
+    --space-xxs: .25rem;
+    --space-xs: .5rem;
+    --space-s: .75rem;
+    --space-m: 1rem;
+    --space-mg: 1.5rem;
+    --space-g: 2rem;
+    --space-xg: 4rem;
+    --space-xxg: 8rem;
 }

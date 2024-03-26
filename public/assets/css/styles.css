@@ -47,13 +47,5 @@
 @import url("./layout/apropos.css");
 @import url("./layout/login.css");
 
-br > * {
-    color: var(--blanc);
-}
-br * {
-    color: var(--blanc);
-}
 
-* {
-    color: var(--blanc);
-}
+@import url("./layout/admin.css");
