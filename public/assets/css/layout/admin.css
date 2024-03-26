@@ -8,6 +8,7 @@ th {
 td {
   border: 1px solid var(--vert-fonce);
   padding: var(--space-s);
+  color: var(--blanc);
 }
 tr:nth-child(even) {
   background-color: var(--vert-fonce);
@@ -32,21 +33,7 @@ select {
   border: 1px solid var(--danger) 58;
   border-radius: var(--space--xxs);
 }
-.btn {
-  margin-top: var(--space-s);
-  display: inline-block;
-  padding: var(--space--xxs) var(--space-s);
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  outline: var(--space--xxs) solid var(--danger);
-  border: 0px;
-  color: var(--blanc);
-  border-radius: var(--space--xxs);
-  background-color: var(--vert-fonce);
-  transition: background-color 0.3s ease;
-}
+
 .btn.block {
   width: 100%;
   padding: var(--space--xxs) 0px;

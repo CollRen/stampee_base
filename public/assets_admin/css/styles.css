@@ -45,11 +45,11 @@ th {
     color: var(--main-txt-color);
     font-size: var(--space-m);
     text-align: left;
-    padding: 10px;
+    padding: var(--space-s);
 }
 td {
     border: 1px solid var(--main-bg-color);
-    padding: 10px;
+    padding: var(--space-s);
 }
 tr:nth-child(even) {
     background-color: #7a483e35;
@@ -58,39 +58,39 @@ tr:nth-child(even) {
     width: 300px;
     margin: 0 auto;
     border: 1px solid #7A483E;
-    padding: 30px;
-    border-radius: 10px;
+    padding: var(--space-g);
+    border-radius: var(--space-s);
 }
 label {
     display: block;
-    margin-top: 10px;
+    margin-top: var(--space-s);
     font-weight: bold;
 }
 input, select {
     width: 100%;
-    padding: 5px;
-    margin-bottom: 5px;
+    padding: var(--space-xxs);
+    margin-bottom: var(--space-xxs);
     border: 1px solid #7a483e58;
-    border-radius: 5px;
+    border-radius: var(--space-xxs);
 }
 .btn {
-    margin-top:10px;
+    margin-top:var(--space-s);
     display: inline-block;
-    padding: 5px 10px;
-    font-size: 16px;
+    padding: var(--space-xxs) var(--space-s);
+    font-size: var(--space-m);
     text-align: center;
     text-decoration: none;
     cursor: pointer;
     outline: 2px solid #7A483E;
     border: 0px;
     color: var(--main-txt-color);
-    border-radius: 5px;
+    border-radius: var(--space-xxs);
     background-color: var(--main-bg-color);
     transition: background-color 0.3s ease;
 }
 .btn.block{
     width: 100%;
-    padding: 5px 0px;
+    padding: var(--space-xxs) 0px;
 }
 .btn:hover {
     opacity: 75%;
@@ -107,9 +107,9 @@ input, select {
 .error{
     width: 100%;
     display: inline-block;
-    padding:5px;
+    padding:var(--space-xxs);
     background-color: rgb(251, 187, 187);
-    border-radius: 5px;
+    border-radius: var(--space-xxs);
     border: red 1px solid;
     font-size: 0.9em;
     color:red;
@@ -153,7 +153,7 @@ a {
     height: 2px;
     background-color: #242424;
     width: 50%;
-    margin-left: 15px;
+    margin-left: 1var(--space-xxs);
     top: 100%;
 
 }

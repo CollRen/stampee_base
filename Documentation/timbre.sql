@@ -116,9 +116,11 @@ VALUES
 INSERT INTO stampee.etat_conservation
 (nom)
 VALUES
-('Neuf'),
-('Endommagé'),
-('Très encommagé');
+('Parfaite'),
+('Exellente'),
+('Bonne'),
+('Moyenne'),
+('Endommagé');
 
 INSERT INTO stampee.timbre
 (titre, description, annee, timbre_categorie_id, user_id, pays_id, prix_depart, authentifie, etat_conservation_id)
@@ -136,4 +138,15 @@ INSERT INTO stampee.image
 VALUES
 ('Image de ce timbre', '1', 'asset/img/cetibre', 1);
 
+CREATE TABLE stampee.actualite (
+id INT AUTO_INCREMENT PRIMARY KEY,
+date DATETIME(6),
+text TEXT(1000)
+);
 
+INSERT INTO stampee.actualite
+(date, text)
+VALUES
+('111111', "Lord Stampee est fier d'annoncer le lancement d'une série exclusive de timbres commémoratifs en partenariat avec des artistes renommés. Ces œuvres philatéliques uniques célèbrent la diversité culturelle à travers le monde."),
+('111111', "Plongez dans l'histoire postale avec notre exposition virtuelle exclusive. Explorez des timbres emblématiques qui ont marqué des moments clés de l'histoire mondiale. Une expérience immersive à ne pas manquer pour les amateurs de philatélie."),
+('111111', "Notre prochaine vente aux enchères promet d'être extraordinaire avec une collection rare de timbres provenant des coins les plus reculés de la planète. Soyez prêt à saisir l'opportunité d'ajouter des joyaux philatéliques uniques à votre collection.");

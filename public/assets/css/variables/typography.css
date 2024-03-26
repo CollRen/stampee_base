@@ -36,8 +36,11 @@ h1, h2, h3, h4 {
 }
 
 h1 {
+    margin-bottom: var(--space-g);
+    margin-top: var(--space-xg);
     font-size: var(--police-g);
     line-height: 3.4rem;
+    color: var(--dore);
 }
 
 h2 {
@@ -46,6 +49,7 @@ h2 {
 
 h3{
     font-size: var(--police-s);
+    color: var(--blanc);
 }
 
 h4{
