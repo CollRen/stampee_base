@@ -1,5 +1,13 @@
 # Projet web 1
 
+## Attention
+
+Les labels n'ont pas de nom, à vérifier!
+Ajuster toutes les entrées de dates
+
+- Peut-être en ajoutant: annee ****, jour **, mois **, heure **, minute **
+
+Puis en gérant ces données en PHP
 
 ## Projet Stampee
 

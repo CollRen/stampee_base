@@ -43,6 +43,18 @@ Route::post('/etat/delete', 'EtatController@delete');
 
 
 
+Route::get('/actualite', 'ActualiteController@index');
+Route::get('/actualite/show', 'ActualiteController@show');
+
+Route::get('/actualite/create', 'ActualiteController@create');
+Route::post('/actualite/create', 'ActualiteController@store');
+
+Route::get('/actualite/edit', 'ActualiteController@edit');
+Route::post('/actualite/edit', 'ActualiteController@update');
+Route::post('/actualite/delete', 'ActualiteController@delete');
+
+
+
 Route::get('/categorie', 'TimbreCategorieController@index');
 Route::get('/categorie/show', 'TimbreCategorieController@show');
 

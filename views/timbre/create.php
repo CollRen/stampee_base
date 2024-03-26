@@ -10,7 +10,7 @@
         </label>
 
         <label for="annee">Année
-            <input type="number" name="annee" value="{{ timbre.annee }}">
+            <input type="datetime-local" name="annee" value="{{ timbre.annee }}">
         </label>
 
         <label for="timbre_categorie_id"></label>Catégorie
