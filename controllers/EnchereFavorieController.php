@@ -27,16 +27,28 @@ class EnchereFavorieController
         $enchereFavorie = new EnchereFavorie;
         $selectFavories = $enchereFavorie->select();
 
+        /* Faire sortir toutes les enchères
+            Éventuellement filtrer pour ne faire ressortir que celles de cet utilisateur
+        */
         $enchere = new Enchere;
-        $selectEnchere = $enchere->selectId($selectFavories['enchere_id']);
+        for ($i=0; $i < count($selectFavories) ; $i++) { 
+                    $selectEnchere = $enchere->selectId($selectFavories[$i]['enchere_id']);
+                    $selectEncheres[$i] = [$selectEnchere];
+        }
+        print_r($selectEncheres); die();
 
         $user = new User;
         $selectUser = $user->selectId($selectFavories['user_id']);
 
+        print_r($_SESSION['user_id']); die();
+        if($selectFavories['user_id'] == $_SESSION['user_id']){
+            echo 'YO';
+        }
+
 
 
         if ($selectFavories) {
-            return View::render('enchereFavorie/index', ['enchereFavories' => $selectFavories]);
+            return View::render('enchereFavorie/index', ['enchereFavories' => $selectFavories, 'encheres' => $selectEnchere, 'user' => $selectUser,]);
         } else {
             return View::render('error');
         }
