@@ -1,5 +1,44 @@
 # Projet web 1
 
+
+## Page catalogue (enchereclient/index)
+
+### Affichage
+
+1. base = page PHP
+2. JS pour écouter les événements
+    - Miser
+    - Lier avec BD avec un Router.js ? À réfléchir
+    
+3. Btn "En savoir plus" {{ timbre.lien }}
+4. image: { asset } { timbre.image_pricipale}
+    - Faudra new Image
+
+### Pagination
+
+1. À suivre...
+
+
+### Filtres
+
+1. Prix
+    - Range
+
+2. Année
+    - Range
+
+3. Pays
+    - Select
+
+4. Condition
+    - Checkbox
+    - fonction PHP noddle in array
+
+5. Authentifié
+    - Radio oui = value="1"
+    - Radio Non = value="0"
+
+
 ## Attention
 
 Les labels n'ont pas de nom, à vérifier!
@@ -30,22 +69,6 @@ Puis en gérant ces données en PHP
         - dimensions
 
 
-## Projet Stampee
-
-## Liens
-
-
-## Accès
-
-1. admin@me.com
-2. manager@me.com
-3. etat@me.com
-
-Le mot de passe est toujours le même, soit: 123456
-
-## Documentations
-
-> Voir le dossiers / situé à la racine de celui-ci
 
 
 ## Intéressant
