@@ -16,7 +16,7 @@ class UserController
     {
         $user = new User;
         $arrayAuth = $user->isAuth();
-        Auth::verifyAcces($arrayAuth);;
+        Auth::verifyAcces($arrayAuth);
     }
 
     public function index()

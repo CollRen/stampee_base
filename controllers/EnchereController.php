@@ -17,7 +17,7 @@ class EnchereController
     {
         $enchere = new Enchere;
         $arrayAuth = $enchere->isAuth();
-        Auth::verifyAcces($arrayAuth);;
+        //Auth::verifyAcces($arrayAuth);
     }
 
     public function index()
@@ -26,7 +26,13 @@ class EnchereController
         $select = $enchere->select();
 
         if ($select) {
-            return View::render('enchere/index', ['encheres' => $select]);
+            if($_SESSION['user_id'] == 1){
+
+                return View::render('enchere/index', ['encheres' => $select]);
+            } else{
+                return View::render('enchereclient/index', ['encheres' => $select]);
+
+            }
         } else {
             return View::render('error');
         }

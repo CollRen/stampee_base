@@ -18,7 +18,7 @@ class EnchereFavorieController
     {
         $enchereFavorie = new EnchereFavorie;
         $arrayAuth = $enchereFavorie->isAuth();
-        Auth::verifyAcces($arrayAuth);;
+        Auth::verifyAcces($arrayAuth);
     }
 
     /* Affiche la liste des enchères favories de cet usager */

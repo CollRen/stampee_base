@@ -25,7 +25,7 @@ class TimbreController
     {
         $timbre = new Timbre;
         $arrayAuth = $timbre->isAuth();
-        Auth::verifyAcces($arrayAuth);;
+        Auth::verifyAcces($arrayAuth);
     }
 
     public function index()

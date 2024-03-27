@@ -105,6 +105,7 @@
 
             <!-- menu guest  -->
             {% if guest %}
+            <li><a href="{{base}}/enchere">Enchères</a></li>
             <li><a href="{{base}}/timbre">Liste de timbre</a></li>
             <li class="connexion connexion__not-connected"><a href="{{base}}/login">Login</a></li>
             {% else %}
