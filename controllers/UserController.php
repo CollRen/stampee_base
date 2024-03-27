@@ -76,37 +76,26 @@ class UserController
         }
     }
 
-    public function edit($data)
-    {  
+    public function edit($data = [])
+    {
         if (isset($data['id']) && $data['id'] != null) {
-        $user = new User;
-        $selectId = $user->selectId($data['id']);
-
-        $validator = new Validator;
-        $validator->field('name', $selectId['name'])->min(2)->max(50);
-        $validator->field('username', $selectId['username'])->min(2)->max(50)->email()->unique('User');
-        $validator->field('password', $selectId['password'])->min(6)->max(20);
-        $validator->field('email', $selectId['email'])->required()->max(100)->email()->unique('User');
-        $validator->field('privilege_id', $selectId['privilege_id'], 'Privilege')->required();
-
-/* Rendu ici */
-        if ($validator->isSuccess()) {
             $user = new User;
+            $selectId = $user->selectId($data['id']);
 
-            $data['password'] = $user->hashPassword($data['password']);
-            $insert = $user->insert($data);
-            if ($insert) {
-                return View::redirect('login');
+            $privilege = new Privilege;
+            $privileges = $privilege->select('nom');
+
+            if ($selectId) {
+                return View::render('user/edit', ['user' => $selectId, 'privileges' => $privileges]);
             } else {
                 return View::render('error');
             }
         } else {
-            $errors = $validator->getErrors();
-            $privilege = new Privilege;
-            $privileges = $privilege->select('nom');
-            return View::render('user/edit', ['errors' => $errors, 'user' => $data, 'privileges' => $privileges]);
+            return View::render('error', ['message' => 'Could not find this data']);
         }
-    }}
+    }
+
+
 
     public function show($data = [])
     {
@@ -126,12 +115,24 @@ class UserController
     }
 
     public function update($data, $get)
-    {
-        $validator = new Validator;
-        $validator->field('nom', $data['nom'], 'Le nom')->min(2)->max(45);
+    {   
+
+        if (isset($data['privilege_id']) && $get['id'] != null) {
+
+            $user = new User;
+            $selectId = $user->selectId($get['id']);
+            $validator = new Validator;
+            $validator->field('name', $selectId['name'])->min(2)->max(50);
+            /* Le username doit être unique... mais dans un update si on ne veut pas changer le username on est prix! */
+            $validator->field('username', $selectId['username'])->min(2)->max(50)->email()->unique('User');
+            $validator->field('password', $selectId['password'])->min(6)->max(20)->required();
+            $validator->field('email', $selectId['email'])->required()->max(100)->email()->unique('User');
+            $validator->field('privilege_id', $selectId['privilege_id'], 'Privilege')->required();
 
         if ($validator->isSuccess()) {
+
             $user = new User;
+            $data['password'] = $user->hashPassword($data['password']);
             $update = $user->update($data, $get['id']);
 
             if ($update) {
@@ -140,11 +141,14 @@ class UserController
                 return View::render('error');
             }
         } else {
+            $privilege = new Privilege;
+            $privileges = $privilege->select('nom');
+
             $errors = $validator->getErrors();
 
-            return View::render('user/edit', ['errors' => $errors, 'user' => $data]);
+            return View::render('user/edit', ['errors' => $errors, 'user' => $data, 'privileges' => $privileges]);
         }
-    }
+    }}
 
     public function delete($data)
     {
