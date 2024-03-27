@@ -12,19 +12,19 @@
     {% endif %}
     <form method="post">
         <h2>Registration</h2>
-        <label>Name
+        <label for="name">Name
             <input type="text" name="name" value="{{ user.name}}">
         </label>
-        <label>Username
+        <label for="username">Username
             <input type="email" name="username" value="{{ user.username}}">
         </label>
-        <label>Password
+        <label for="password">Password
             <input type="password" name="password">
         </label>
-        <label>Email
+        <label for="email">Email
             <input type="email" name="email" value="{{ user.email}}">
         </label>
-        <label>
+        <label for="privilege_id">
             Privilege
             <select name="privilege_id">
                 <option value="">Select Privilege</option>
