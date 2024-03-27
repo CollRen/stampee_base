@@ -52,6 +52,9 @@
     
       <ul>
         <li><a href="{{base}}/coupcoeurlord">Coup de coeur du Lord</a></li>
+        {% if session.privilege_id is defined %}
+
+        
         <!-- Menu admin -->
         {% if session.privilege_id == 1 %}
         <li><a href="{{base}}/timbre">Liste de timbre</a></li>
@@ -70,11 +73,13 @@
         <li><a href="{{base}}/enchere">Enchères</a></li>
         <li><a href="{{base}}/timrehasenchere">Mes enchères</a></li>
         {% endif %}
+        {% endif %}
+
 
         <!-- menu guest  -->
         {% if guest %}
         <li><a href="{{base}}/enchere">Enchères</a></li>
-        <li><a href="{{base}}/timbre">Liste de timbre</a></li>
+        <li class="connexion connexion__not-connected"><a href="{{base}}/user/create">Créer votre compte</a></li>
         <li class="connexion connexion__not-connected"><a href="{{base}}/login">Login</a></li>
         {% else %}
         <li class="connexion connexion__connected"><a href="{{base}}/logout">Logout</a></li>
