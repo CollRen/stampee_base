@@ -20,9 +20,12 @@ CREATE TABLE wuatrpaz_stampee.privilege (
   nom VARCHAR(50) NOT NULL
 );
 
-INSERT INTO  wuatrpaz_stampee.privilege (`nom`) VALUES
+INSERT INTO wuatrpaz_stampee.privilege
+(nom)
+VALUES
 ('Admin'),
-('membre');
+('Membre');
+
 
 CREATE TABLE wuatrpaz_stampee.user (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -101,12 +104,6 @@ INSERT INTO wuatrpaz_stampee.timbre_categorie
 (nom)
 VALUES
 ('de collection');
-
-INSERT INTO wuatrpaz_stampee.privilege
-(nom)
-VALUES
-('Admin'),
-('Membre');
 
 INSERT INTO wuatrpaz_stampee.user
 (name, username, password, email, privilege_id)

@@ -77,6 +77,7 @@ abstract class CRUD extends \PDO
 
     public function insert($data)
     {
+
         $data_keys = array_fill_keys($this->fillable, '');
         $data = array_intersect_key($data, $data_keys);
         $fieldName = implode(', ', array_keys($data));

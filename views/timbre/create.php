@@ -3,15 +3,15 @@
 <div class="container">
     <h2>Timbre Create</h2>
     <form method="post">
-        <label {% if errors.titre is defined %}class="error" {% endif %}>Titre
-            <input type="text" name="titre" value="{{ timbre.titre }}">
+        <label for="titre" {% if errors.titre is defined %}class="error" {% endif %}>Titre
+            <input type="text" name="titre" value="{{ data.titre }}">
         </label>
-        <label>Description
-            <input type="text" name="description" value="{{ timbre.description }}">
+        <label for="description">Description
+            <input type="text" name="description" value="{{ data.description }}">
         </label>
 
         <label for="annee">Année
-            <input type="datetime-local" name="annee" value="{{ timbre.annee }}">
+            <input type="date" name="annee" value="{{ timbre.annee }}">
         </label>
 
         <label for="timbre_categorie_id"></label>Catégorie
@@ -19,8 +19,7 @@
 
             {% for timbreCategorie in timbreCategories %}
 
-            <option value="{{ timbreCategorie.id }}">{{ timbreCategorie.nom }}</option>
-
+            <option value="{{ timbreCategorie.id }}" {% if timbreCategorie.id == data.timbre_categorie_id %} selected {% endif %}>{{ timbreCategorie.nom }}</option>
             {% endfor %}
         </select>
 
@@ -29,12 +28,12 @@
 
             {% for pays in payss %}
 
-            <option value="{{ pays.id }}">{{ pays.nom }}</option>
+            <option value="{{ pays.id }}" {% if pays.id == data.pays_id %} selected {% endif %}>{{ pays.nom }}</option>
 
             {% endfor %}
         </select>
         <label for="prix_depart">Prix de départ
-            <input type="number" name="prix_depart" step=".01" value="{{ timbre.prix_depart }}">
+            <input type="number" name="prix_depart" step=".01" value="{{ data.prix_depart }}">
         </label>
 
         {% if errors.nom is defined %}
@@ -48,12 +47,12 @@
         </label>
 
         <label for="etat_conservation_id"></label>État générale du timbre
-        <select name="etat_conservation_id" id="">
+        <select name="etat_conservation_id">
 
 
             {% for timbreEtat in timbreEtats %}
 
-            <option value="{{ timbreEtat.id }}">{{ timbreEtat.nom }}</option>
+            <option value="{{ timbreEtat.id }}" {% if timbreEtat.id == data.etat_conservation_id %} selected {% endif %}>{{ timbreEtat.nom }}</option>
 
             {% endfor %}
         </select>

@@ -103,6 +103,8 @@ class TimbreController
 
     public function create()
     {
+
+
         $arrayCanEnter = [1, 2, 3];
         Auth::verifyAcces($arrayCanEnter);
 
@@ -124,7 +126,8 @@ class TimbreController
 
 
     public function store($data)
-    {
+    {   
+
         if (!isset($data['authentifie'])) $data['authentifie'] = '0';
         $arrayCanEnter = [1, 2, 3];
         Auth::verifyAcces($arrayCanEnter);
@@ -132,7 +135,7 @@ class TimbreController
         $validator = new Validator;
         $validator->field('titre', $data['titre'])->min(2)->max(60)->required();
         $validator->field('description', $data['description'])->max(256)->required();
-        $validator->field('annee', $data['annee'])->max(4)->required();
+        $validator->field('annee', $data['annee'])->max(11)->required();
         $validator->field('timbre_categorie_id', $data['timbre_categorie_id'])->max(5)->required();
         $validator->field('pays_id', $data['pays_id'])->required();
         $validator->field('prix_depart', $data['prix_depart'])->max(12)->required();
@@ -140,7 +143,6 @@ class TimbreController
 
         if ($validator->isSuccess()) {
             $data['user_id'] = $_SESSION['user_id'];
-            $data['annee'] = $data['annee'] . '-11-11';
             $timbre = new Timbre;
             $insert = $timbre->insert($data);
 
@@ -172,7 +174,7 @@ class TimbreController
             $enchere = new Enchere;
             $selectEnchere = $enchere->select();
 
-            return View::render('timbre/create', ['timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect, 'payss' => $selectPays, 'encheres' => $selectEnchere]);
+            return View::render('timbre/create', ['errors' => $errors,'timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect, 'payss' => $selectPays, 'encheres' => $selectEnchere, 'data' => $data]);
         }
     }
 
@@ -208,10 +210,8 @@ class TimbreController
 
     public function update($data, $get)
     {
-/*         print_r($data);
-        echo '<br>';
-        print_r($get);
-        die(); */
+        if(!isset($data['authentifie'])) $data['authentifie'] = '0';
+ 
 
         /* Array ( [titre] => Premier timbre [description] => Le plus beau au monde [annee] => 2008-11-11 [prix_depart] => 10.14 [etat_conservation_id] => 1 [timbre_categorie_id] => 2 )
 Array ( [id] => 1 ) */

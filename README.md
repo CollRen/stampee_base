@@ -10,6 +10,13 @@ Ajuster toutes les entrées de dates
 Puis en gérant ces données en PHP
 
 
+2. membre edit timbre n'a pas l'option de mettre authetifié
+3. admin edit user
+    - vérif formulaire
+    - faire $validator
+    - renvoyer vers le show de ce user
+    - Ajouter un btn de rtr vers la liste des users
+
 ## SQL
 
 1. À ajouter

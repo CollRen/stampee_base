@@ -3,20 +3,20 @@
 <div class="container">
     <h2>Timbre Edit</h2>
     <form method="post">
-        <label>Titre
+        <label for="titre">Titre
             <input type="text" name="titre" value="{{ timbre.titre }}">
         </label>
 
-        <label>Description
+        <label for="description">Description
             <input type="text" name="description" value="{{ timbre.description }}">
         </label>
 
-        <label>Année
-            <input type="text" name="annee" value="{{ timbre.annee }}">
+        <label for="annee">Année
+            <input type="date" name="annee" value="{{ timbre.annee }}">
         </label>
 
-        <label>Prix de départ
-            <input type="text" name="prix_depart" value="{{ timbre.prix_depart }}">
+        <label for="prix_depart">Prix de départ
+        <input type="number" name="prix_depart" step=".01" value="{{ timbre.prix_depart }}">
         </label>
 
         <label for="pays_id"></label>Pays de provenence
@@ -46,6 +46,10 @@
 
             {% endfor %}
         </select>
+
+        <label for="authentifie">Est-ce que ce timbre est authentifié
+            <input type="checkbox" id="authentifie" name="authentifie" value="1" {% if timbre.authentifie == 1 %} checked {% endif %}>
+        </label>
 
         <input type="submit" class="btn" value="Update">
     </form>
