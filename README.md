@@ -1,5 +1,16 @@
 # Projet web 1
 
+## Rencontre avec prof.
+
+
+
+- Ajouter Formulaire de création de compte à la page d'accueil pour les membres
+- Lien sur le petit bonhomme vers create user
+- Privilège est automatiquement 2 pour membre
+- et lien dans le header
+
+- Filtrer le edit pour empêcher le validateur de valider son propre champs
+
 
 ## Page catalogue (enchereclient/index)
 

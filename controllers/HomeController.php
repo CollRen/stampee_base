@@ -38,7 +38,7 @@ class HomeController {
         //$selectEncheresFavorie = $enchere->selectIdTwoKeys($selectFavories['enchere_id'], $_SESSION['user_id']);
 
         //include 'views/home.php';
-       View::render('home', ['timbres' => $selectTimbre, 'encheres' => $selectEncheres, 'actualites' => $selectActualite]);
+       View::render('home/index', ['timbres' => $selectTimbre, 'encheres' => $selectEncheres, 'actualites' => $selectActualite]);
     }
 
     public function home(){

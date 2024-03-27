@@ -12,18 +12,13 @@ use App\Providers\Validator;
 class UserController
 {
 
-    public function __construct()
-    {
-        $user = new User;
-        $arrayAuth = $user->isAuth();
-        Auth::verifyAcces($arrayAuth);
-    }
-
     public function index()
     {
-
         $user = new User;
         $select = $user->select();
+
+        $arrayAuth = $user->isAuth();
+        Auth::verifyAcces($arrayAuth);
 
         $privilege = new Privilege;
         $privileges = $privilege->select();
@@ -39,6 +34,7 @@ class UserController
     public function create()
     {
 
+
         $privilege = new Privilege;
         $privileges = $privilege->select('nom');
         return View::render('user/create', ['privileges' => $privileges]);
@@ -49,6 +45,8 @@ class UserController
 
     public function store($data)
     {
+        // Assigner le privilève de membre si ce n'est pas défini via le formulaire(non-Accessible si non-Admin)
+        if(!isset($data['privilege_id'])) $data['privilege_id'] = 2;
 
         $validator = new Validator;
         $validator->field('name', $data['name'])->min(2)->max(50);
@@ -72,12 +70,16 @@ class UserController
             $errors = $validator->getErrors();
             $privilege = new Privilege;
             $privileges = $privilege->select('nom');
-            return View::render('user/edit', ['errors' => $errors, 'user' => $data, 'privileges' => $privileges]);
+            return View::render('user/create', ['errors' => $errors, 'user' => $data, 'privileges' => $privileges]);
         }
     }
 
     public function edit($data = [])
     {
+        $user = new User;
+        $arrayAuth = $user->isAuth();
+        Auth::verifyAcces($arrayAuth);
+
         if (isset($data['id']) && $data['id'] != null) {
             $user = new User;
             $selectId = $user->selectId($data['id']);
@@ -98,11 +100,23 @@ class UserController
 
 
     public function show($data = [])
-    {
+    {          
+        if(isset($data['id']) && $data['id'] != null){
+            echo $data['id']; echo 'oui id'; die();
+        } else {
+            $data['id'] = $_SESSION['user_id'];
+        }
+
+
+        $user = new User;
+        $arrayAuth = $user->isAuth();
+        Auth::verifyAcces($arrayAuth);
 
         if (isset($data['id']) && $data['id'] != null) {
             $user = new User;
             $selectId = $user->selectId($data['id']);
+
+            
             if ($selectId) {
                 /* Array ( [id] => 1 [0] => 1 [name] => admin [1] => admin [username] => admin@me.com [2] => admin@me.com [password] => $2y$10$GQsG5y6T2GDmQlwB7u8ui.FCyEnHDtlJ6rZJ.xr3ofA2kB.olsBXy [3] => $2y$10$GQsG5y6T2GDmQlwB7u8ui.FCyEnHDtlJ6rZJ.xr3ofA2kB.olsBXy [email] => admin@me.com [4] => admin@me.com [privilege_id] => 1 [5] => 1 ) */
                 return View::render('user/show', ['user' => $selectId]);
@@ -116,6 +130,10 @@ class UserController
 
     public function update($data, $get)
     {   
+
+        $user = new User;
+        $arrayAuth = $user->isAuth();
+        Auth::verifyAcces($arrayAuth);
 
         if (isset($data['privilege_id']) && $get['id'] != null) {
 
@@ -152,7 +170,10 @@ class UserController
 
     public function delete($data)
     {
-        $user = new  User;
+        $user = new User;
+        $arrayAuth = $user->isAuth();
+        Auth::verifyAcces($arrayAuth);
+
         $delete = $user->delete($data['id']);
         if ($delete) {
             return View::redirect('user');

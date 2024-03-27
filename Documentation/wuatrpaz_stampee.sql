@@ -75,6 +75,7 @@ CREATE TABLE wuatrpaz_stampee.enchere(
 id INT AUTO_INCREMENT PRIMARY KEY,
 date_limite DATETIME NOT NULL,
 timbre_id INT NOT NULL,
+est_coup_coeur_lord TINYINT(1) DEFAULT 0,
 CONSTRAINT `fk_timbre_enchere_id`
     FOREIGN KEY (`timbre_id`)
     REFERENCES wuatrpaz_stampee.`timbre` (`id`));
@@ -135,10 +136,14 @@ INSERT INTO wuatrpaz_stampee.image
 VALUES
 ('Image de ce timbre', '1', 'asset/img/cetibre', 1);
 
+
+-- Ajout de actualite_user_id et sa constraint plus tard avec ALTER TABLE
 CREATE TABLE wuatrpaz_stampee.actualite (
 id INT AUTO_INCREMENT PRIMARY KEY,
 date DATETIME(6),
-text TEXT(1000)
+text TEXT(1000),
+actualite_user_id INT,
+CONSTRAINT fk_actualite_user_id FOREIGN KEY (actualite_user_id) REFERENCES wuatrpaz_stampee.user(id)
 );
 
 INSERT INTO wuatrpaz_stampee.actualite
@@ -147,3 +152,12 @@ VALUES
 ('111111', "Lord Stampee est fier d'annoncer le lancement d'une série exclusive de timbres commémoratifs en partenariat avec des artistes renommés. Ces œuvres philatéliques uniques célèbrent la diversité culturelle à travers le monde."),
 ('111111', "Plongez dans l'histoire postale avec notre exposition virtuelle exclusive. Explorez des timbres emblématiques qui ont marqué des moments clés de l'histoire mondiale. Une expérience immersive à ne pas manquer pour les amateurs de philatélie."),
 ('111111', "Notre prochaine vente aux enchères promet d'être extraordinaire avec une collection rare de timbres provenant des coins les plus reculés de la planète. Soyez prêt à saisir l'opportunité d'ajouter des joyaux philatéliques uniques à votre collection.");
+
+
+ALTER TABLE wuatrpaz_stampee.enchere
+ADD est_coup_coeur_lord TINYINT(1) DEFAULT 0;
+
+ALTER TABLE wuatrpaz_stampee.actualite ADD actualite_user_id INT;
+ALTER TABLE wuatrpaz_stampee.actualite ADD CONSTRAINT fk_actualite_user_id FOREIGN KEY (actualite_user_id) REFERENCES wuatrpaz_stampee.user(id);
+
+

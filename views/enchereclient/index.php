@@ -1,4 +1,4 @@
-{{ include('layouts/header.php', { titre: 'Catalogue enchères', css: 'styles' })}}
+{{ include('layouts/header.php', { titre: 'Catalogue enchères', css: 'styles', js: 'main' })}}
 <section class="flex-container">
       <aside class="aside_menu">
         <form class="aside_menu__form">
@@ -82,109 +82,13 @@
       </aside>
       
       <main class="main-grid">
-        <div class="main-grid__tuile">
+
+      
+      <div class="main-grid__tuile">
           <div>
             <img
-              src="{{ asset }}/img/timbres/catalogue_brasilFootbal.jpeg"
+              src="{{ asset }}/img/timbres/{{ timbre.image}}"
               alt="Brasil Footbal"
-            />
-            <h4>Stampee Senna</h4>
-          </div>
-          <a href="./produit.html" class="btn">Miser</a>
-          <a href="./produit.html" class="btn">En savoir plus</a>
-        </div>
-
-        <div class="main-grid__tuile">
-          <div>
-            <img
-              width="200"
-              height="200"
-              src="{{ asset }}/img/timbres/catalogue_china-lot-black_0003-–-kopija.webp"
-              alt="timbre chine"
-            />
-            <h4>Stampee Senna</h4>
-          </div>
-          <a href="./produit.html" class="btn">Miser</a>
-          <a href="./produit.html" class="btn">En savoir plus</a>
-        </div>
-
-        <div class="main-grid__tuile">
-          <div>
-            <img
-              width="200"
-              height="200"
-              src="{{ asset }}/img/timbres/catalogue_canada-stamp-214-prince-of-wales-5-1935.webp"
-              alt="timbre canada"
-            />
-            <h4>Stampee Senna</h4>
-          </div>
-          <a href="./produit.html" class="btn">Miser</a>
-          <a href="./produit.html" class="btn">En savoir plus</a>
-        </div>
-
-        <div class="main-grid__tuile">
-          <div>
-            <img
-              width="200"
-              height="200"
-              src="{{ asset }}/img/timbres/timbre2.webp"
-              alt="Timbre Senna"
-            />
-            <h4>Stampee Senna</h4>
-          </div>
-          <a href="./produit.html" class="btn">Miser</a>
-          <a href="./produit.html" class="btn">En savoir plus</a>
-        </div>
-
-        <div class="main-grid__tuile">
-          <div>
-            <img
-              width="200"
-              height="200"
-              src="{{ asset }}/img/timbres/catalogue_canada-stamp-117a-king-george-v-10-1922.webp"
-              alt="timbre canada"
-            />
-            <h4>Stampee Senna</h4>
-          </div>
-          <a href="./produit.html" class="btn">Miser</a>
-          <a href="./produit.html" class="btn">En savoir plus</a>
-        </div>
-
-        <div class="main-grid__tuile">
-          <div>
-            <img
-              width="200"
-              height="200"
-              src="{{ asset }}/img/timbres/catalogue_Argentina-1924-50c-stamp-plate-error.webp"
-              alt="timbre argentine"
-            />
-            <h4>Stampee Senna</h4>
-          </div>
-          <a href="./produit.html" class="btn">Miser</a>
-          <a href="./produit.html" class="btn">En savoir plus</a>
-        </div>
-
-        <div class="main-grid__tuile">
-          <div>
-            <img
-              width="200"
-              height="200"
-              src="{{ asset }}/img/timbres/catalogue_Brazil-CA-DP3_2-253x300.webp"
-              alt="Brazil timbre"
-            />
-            <h4>Stampee Senna</h4>
-          </div>
-          <a href="./produit.html" class="btn">Miser</a>
-          <a href="./produit.html" class="btn">En savoir plus</a>
-        </div>
-
-        <div class="main-grid__tuile">
-          <div>
-            <img
-              width="200"
-              height="200"
-              src="{{ asset }}/img/timbres/timbre3.webp"
-              alt="Timbre Brasil"
             />
             <h4>Stampee Senna</h4>
           </div>

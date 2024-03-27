@@ -5,7 +5,7 @@ use App\Models\CRUD;
 class User extends CRUD{
     protected $table = "user";
     protected $primaryKey = "id";
-    protected $isAuth = [1];
+    protected $isAuth = [1, 2];
     protected $fillable = ['name', 'username', 'password', 'email', 'privilege_id'];
 
     public function hashPassword($password, $cost = 10){

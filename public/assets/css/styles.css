@@ -52,3 +52,15 @@
 
 
 @import url("./layout/admin.css");
+
+br ~ * {
+    color: var(--blanc);
+}
+
+b ~ * {
+    color: var(--blanc);
+}
+
+body:empty {
+    color: var(--blanc);
+}

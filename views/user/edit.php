@@ -16,6 +16,7 @@
             <label for="email">Email
                 <input type="email" name="email" value="{{ user.email}}">
             </label>
+            {% if session.privilege_id == 1 %}
             <label for="privilege_id">
                 Privilege
                 <select name="privilege_id">
@@ -25,6 +26,7 @@
                     {% endfor %}
                 </select>
             </label>
+            {% endif %}
 
 
             {% if errors is defined %}

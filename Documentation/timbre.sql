@@ -72,6 +72,7 @@ CREATE TABLE stampee.enchere(
 id INT AUTO_INCREMENT PRIMARY KEY,
 date_limite DATETIME NOT NULL,
 timbre_id INT NOT NULL,
+est_coup_coeur_lord TINYINT(1) DEFAULT 0,
 CONSTRAINT `fk_timbre_enchere_id`
     FOREIGN KEY (`timbre_id`)
     REFERENCES `stampee`.`timbre` (`id`));
@@ -150,3 +151,9 @@ VALUES
 ('111111', "Lord Stampee est fier d'annoncer le lancement d'une série exclusive de timbres commémoratifs en partenariat avec des artistes renommés. Ces œuvres philatéliques uniques célèbrent la diversité culturelle à travers le monde."),
 ('111111', "Plongez dans l'histoire postale avec notre exposition virtuelle exclusive. Explorez des timbres emblématiques qui ont marqué des moments clés de l'histoire mondiale. Une expérience immersive à ne pas manquer pour les amateurs de philatélie."),
 ('111111', "Notre prochaine vente aux enchères promet d'être extraordinaire avec une collection rare de timbres provenant des coins les plus reculés de la planète. Soyez prêt à saisir l'opportunité d'ajouter des joyaux philatéliques uniques à votre collection.");
+
+
+ALTER TABLE stampee.actualite ADD actualite_user_id INT;
+ALTER TABLE stampee.actualite ADD CONSTRAINT fk_actualite_user_id FOREIGN KEY (actualite_user_id) REFERENCES stampee.user(id);
+
+ALTER TABLE stampee.actualite RENAME COLUMN user_id actualite_user_id;

@@ -5,6 +5,10 @@ namespace App\Controllers;
 use App\Providers\JournalStore;
 use App\Providers\Auth;
 use App\Models\Enchere;
+use App\Models\Etat;
+use App\Models\TimbreCategorie;
+use App\Models\User;
+use App\Models\Pays;
 use App\Models\Timbre;
 use App\Providers\View;
 use App\Providers\Validator;
@@ -25,12 +29,32 @@ class EnchereController
         $enchere = new Enchere;
         $select = $enchere->select();
 
-        if ($select) {
-            if($_SESSION['user_id'] == 1){
+        $timbre = new Timbre;
+        $select = $timbre->select();
+        // print_r($select); die();
 
-                return View::render('enchere/index', ['encheres' => $select]);
+        $etat = new Etat;
+        $selectEtats = $etat->select();
+
+        $timbreCats = new TimbreCategorie;
+        $selectCat = $timbreCats->select();
+
+        $user = new User;
+        $selectUsers = $user->select();
+
+        $pays = new Pays;
+        $selectPays = $pays->select();
+
+        if ($select) {
+            if(isset($_SESSION['user_id'])){
+                if($_SESSION['user_id'] == 1) {
+                    return View::render('enchere/index', ['encheres' => $select]);
+                } else{
+                    return View::render('enchereclient/index', ['encheres' => $select, 'timbres' => $select, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+                }
+
             } else{
-                return View::render('enchereclient/index', ['encheres' => $select]);
+                return View::render('enchereclient/index', ['encheres' => $select, 'timbres' => $select, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
 
             }
         } else {
