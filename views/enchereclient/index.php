@@ -80,8 +80,50 @@
 
     </div>
     </template>
+
+    <div data-js-encheres>
+          <img src="{{asset}}/img/timbres/timbreCA.webp" alt="" />
+          <h4>On test l'image 1</h4>
+        </div>
+        <span>
+          <button data-js-action="miser">Miser</button>
+        </span>
+
+    </div>
+    </template>
+    </div>
     </div>
   </main>
 
 </section>
 {{ include('layouts/footer.php') }}
+
+
+<!-- 
+/img/timbres/catalogue_Argentina-1924-50c-stamp-plate-error.webp
+/img/timbres/catalogue_brasilFootbal.jpeg
+/img/timbres/catalogue_brasilFootbal.webp
+/img/timbres/catalogue_Brazil-CA-DP3_2-253x300.jpg
+/img/timbres/catalogue_Brazil-CA-DP3_2-253x300.webp
+/img/timbres/catalogue_canada-stamp-117a-king-george-v-10-1922.jpg
+/img/timbres/catalogue_canada-stamp-117a-king-george-v-10-1922.webp
+/img/timbres/catalogue_canada-stamp-214-prince-of-wales-5-1935.jpg
+/img/timbres/catalogue_canada-stamp-214-prince-of-wales-5-1935.webp
+/img/timbres/catalogue_china-lot-black_0003-–-kopija.jpg
+/img/timbres/catalogue_china-lot-black_0003-–-kopija.webp
+/img/timbres/timbre1.jpg
+/img/timbres/timbre1.webp
+/img/timbres/timbre2.jpg
+/img/timbres/timbre2.webp
+/img/timbres/timbre3.jpg
+/img/timbres/timbre3.webp
+/img/timbres/timbre4.jpg
+/img/timbres/timbre4.webp
+/img/timbres/timbre5.jpg
+/img/timbres/timbre5.webp
+/img/timbres/timbre6.jpg
+/img/timbres/timbre6.webp
+/img/timbres/timbreCA.png
+/img/timbres/timbreCA.webp
+
+ -->
