@@ -1,104 +1,84 @@
 {{ include('layouts/header.php', { titre: 'Catalogue enchères', css: 'styles', js: 'main' })}}
 <section class="flex-container">
-      <aside class="aside_menu">
-        <form class="aside_menu__form">
-          <label for="prix">Prix: <span>(0 a 10.000)</span></label>
-          <input
-            id="prix"
-            type="range"
-            name="prix"
-            min="1"
-            max="10.000"
-            class="aside_menu__input_range"
-          />
+  <aside class="aside_menu">
+    <h2>Filtres</h2>
+    <form class="aside_menu__form">
+      <h3>Prix</h3>
+      <label for="prix_minimum">Minimum:<output id="value_prix_min"></output></label>
+      <input id="input_prix_min" type="range" name="prix_minimum" min="0" max="1000" step="25" class="aside_menu__input_range" />
 
-          <div class="aside_menu_input_annee">
-            <label for="annee">Année</label>
-            <input
-              id="annee"
-              type="number"
-              name="annee"
-              class="aside_menu__input_range"
-            />
-          </div>
+      <label for="prix_maximum">Maximum:<output id="value_prix_max"></output></label>
+      <input id="input_prix_max" type="range" name="prix_maximum" min="0" max="1000" step="25" class="aside_menu__input_range" />
 
-          <div class="aside_menu_input_pays">
-            <label for="pays">Pays</label>
-            <select id="pays" name="pays" class="aside_menu_input_pays_select">
-              <option value=""></option>
-              <option value="Afrique du Sud">Afrique du Sud</option>
-              <option value="Brésil">Brésil</option>
-              <option value="Canada">Canada</option>
-              <option value="Danemark">Danemark</option>
-              <option value="Finlande">Finlande</option>
-              <option value="Grèce">Grèce</option>
-              <option value="Honduras">Honduras</option>
-              <option value="Italie">Italie</option>
-            </select>
-          </div>
+      <div class="aside_menu_input_annee">
+        <h3>Années</h3>
+        <label for="annee_minimum">Après <output id="value_apres"></output></label>
+        <input id="input_apres" type="range" min="1850" max="2000" step="25" name="annee_minimum" class="aside_menu__input_range" />
 
-          <div>
-            <p>Condition</p>
-            <div class="aside_menu_input_condition">
-              <div class="aside_menu_input_condition_option">
-                <input
-                  id="nouveau"
-                  type="checkbox"
-                  name="nouveau"
-                  value="Nouveau"
-                />
-                <label for="nouveau">Nouveau</label>
-              </div>
-              <div class="aside_menu_input_condition_option">
-                <input id="bon_etat" type="checkbox" name="bon_etat" value="bon_etat" />
-                <label for="bon_etat">Bon état</label>
-              </div>
-              <div class="aside_menu_input_condition_option">
-                <input
-                  id="endomage"
-                  type="checkbox"
-                  name="endomage"
-                  value="Endomagé"
-                />
-                <label for="endomage">Endomagé</label>
-              </div>
-            </div>
-          </div>
+        <label for="annee_maximum">Avant <output id="value_avant"></output></label>
+        <input id="input_avant" type="range" min="1850" max="2000" step="25" name="annee_maximum" class="aside_menu__input_range" />
 
-          <div class="aside_menu_input_autentication">
-            <p><abbr title="Copie officielle">Authentifié&nbsp;?</abbr></p>
+      </div>
 
-            <div class="aside_menu_input_autentication_options">
-                <label for="authentifie">Oui</label>
-              <input id="authentifie" type="radio" name="Oui" value="Oui" />
-
-              <label for="authentifie">Non</label>
-                <input id="authentifie" type="radio" name="non" value="Non" />
-            </div>
-          </div>
-
-          <button type="submit" class="btn">Soumettre</button>
-        </form>
-      </aside>
+      <div class="aside_menu_input_pays">
+        <label for="pays">Pays</label>
+        <select id="pays" name="pays" class="aside_menu_input_pays_select">
+          <option value=""></option>
+          {% for pays in payss %}
+          <option value="{{ pays.id }}">{{ pays.nom }}</option>
+          {% endfor %}
+        </select>
+      </div>
       
-      <main class="main-grid">
-
-      
-      <div class="main-grid__tuile">
-          <div>
-            <img
-              src="{{ asset }}/img/timbres/{{ timbre.image}}"
-              alt="Brasil Footbal"
-            />
-            <h4>Stampee Senna</h4>
+      <div>
+        <div class="aside_menu_input_condition">
+          <h3>Condition</h3>
+          <div class="aside_menu_input_condition_option">
+            
+            {% for etat in etats %}
+            <label for="etat_conservation">{{ etat.nom }}</label>
+            <input id="{{ etat.id }}" type="checkbox" name="etat_conservation" value="{{ etat.id }}" />
+            {% endfor %}
           </div>
-          <a href="./produit.html" class="btn">Miser</a>
-          <a href="./produit.html" class="btn">En savoir plus</a>
+
+        
+          </div>
         </div>
-      </main>
-      <a class="pagination" href="/nolink"
-        ><<&nbsp;&nbsp;&nbsp; 1 2 3&nbsp;&nbsp; [...]&nbsp;&nbsp;7
-        8&nbsp;&nbsp;&nbsp; >></a
-      >
-    </section>
+      </div>
+
+      <div class="aside_menu_input_autentication">
+        <p><abbr title="Copie officielle">Authentifié&nbsp;?</abbr></p>
+
+        <div class="aside_menu_input_autentication_options">
+            <label for="authentifie">Oui</label>
+          <input id="authentifie" type="radio" name="authentifie" value="1" />
+
+          <label for="authentifie">Non</label>
+            <input id="authentifie" type="radio" name="authentifie" value="0" />
+
+          <label for="authentifie">Oui ou non</label>
+            <input id="authentifie" type="radio" name="authentifie" value="2" />
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Soumettre</button>
+    </form>
+  </aside>
+
+  <main class="main-grid">
+
+
+    <div class="main-grid__tuile">
+      <div>
+        <img src="{{ asset }}/img/timbres/{{ timbre.image}}" alt="Brasil Footbal" />
+        <h4>Stampee Senna</h4>
+      </div>
+      <a href="./produit.html" class="btn">Miser</a>
+      <a href="./produit.html" class="btn">En savoir plus</a>
+    </div>
+  </main>
+  <a class="pagination" href="/nolink">
+    <<&nbsp;&nbsp;&nbsp; 1 2 3&nbsp;&nbsp; [...]&nbsp;&nbsp;7 8&nbsp;&nbsp;&nbsp;>>
+  </a>
+</section>
 {{ include('layouts/footer.php') }}

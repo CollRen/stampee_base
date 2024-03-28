@@ -96,7 +96,13 @@ CONSTRAINT fk_mise_user_id FOREIGN KEY (user_id) REFERENCES stampee.user (id)
 INSERT INTO stampee.pays
 (nom)
 VALUES
-('Canada');
+('Afrique du Sud'),
+('Brésil'),
+('Danemark'),
+('Finlande'),
+('Grèce'),
+('Honduras'),
+('Italie');
 
 INSERT INTO stampee.timbre_categorie
 (nom)

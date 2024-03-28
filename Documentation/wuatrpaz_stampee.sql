@@ -160,4 +160,13 @@ ADD est_coup_coeur_lord TINYINT(1) DEFAULT 0;
 ALTER TABLE wuatrpaz_stampee.actualite ADD actualite_user_id INT;
 ALTER TABLE wuatrpaz_stampee.actualite ADD CONSTRAINT fk_actualite_user_id FOREIGN KEY (actualite_user_id) REFERENCES wuatrpaz_stampee.user(id);
 
-
+INSERT INTO wuatrpaz_stampee.pays
+(nom)
+VALUES
+('Afrique du Sud'),
+('Brésil'),
+('Danemark'),
+('Finlande'),
+('Grèce'),
+('Honduras'),
+('Italie');
