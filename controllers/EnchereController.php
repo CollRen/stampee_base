@@ -6,6 +6,7 @@ use App\Providers\JournalStore;
 use App\Providers\Auth;
 use App\Models\Enchere;
 use App\Models\Etat;
+use App\Models\Image;
 use App\Models\TimbreCategorie;
 use App\Models\User;
 use App\Models\Pays;
@@ -27,10 +28,10 @@ class EnchereController
     public function index()
     {
         $enchere = new Enchere;
-        $select = $enchere->select();
+        $selectEncheres = $enchere->select();
 
         $timbre = new Timbre;
-        $select = $timbre->select();
+        $selectTimbres = $timbre->select();
         // print_r($select); die();
 
         $etat = new Etat;
@@ -45,16 +46,19 @@ class EnchereController
         $pays = new Pays;
         $selectPays = $pays->select();
 
-        if ($select) {
+        $image = new Image;
+        $selectImages = $image->select();
+
+        if ($selectEncheres) {
             if(isset($_SESSION['user_id'])){
                 if($_SESSION['user_id'] == 1) {
-                    return View::render('enchere/index', ['encheres' => $select]);
+                    return View::render('enchere/index', ['encheres' => $selectEncheres]);
                 } else{
-                    return View::render('enchereclient/index', ['encheres' => $select, 'timbres' => $select, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+                    return View::render('enchereclient/index', ['images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                 }
 
             } else{
-                return View::render('enchereclient/index', ['encheres' => $select, 'timbres' => $select, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+                return View::render('enchereclient/index', ['encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
 
             }
         } else {
