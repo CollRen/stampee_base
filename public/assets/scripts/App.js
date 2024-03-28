@@ -1,4 +1,4 @@
-import Tache from './Tache.js';
+
 import Router from './Router.js';
 export default class App {
 

@@ -13,7 +13,7 @@ export default class Router {
   }
 
   init() {
-    this.options = document.querySelectorAll("[data-js-taches]");
+    this.options = document.querySelectorAll("[data-js-encheres]");
 
     this.options.forEach(
       function (e) {
@@ -21,7 +21,7 @@ export default class Router {
           "click",
           function (onClick) {
             let action = onClick.target.dataset.jsAction,
-            id = onClick.currentTarget.dataset.jsTaches;
+            id = onClick.currentTarget.dataset.jsEncheres;
             let hash = `#!/${action}/${id}`;
             window.location = hash;
 

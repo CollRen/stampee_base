@@ -4,8 +4,8 @@ class TacheService {
   _elDetails;
   constructor() {
     // Variable en rapport avec l'affichage du détails
-    this._elTemplate = document.querySelector("[data-template-details]");
-    this._elDetails = document.querySelector("[data-js-tache-detail]");
+    this._elTemplate = document.querySelector("[data-template]");
+    this._elDetails = document.querySelector("[data-js-template-container]");
     this.getTachesDetail = this.getTachesDetail.bind(this);
   }
 

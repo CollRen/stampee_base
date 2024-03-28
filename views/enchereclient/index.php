@@ -68,16 +68,19 @@
   <main class="main-grid" data-js-main>
 
 
+    <div class="detail__tache" data-js-template-container>
+      <template data-js-template>
+        <div data-js-encheres>
+          <img src="{{image_src}}" alt="{{image_alt}}" />
+          <h4>{{titre}}</h4>
+        </div>
+        <span>
+          <button data-js-action="miser">Miser</button>
+        </span>
 
-<template>
-      <div>
-        <img src="{{image_src}}" alt="{{image_alt}}" />
-        <h4>{{titre}}</h4>
-      </div>
-      <span class="btn" data-js-mise={{numero_mise}}>Miser</span>
-      <a href="./produit.html" class="btn">En savoir plus</a>
-      </div>
+    </div>
     </template>
+    </div>
   </main>
 
 </section>

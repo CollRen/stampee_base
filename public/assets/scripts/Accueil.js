@@ -2,7 +2,7 @@ class Accueil {
     #_elMain;
 
     constructor() {
-        this.#_elMain = document.querySelector('main');
+        this.#_elMain = document.querySelector('[data-js-main]');
         this.accueil = this.accueil.bind(this);
     }
 

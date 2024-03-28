@@ -1,32 +1,23 @@
+import { classesMapping } from "./classMapping.js";
+import Filtres from "./Filtres.js";
+
+
 (function(){
+    let elComponents = document.querySelectorAll("[data-js-component]");
+/*     this._elTaches = document.querySelectorAll('[data-js-encheres]'); */
 
-const valueAvant = document.querySelector("#value_avant");
-const input = document.querySelector("#annee_maximum");
-valueAvant.textContent = input.value;
-input.addEventListener("input", (event) => {
-  valueAvant.textContent = event.target.value;
-});
+// Lancer les comportement sur les filtres
+let filtres = new Filtres;
 
-const valueApres = document.querySelector("#value_apres");
-const inputApres = document.querySelector("#annee_minimum");
-valueApres.textContent = inputApres.value;
-inputApres.addEventListener("input", (event) => {
-  valueApres.textContent = event.target.value;
-});
+for (let i = 0, l = elComponents.length; i < l; i++) {
+    let datasetComponent = elComponents[i].dataset.jsComponent,
+      elComponent = elComponents[i];
 
-const prixMin = document.querySelector("#value_prix_min");
-const inputPrixMin = document.querySelector("#prix_minimum");
-prixMin.textContent = inputPrixMin.value;
-inputPrixMin.addEventListener("input", (event) => {
-  prixMin.textContent = event.target.value;
-});
-
-const prixMax = document.querySelector("#value_prix_max");
-const inputPrixMax = document.querySelector("#prix_maximum");
-prixMax.textContent = inputPrixMax.value;
-inputPrixMax.addEventListener("input", (event) => {
-  prixMax.textContent = event.target.value;
-});
+    for (let key in classesMapping) {
+      if (datasetComponent == key)
+        new classesMapping[datasetComponent](elComponent);
+    }
+  }
 
 })();
 
