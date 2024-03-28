@@ -1,12 +1,12 @@
 import { accueil } from "./Accueil.js";
-import { getTachesDetail } from "./TacheService.js";
+import { getEncheresDetail } from "./EnchereService.js";
 
 export default class Router {
   constructor() {
 
     this._routes = [
       ["", accueil],
-      ["/afficher/:id", getTachesDetail],
+      ["/afficher/:id", getEncheresDetail],
     ];
 
     this.init();

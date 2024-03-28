@@ -10,7 +10,7 @@ class EnchereService {
   }
 
   /**
-   * Récupère en asynchrone les taches
+   * Récupère en asynchrone les encheres
    * @param {String} id
    */
   getEncheresDetail(id) {

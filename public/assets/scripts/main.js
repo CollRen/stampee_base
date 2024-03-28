@@ -6,7 +6,7 @@ import Filtres from "./Filtres.js";
     let elComponents = document.querySelectorAll("[data-js-component]");
     const elFiltres = document.querySelector(".aside_menu");
     
-/*     this._elTaches = document.querySelectorAll('[data-js-encheres]'); */
+/*     this._elEncheres = document.querySelectorAll('[data-js-encheres]'); */
 
 // Lancer les comportement sur les filtres de la page catalogue
 new Filtres(elFiltres);

@@ -37,7 +37,7 @@
 
             {% for etat in etats %}
             <label for="etat_conservation">{{ etat.nom }}</label>
-            <input id="etat_conservation_id={{ etat.id }}" type="checkbox" name="etat_conservation" value="{{ etat.id }}" />
+            <input id="etat_conservation_id={{ etat.id }}" type="checkbox" name="etat_conservation[]" value="{{ etat.id }}" />
             {% endfor %}
           </div>
 

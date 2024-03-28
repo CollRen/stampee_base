@@ -103,6 +103,16 @@ Route::post('/enchere/delete', 'EnchereController@delete');
 
 
 
+Route::get('/enchereclient', 'EnchereController@filtre');
+Route::get('/enchereclient/filtre', 'EnchereController@filtre');
+
+Route::get('/enchere/create', 'EnchereController@create');
+Route::post('/enchere/create', 'EnchereController@store');
+
+
+
+
+
 Route::get('/timbrehasenchere', 'TimbrehasenchereController@index');
 Route::get('/timbrehasenchere/show', 'TimbrehasenchereController@show');
 

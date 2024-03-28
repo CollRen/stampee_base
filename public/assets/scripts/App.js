@@ -10,7 +10,7 @@ export default class App {
      * @param {Int} i 
     */
    
-   injecteTaches(datas) {
+   injecteEncheres(datas) {
         this._elTemplate = document.querySelector('.template_tache__liste');
 
         let i = 0
@@ -19,7 +19,7 @@ export default class App {
         } else {
             let data = [];
             /* On aurait pu éviter datas[0] si, côté PHP, on avait défini directement
-$data_reponse = mysqli_fetch_assoc(getTacheDetail($id)); */
+$data_reponse = mysqli_fetch_assoc(getEnchereDetail($id)); */
             data[0] = datas;
             datas = data;
         }
@@ -32,12 +32,12 @@ $data_reponse = mysqli_fetch_assoc(getTacheDetail($id)); */
 		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ index }}', datas[i].id);
 		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ tache }}', datas[i].tache);
 		elCloneTemplate.innerHTML = elCloneTemplate.innerHTML.replace('{{ importance }}', datas[i].importance);
-		let elNouvelleTache = document.importNode(elCloneTemplate.content, true)
-		this._elListe.append(elNouvelleTache);  // Ajouter un noeud
+		let elNouvelleEnchere = document.importNode(elCloneTemplate.content, true)
+		this._elListe.append(elNouvelleEnchere);  // Ajouter un noeud
 
 
         // Lance les comportements de la nouvelle tâche injectée
-        new Tache(this._elListe.lastElementChild);
+        new Enchere(this._elListe.lastElementChild);
 }
     new Router;
 }

@@ -49,26 +49,26 @@ function executeRequete($requete, $insert = false)
 /**
  * Retourne la liste des tâches
  */
-function getAllTaches()
+function getAllEncheres()
 {
-	return executeRequete("SELECT * FROM taches");
+	return executeRequete("SELECT * FROM enchere");
 }
 
 /**
  * Retourne la liste des tâches trié ASC
  */
-function getAllTachesSort($sort)
+function getAllEncheresSort($sort)
 {
-	return executeRequete("SELECT * FROM taches ORDER BY $sort");
+	return executeRequete("SELECT * FROM enchere ORDER BY $sort");
 }
 
 /**
  * Ajoute la nouvelle tâche
  */
-function ajouteTache($tache, $description, $importance)
+function ajouteEnchere($enchere, $description, $importance)
 {
-	$query = "INSERT INTO taches (`tache`, `description`, `importance`) 
-				  VALUES ('" . $tache . "','" . $description . "','" . $importance . "')";
+	$query = "INSERT INTO enchere (`enchere`, `description`, `importance`) 
+				  VALUES ('" . $enchere . "','" . $description . "','" . $importance . "')";
 	return executeRequete($query, true);
 }
 
@@ -76,36 +76,36 @@ function ajouteTache($tache, $description, $importance)
 /**
  * Change le nom d'une tâhce spécifiée en paramètre
  */
-function changeNomTache($nom_tache, $id_tache)
+function changeNomEnchere($nom_enchere, $id_enchere)
 {
 	global $connexion;
-	$nom_tache = mysqli_real_escape_string($connexion, $nom_tache);
-	$id_tache = mysqli_real_escape_string($connexion, $id_tache);
+	$nom_enchere = mysqli_real_escape_string($connexion, $nom_enchere);
+	$id_enchere = mysqli_real_escape_string($connexion, $id_enchere);
 
-	return executeRequete("UPDATE taches 
-							   SET nom = '$nom_tache' 
-							   WHERE id ='$id_tache'");
+	return executeRequete("UPDATE enchere 
+							   SET nom = '$nom_enchere' 
+							   WHERE id ='$id_enchere'");
 }
 
 
 /**
  * Supprime l'tâche spécifiée en paramètre
  */
-function supprimeTache($id_tache)
+function supprimeEnchere($id_enchere)
 {
 	global $connexion;
-	$id_tache = mysqli_real_escape_string($connexion, $id_tache);
+	$id_enchere = mysqli_real_escape_string($connexion, $id_enchere);
 
-	return executeRequete("DELETE FROM taches WHERE id = " . $id_tache);
+	return executeRequete("DELETE FROM enchere WHERE id = " . $id_enchere);
 }
 
 /**
  * Change le nom d'une tâhce spécifiée en paramètre
  */
-function getTacheDetail($id_tache)
+function getEnchereDetail($id_enchere)
 {
 	global $connexion;
-	$id_tache = mysqli_real_escape_string($connexion, $id_tache);
+	$id_enchere = mysqli_real_escape_string($connexion, $id_enchere);
 
-	return executeRequete("SELECT * FROM taches WHERE id = " . $id_tache);
+	return executeRequete("SELECT * FROM enchere WHERE id = " . $id_enchere);
 }
