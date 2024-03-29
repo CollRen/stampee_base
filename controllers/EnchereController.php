@@ -36,9 +36,7 @@ class EnchereController
             $selectEncheres = $enchere->select();
 
             $timbre = new Timbre;
-/*             $selectTimbres = $timbre->select();
-            print_r($selectTimbres); die(); */
-            // Array ( [0] => Array ( [id] 
+
             $selectTimbres = [];
             foreach ($selectEncheres as $key => $value) {
                 array_push($selectTimbres, $timbre->selectId($value['timbre_id']));
@@ -46,17 +44,10 @@ class EnchereController
 
             $filter = new Filter;
             $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart', 'prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays')->presentArray('etat_conservation_id', 'etat_conservation')->booleen('authentifie', 'authentifie');
-            // print_r($filter); die();
 
             $selectTimbres = [];
             $i = 0;
             $selectTimbres = (array) $filter;
-/*             print_r($selectTimbres['array']); die();
-            foreach ($filter as $key) {
-                foreach ($key as $value) {
-                    array_push($value, $selectTimbres);
-                }
-            } */
 
             $selectTimbres = $selectTimbres['array'];
 
@@ -97,7 +88,6 @@ class EnchereController
             $selectImages = $image->select();
         }
 
-        // print_r($selectTimbres); die();
         if ($selectEncheres) {
             if (isset($_SESSION['user_id'])) {
                 echo 'if top not isset';
