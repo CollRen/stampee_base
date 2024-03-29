@@ -86,6 +86,22 @@ class Filter
         }
         return $this;
     }
+
+    public function booleen($dbKey, $key)
+    {
+
+        if (isset($this->data[$key])) {
+            if ($this->data[$key] == 2) return $this;
+            for ($i = 0; $i < count($this->array); $i++) {
+                if ($this->array[$i][$dbKey] == $this->data[$key]) {
+                    array_push($this->newArray, $this->array[$i]);
+                }
+            }
+            $this->array = $this->newArray;
+            $this->newArray = [];
+        }
+        return $this;
+    }
 }
 
 
