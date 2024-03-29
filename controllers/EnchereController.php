@@ -28,8 +28,10 @@ class EnchereController
 
     public function index()
     {
+        // print_r($_GET); die();
 
-        //Array ( [prix_minimum] => 500 [prix_maximum] => 500 [annee_minimum] => 1925 [annee_maximum] => 1925 [pays] => 3 [etat_conservation] => 1 [authentifie] => 1 )
+        // Array ( [prix_minimum] => 0 [prix_maximum] => 1000 [annee_minimum] => 1875 [annee_maximum] => 1975 [pays] => 5 [etat_conservation] => Array ( [0] => 1 [1] => 2 ) [authentifie] => 1 )
+
         $timbre = new Timbre;
         $selectTimbres = $timbre->select();
         $filteredDataA = [];
@@ -37,7 +39,7 @@ class EnchereController
         if (isset($_GET) && $_GET != null) {
             $dataAFiltrer = [];
             $filter = new Filter;
-            $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart','prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays');
+            $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart','prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays')->presentArray('etat_conservation_id', 'etat_conservation');
 
             print_r($filter); die();
 

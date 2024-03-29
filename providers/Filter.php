@@ -4,8 +4,8 @@ namespace App\Providers;
 
 class Filter
 {
-    private $array;
-    private $data = array();
+    private $array; // Provient de la BD
+    private $data = array();  // $_GET
     private $key;
     private $dbKey;
     private $value = array();
@@ -56,14 +56,29 @@ class Filter
     }
 
     public function present($dbKey, $key)
-    {   print_r($this->data);
-        echo '<br><br>';
+    {
         if (isset($this->data[$key])) {
             for ($i = 0; $i < count($this->array); $i++) {
-                echo $this->array[$i][$dbKey];
-                echo '<br>';
                 if ($this->array[$i][$dbKey] == $this->data[$key]) {
                     array_push($this->newArray, $this->array[$i]);
+                }
+            }
+            $this->array = $this->newArray;
+            $this->newArray = [];
+        }
+        return $this;
+    }
+
+    public function presentArray($dbKey, $key)
+    {
+
+        if (isset($this->data[$key])) {
+
+            foreach ($this->data[$key] as $id) {
+                for ($i = 0; $i < count($this->array); $i++) {
+                    if ($this->array[$i][$dbKey] == $id) {
+                        array_push($this->newArray, $this->array[$i]);
+                    }
                 }
             }
             $this->array = $this->newArray;
