@@ -18,7 +18,12 @@
         </tr>
     </thead>
     <tbody>
+
         {% for timbre in timbres %}
+        {% if timbre.user_id == thisuser %}
+
+
+
         <tr>
             <td><a href="{{ base }}/timbre/show?id={{ timbre.id }}">{{ timbre.titre }}</a></td>
             <td>{{ timbre.description }}</td>
@@ -29,6 +34,7 @@
             <td>{{ etat.nom }}</td>
             {% endif %}
             {% endfor %}
+
 
             {% for user in users %}
             {% if timbre.user_id == user.id %}
@@ -52,11 +58,7 @@
             {% endif %}
             {% endfor %}
 
-
-
-
-
-
+            {% endif %}
             {% endfor %}
 
         </tr>

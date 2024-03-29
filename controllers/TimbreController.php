@@ -33,8 +33,14 @@ class TimbreController
     {
 
         $timbre = new Timbre;
-        $select = $timbre->select();
-        // print_r($select); die();
+        $selectTimbres = [];
+        if (isset($_SESSION['user_id'])) {
+            if ($_SESSION['user_id'] == 1) {
+                $selectTimbres = $timbre->select();
+            } else {
+                $selectTimbres = $timbre->selectId($_SESSION['user_id'], 'user_id');
+            }
+        }
 
         $etat = new Etat;
         $selectEtats = $etat->select();
@@ -48,10 +54,10 @@ class TimbreController
         $pays = new Pays;
         $selectPays = $pays->select();
 
-        if ($select) {
-            return View::render('timbre/index', ['timbres' => $select, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+        if ($selectTimbres) {
+            return View::render('timbre/index', ['thisuser' => $_SESSION['user_id'], 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
         } else {
-            return View::render('error');
+            return View::render('timbre/create');
         }
     }
 
@@ -126,7 +132,7 @@ class TimbreController
 
 
     public function store($data)
-    {   
+    {
 
         if (!isset($data['authentifie'])) $data['authentifie'] = '0';
         $arrayCanEnter = [1, 2, 3];
@@ -174,7 +180,7 @@ class TimbreController
             $enchere = new Enchere;
             $selectEnchere = $enchere->select();
 
-            return View::render('timbre/create', ['errors' => $errors,'timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect, 'payss' => $selectPays, 'encheres' => $selectEnchere, 'data' => $data]);
+            return View::render('timbre/create', ['errors' => $errors, 'timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect, 'payss' => $selectPays, 'encheres' => $selectEnchere, 'data' => $data]);
         }
     }
 
@@ -193,7 +199,7 @@ class TimbreController
 
             $timbreEtat = new Etat;
             $timbreEtatSelect = $timbreEtat->select();
-    
+
             $pays = new Pays;
             $selectPays = $pays->select();
 
@@ -210,8 +216,8 @@ class TimbreController
 
     public function update($data, $get)
     {
-        if(!isset($data['authentifie'])) $data['authentifie'] = '0';
- 
+        if (!isset($data['authentifie'])) $data['authentifie'] = '0';
+
 
         /* Array ( [titre] => Premier timbre [description] => Le plus beau au monde [annee] => 2008-11-11 [prix_depart] => 10.14 [etat_conservation_id] => 1 [timbre_categorie_id] => 2 )
 Array ( [id] => 1 ) */

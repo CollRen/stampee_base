@@ -90,8 +90,6 @@ class EnchereController
 
         if ($selectEncheres) {
             if (isset($_SESSION['user_id'])) {
-                echo 'if top not isset';
-                die();
                 if ($_SESSION['user_id'] == 1) {
                     return View::render('enchere/index', ['encheres' => $selectEncheres]);
                 } else {

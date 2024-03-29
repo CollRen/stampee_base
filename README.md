@@ -88,12 +88,17 @@ Puis en gérant ces données en PHP
 ```
 
 ### Sprint 2
+[X] Invité Filte timbres
+Invité Créer compte
 
 Membre édite timbre
+
 Membre Mise
+
 Membre ajout enchère
 Membre modif enchère
 Membre suppr enchère
+
 Gestionnaire Ajout privilèges
 Gestionnaire Édite privilèges
 Gestionnaire Ajout utilisateurs
@@ -103,8 +108,9 @@ Gestionnaire État timbre
 Gestionnaire Suppr enchères
 Gestionnaire Édite les enchères membres
 Gestionnaire Suppr les enchères membres
-Invité Créer compte
-Invité Filte timbres
+
+
+
 Gestionnaire Ajout les enchères membres
 Gestionnaire Ajout enchères
 
