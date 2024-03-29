@@ -13,6 +13,7 @@ use App\Models\Pays;
 use App\Models\Timbre;
 use App\Providers\View;
 use App\Providers\Validator;
+use App\Providers\Filter;
 
 
 class EnchereController
@@ -29,9 +30,17 @@ class EnchereController
     {
 
         //Array ( [prix_minimum] => 500 [prix_maximum] => 500 [annee_minimum] => 1925 [annee_maximum] => 1925 [pays] => 3 [etat_conservation] => 1 [authentifie] => 1 )
+        $timbre = new Timbre;
+        $selectTimbres = $timbre->select();
+        $filteredDataA = [];
 
         if (isset($_GET) && $_GET != null) {
             $dataAFiltrer = [];
+            $filter = new Filter;
+            $filter->field($selectTimbres, $_GET)->min();
+
+            print_r($filter); die();
+
             if (isset($_GET['prix_minimum'])) {
                 $prix_minimum = $_GET['prix_minimum'];
                 $dataAFiltrer['prix_minimum'] = $prix_minimum;
@@ -61,9 +70,7 @@ class EnchereController
                 $dataAFiltrer['authentifie'] = $authentifie;
             }
             $y = 0;
-            $timbre = new Timbre;
-            $selectTimbres = $timbre->select();
-            $filteredDataA = [];
+
 
 
 
@@ -85,7 +92,8 @@ class EnchereController
                     }
                 }
             }
-            print_r($filteredDataB); die();
+            print_r($filteredDataB);
+            die();
             unset($filteredDataA);
 
             // Ça va prendre la pays Id
@@ -98,7 +106,8 @@ class EnchereController
                     }
                 }
             }
-            print_r($filteredDataA); die();
+            print_r($filteredDataA);
+            die();
 
 
 
