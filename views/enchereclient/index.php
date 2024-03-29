@@ -66,44 +66,60 @@
   </aside>
 
   <main class="main-grid" data-js-main>
-  <td><a href="{{ base }}/enchere/show?id={{ enchere.id }}">{{ enchere.id }}</a></td>
-                <td>{{ enchere.timbre_id }}</td>
-                <td>>{{ enchere.date_debut }}</td>
-                <td>>{{ enchere.date_limite }}</td>
 
-
-                {% if timbres.name is defined %}
-                <h1>TIMBRES is defined</h1>
-                {% endif %}
-
-
-  {% for timbre in timbres %}
+    <div class="main-grid__tuile">
+      <div>
+        <img src="{{asset}}/img/timbres/catalogue_brasilFootbal.jpeg" alt="Brasil Footbal" />
+        <h4>Stampee Senna</h4>
+      </div>
+      <a href="./produit.html" class="btn">Miser</a>
+      <a href="./produit.html" class="btn">En savoir plus</a>
+    </div>
     
-  <h1>{{timbre.id}}</h1>
+    <div class="main-grid__tuile">
+      <div>
+        <img src="{{asset}}/img/timbres/catalogue_brasilFootbal.jpeg" alt="Brasil Footbal" />
+        <h4>Stampee Senna</h4>
+      </div>
+      <a href="./produit.html" class="btn">Miser</a>
+      <a href="./produit.html" class="btn">En savoir plus</a>
+    </div>
 
-  <div data-js-encheres="{{id}}">
-          <img src="{{asset}}{{imagesrc}}" alt="{{titreImage}}" />
-          <h4>{{timbre.titre}}</h4>
-        </div>
-        <span>
-          <button data-js-action="miser">Miser</button>
-        </span>
+
+    {% for timbre in timbres %}
+    {% for enchere in encheres %}
+    {% if enchere.timbre_id == timbre.id %}
+    <div class="main-grid__tuile" data-js-encheres>
+
+      <img src="{{asset}}{% for image in images %}{% if image.timbre_id == timbre.id %}{{image.adresse}}" alt="{{image.nom}}{% endif %}{% endfor %}" />
+      <h4>{{timbre.titre}}</h4>
+
+    <span>{{ enchere.date_limite }}</span>
+    <span>
+      <button class="btn" data-js-action="miser">Miser</button>
+      <a href="{{ base }}/enchere/show?id={{ enchere.id }}" class="btn">Détails</a>
+    </span>
 
     </div>
 
-  {% endfor %}
-    <div class="detail__enchere" data-js-template-container>
-      
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+
+
     <template data-js-template>
-        <div data-js-encheres>
-          <img src="{{image_src}}" alt="{{image_alt}}" />
+      <div class="detail__enchere" data-js-template-container>
+        <div class="main-grid__tuile" data-js-encheres="{{id}}">
+
+          <img src="{{asset}}{{image.adresse}}" alt="{{image.titre}}" />
           <h4>{{titre}}</h4>
         </div>
         <span>
           <button data-js-action="miser">Miser</button>
         </span>
+      </div>
+    </template>
 
-      </template>
 
     </div>
     </div>
