@@ -37,7 +37,9 @@ class EnchereController
         if (isset($_GET) && $_GET != null) {
             $dataAFiltrer = [];
             $filter = new Filter;
-            $filter->field($selectTimbres, $_GET)->min();
+            $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart','prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum');
+            // ->min('prix_depart', 'prix_minimum')->max('prix_depart','prix_maximum')
+// ->max('annee', 'annee_maximum')
 
             print_r($filter); die();
 
