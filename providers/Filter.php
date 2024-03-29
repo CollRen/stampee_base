@@ -50,12 +50,25 @@ class Filter
                 }
             }
             $this->array = $this->newArray;
+            $this->newArray = [];
         }
         return $this;
     }
 
-    public function autre()
-    {
+    public function present($dbKey, $key)
+    {   print_r($this->data);
+        echo '<br><br>';
+        if (isset($this->data[$key])) {
+            for ($i = 0; $i < count($this->array); $i++) {
+                echo $this->array[$i][$dbKey];
+                echo '<br>';
+                if ($this->array[$i][$dbKey] == $this->data[$key]) {
+                    array_push($this->newArray, $this->array[$i]);
+                }
+            }
+            $this->array = $this->newArray;
+            $this->newArray = [];
+        }
         return $this;
     }
 }
