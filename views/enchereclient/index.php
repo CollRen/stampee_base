@@ -66,10 +66,35 @@
   </aside>
 
   <main class="main-grid" data-js-main>
+  <td><a href="{{ base }}/enchere/show?id={{ enchere.id }}">{{ enchere.id }}</a></td>
+                <td>{{ enchere.timbre_id }}</td>
+                <td>>{{ enchere.date_debut }}</td>
+                <td>>{{ enchere.date_limite }}</td>
 
 
-    <div class="detail__tache" data-js-template-container>
-      <template data-js-template>
+                {% if timbres.name is defined %}
+                <h1>TIMBRES is defined</h1>
+                {% endif %}
+
+
+  {% for timbre in timbres %}
+    
+  <h1>{{timbre.id}}</h1>
+
+  <div data-js-encheres="{{id}}">
+          <img src="{{asset}}{{imagesrc}}" alt="{{titreImage}}" />
+          <h4>{{timbre.titre}}</h4>
+        </div>
+        <span>
+          <button data-js-action="miser">Miser</button>
+        </span>
+
+    </div>
+
+  {% endfor %}
+    <div class="detail__enchere" data-js-template-container>
+      
+    <template data-js-template>
         <div data-js-encheres>
           <img src="{{image_src}}" alt="{{image_alt}}" />
           <h4>{{titre}}</h4>
@@ -78,19 +103,9 @@
           <button data-js-action="miser">Miser</button>
         </span>
 
-    </div>
-    </template>
-
-    <div data-js-encheres="{{id}}">
-          <img src="{{asset}}{{imagesrc}}" alt="{{titreImage}}" />
-          <h4>{{titre}}</h4>
-        </div>
-        <span>
-          <button data-js-action="miser">Miser</button>
-        </span>
+      </template>
 
     </div>
-    </template>
     </div>
     </div>
   </main>

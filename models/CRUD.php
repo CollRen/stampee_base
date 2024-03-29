@@ -40,6 +40,7 @@ abstract class CRUD extends \PDO
         $stmt->bindValue(":$field", $value);
         $stmt->execute();
         $count = $stmt->rowCount();
+
         if ($count == 1) {
             return $stmt->fetch();
         } else if ($count > 1) {

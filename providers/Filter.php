@@ -4,13 +4,13 @@ namespace App\Providers;
 
 class Filter
 {
-    private $array; // Provient de la BD
-    private $data = array();  // $_GET
-    private $key;
-    private $dbKey;
-    private $value = array();
+    public $array; // Provient de la BD
+    public $data = array();  // $_GET
+    public $key;
+    public $dbKey;
+    public $value = array();
 
-    private $newArray = array();
+    public $newArray = array();
 
     public function field($array, $data)
     {
@@ -102,26 +102,4 @@ class Filter
         }
         return $this;
     }
-}
-
-
-if (isset($_GET['annee_minimum'])) {
-    $annee_minimum = $_GET['annee_minimum'];
-    $dataAFiltrer['annee_minimum'] = $annee_minimum;
-}
-if (isset($_GET['annee_minimum'])) {
-    $annee_minimum = $_GET['annee_minimum'];
-    $dataAFiltrer['annee_minimum'] = $annee_minimum;
-}
-if (isset($_GET['pays'])) {
-    $pays = $_GET['pays'];
-    $dataAFiltrer['pays'] = $pays;
-}
-if (isset($_GET['etat_conservation'])) {
-    $etat_conservation = $_GET['etat_conservation'];
-    $dataAFiltrer['etat_conservation'] = $etat_conservation;
-}
-if (isset($_GET['authentifie'])) {
-    $authentifie = $_GET['authentifie'];
-    $dataAFiltrer['authentifie'] = $authentifie;
 }

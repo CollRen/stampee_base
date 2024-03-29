@@ -28,102 +28,37 @@ class EnchereController
 
     public function index()
     {
-        $timbre = new Timbre;
-        $selectTimbres = $timbre->select();
-        $filteredDataA = [];
+
 
         if (isset($_GET) && $_GET != null) {
-            $dataAFiltrer = [];
-            $filter = new Filter;
-            $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart', 'prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays')->presentArray('etat_conservation_id', 'etat_conservation')->booleen('authentifie', 'authentifie');
 
-            print_r($filter);
-            die();
-
-            if (isset($_GET['prix_minimum'])) {
-                $prix_minimum = $_GET['prix_minimum'];
-                $dataAFiltrer['prix_minimum'] = $prix_minimum;
-            }
-            if (isset($_GET['prix_maximum'])) {
-                $prix_maximum = $_GET['prix_maximum'];
-                $dataAFiltrer['prix_maximum'] = $prix_maximum;
-            }
-            if (isset($_GET['annee_minimum'])) {
-                $annee_minimum = $_GET['annee_minimum'];
-                $dataAFiltrer['annee_minimum'] = $annee_minimum;
-            }
-            if (isset($_GET['annee_minimum'])) {
-                $annee_minimum = $_GET['annee_minimum'];
-                $dataAFiltrer['annee_minimum'] = $annee_minimum;
-            }
-            if (isset($_GET['pays'])) {
-                $pays = $_GET['pays'];
-                $dataAFiltrer['pays'] = $pays;
-            }
-            if (isset($_GET['etat_conservation'])) {
-                $etat_conservation = $_GET['etat_conservation'];
-                $dataAFiltrer['etat_conservation'] = $etat_conservation;
-            }
-            if (isset($_GET['authentifie'])) {
-                $authentifie = $_GET['authentifie'];
-                $dataAFiltrer['authentifie'] = $authentifie;
-            }
-            $y = 0;
-
-
-
-
-            for ($i = 0; $i < count($selectTimbres); $i++) {
-                if (isset($dataAFiltrer['prix_minimum'])) {
-
-                    if ($selectTimbres[$i]['prix_depart'] > $dataAFiltrer['prix_minimum']) {
-                        array_push($filteredDataA, $selectTimbres[$i]);
-                    }
-                }
-            }
-
-            $filteredDataB = [];
-            for ($i = 0; $i < count($filteredDataA); $i++) {
-                if (isset($dataAFiltrer['prix_maximum'])) {
-
-                    if ($filteredDataA[$i]['prix_depart'] < $dataAFiltrer['prix_maximum']) {
-                        array_push($filteredDataB, $filteredDataA[$i]);
-                    }
-                }
-            }
-            print_r($filteredDataB);
-            die();
-            unset($filteredDataA);
-
-            // Ça va prendre la pays Id
-            $filteredDataA = [];
-            for ($i = 0; $i < count($filteredDataB); $i++) {
-                if (isset($dataAFiltrer['pays'])) {
-
-                    if ($filteredDataB[$i]['pays'] == $dataAFiltrer['pays']) {
-                        array_push($filteredDataA, $filteredDataB[$i]);
-                    }
-                }
-            }
-            print_r($filteredDataA);
-            die();
-
-
-
-
-
-
-            /* Array ( [prix_minimum] => 200 [prix_maximum] => 750 [annee_minimum] => 1925 [pays] => 4 [etat_conservation] => Array ( [0] => 3 [1] => 4 [2] => 5 ) [authentifie] => 2 ) */
-
-
-
-            // Il serait bien de filtrer selon la date de fin de l'enchère
-            // Prix minimum et prix maximum
             $enchere = new Enchere;
             $selectEncheres = $enchere->select();
 
+            $timbre = new Timbre;
+/*             $selectTimbres = $timbre->select();
+            print_r($selectTimbres); die(); */
+            // Array ( [0] => Array ( [id] 
+            $selectTimbres = [];
+            foreach ($selectEncheres as $key => $value) {
+                array_push($selectTimbres, $timbre->selectId($value['timbre_id']));
+            }
 
-            // print_r($select); die();
+            $filter = new Filter;
+            $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart', 'prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays')->presentArray('etat_conservation_id', 'etat_conservation')->booleen('authentifie', 'authentifie');
+            // print_r($filter); die();
+
+            $selectTimbres = [];
+            $i = 0;
+            $selectTimbres = (array) $filter;
+/*             print_r($selectTimbres['array']); die();
+            foreach ($filter as $key) {
+                foreach ($key as $value) {
+                    array_push($value, $selectTimbres);
+                }
+            } */
+
+            $selectTimbres = $selectTimbres['array'];
 
             $etat = new Etat;
             $selectEtats = $etat->select();
@@ -140,12 +75,11 @@ class EnchereController
             $image = new Image;
             $selectImages = $image->select();
         } else {
-            $enchere = new Enchere;
-            $selectEncheres = $enchere->select();
-
             $timbre = new Timbre;
             $selectTimbres = $timbre->select();
-            // print_r($select); die();
+
+            $enchere = new Enchere;
+            $selectEncheres = $enchere->select();
 
             $etat = new Etat;
             $selectEtats = $etat->select();
@@ -163,14 +97,21 @@ class EnchereController
             $selectImages = $image->select();
         }
 
+        // print_r($selectTimbres); die();
         if ($selectEncheres) {
             if (isset($_SESSION['user_id'])) {
+                echo 'if top not isset';
+                die();
                 if ($_SESSION['user_id'] == 1) {
                     return View::render('enchere/index', ['encheres' => $selectEncheres]);
                 } else {
+                    echo 'else after if top not isset';
+                    die();
                     return View::render('enchereclient/index', ['images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                 }
             } else {
+                echo 'else not isset';
+
                 return View::render('enchereclient/index', ['encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
             }
         } else {
