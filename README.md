@@ -90,19 +90,21 @@ Puis en gérant ces données en PHP
 ### Sprint 2
 [X] Invité Filte timbres
 [X] Invité Créer compte
-
-Membre édite timbre
+[X] Membre édite timbre
 
 Membre Mise
-
 [X] Membre ajout enchère
 
-Limiter la vue des enchères à cet utilisateur
+
+[X] Limiter la vue des enchères à cet utilisateur
+
 Faire la page Coup de coeur du Lord
 
-- Ajouter 'Mes enchères' dans le menu du membre ( Ou créer une enchère s'il n'en a pas déjà => vers enchere/create)
-Membre modif enchère
-Membre suppr enchère
+
+[X] Membre modif enchère
+[X] Membre suppr enchère
+
+Pas nécessaire(
 
 Gestionnaire Ajout privilèges
 Gestionnaire Édite privilèges
@@ -113,11 +115,30 @@ Gestionnaire État timbre
 Gestionnaire Suppr enchères
 Gestionnaire Édite les enchères membres
 Gestionnaire Suppr les enchères membres
-
-
-
 Gestionnaire Ajout les enchères membres
 Gestionnaire Ajout enchères
+
+)
+
+> Prioritaire
+
+1. Coup de coeur Lord
+2. Enchère favorie (
+    - Nettoie la fonction mesencheres dans enchereController
+    - Part de là pour faire l'affichage des Enchères Favories
+    
+    - addToFavorie
+        - enchere_id
+        - user_id
+        - est_favorie
+
+)
+3. Mise
+    - createMise
+        - enchere_id
+        - user_id
+        - prix_offert double
+
 
 
 

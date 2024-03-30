@@ -58,9 +58,10 @@
         <!-- Menu admin -->
         {% if session.privilege_id == 1 %}
         <li><a href="{{base}}/timbre">Liste de timbre</a></li>
-        <li><a href="{{base}}/etat">Etats</a></li>
-        <li><a href="{{base}}/categorie">Catégorie</a></li>
+<!--         <li><a href="{{base}}/etat">Etats</a></li>
+        <li><a href="{{base}}/categorie">Catégorie</a></li> -->
         <li><a href="{{base}}/user">Users</a></li>
+        <li><a href="{{base}}/privilege">Privilège</a></li>
         <li><a href="{{base}}/enchere">Enchères</a></li>
         <li><a href="{{base}}/enchereFavorie">Enchères favorie</a></li>
         <li><a href="{{base}}/actualite">Actualités</a></li>

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Providers\JournalStore;
 use App\Providers\Auth;
 use App\Models\Enchere;
+use App\Models\EnchereFavorie;
 use App\Models\Etat;
 use App\Models\Image;
 use App\Models\TimbreCategorie;
