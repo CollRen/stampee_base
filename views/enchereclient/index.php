@@ -89,6 +89,7 @@
     {% for timbre in timbres %}
     {% for enchere in encheres %}
     {% if enchere.timbre_id == timbre.id %}
+    
     <div class="main-grid__tuile" data-js-encheres>
 
       <img src="{{asset}}{% for image in images %}{% if image.timbre_id == timbre.id %}{{image.adresse}}" alt="{{image.nom}}{% endif %}{% endfor %}" />

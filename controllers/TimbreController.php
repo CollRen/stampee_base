@@ -55,6 +55,7 @@ class TimbreController
         $selectPays = $pays->select();
 
         if ($selectTimbres) {
+            echo 'premier if';
             return View::render('timbre/index', ['thisuser' => $_SESSION['user_id'], 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
         } else {
             return View::render('timbre/create');

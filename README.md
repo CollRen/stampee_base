@@ -89,7 +89,7 @@ Puis en gérant ces données en PHP
 
 ### Sprint 2
 [X] Invité Filte timbres
-Invité Créer compte
+[X] Invité Créer compte
 
 Membre édite timbre
 

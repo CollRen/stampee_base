@@ -13,6 +13,9 @@
         </thead>
         <tbody>
         {% for enchere in encheres %}
+        {% for timbre in timbres %}
+        {% if timbre.id == enchere.timbre_id %}
+
             <tr>
                 <td><a href="{{ base }}/enchere/show?id={{ enchere.id }}">{{ enchere.id }}</a></td>
                 <td>{{ enchere.timbre_id }}</td>
@@ -20,6 +23,9 @@
                 <td>>{{ enchere.date_limite }}</td>
 
             </tr>
+
+        {% endif %}
+        {% endfor %}
         {% endfor %}
         </tbody>
     </table>
