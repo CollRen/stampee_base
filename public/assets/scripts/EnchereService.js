@@ -3,7 +3,7 @@ class EnchereService {
   _elTemplateEnchere;
   _elDetails;
   constructor() {
-    // Variable en rapport avec l'affichage du détails
+    // Variable en rapport l'ajout d'une enchère aux favories d'un membre
     this._elTemplate = document.querySelector("[data-template]");
     this._elDetails = document.querySelector("[data-js-template-container]");
     this.getEncheresDetail = this.getEncheresDetail.bind(this);

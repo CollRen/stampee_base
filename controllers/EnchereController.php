@@ -124,18 +124,36 @@ class EnchereController
 
     public function create()
     {
+        $enchere = new Enchere;
+        $selectEncheres = $enchere->select();
 
         $timbre = new Timbre;
-        $select = $timbre->select();
-        return View::render('enchere/create', ['timbres' => $select]);
+        $selectTimbres = $timbre->selectId($_SESSION['user_id'], 'user_id');
+
+        $filter = new Filter;
+        $filter->field($selectTimbres, $selectEncheres)->absent('id', 'user_id');
+
+        $selectTimbres = (array) $filter;
+        $selectTimbres = $selectTimbres['array'];
+
+        // print_r($selectTimbres); die();
+
+        return View::render('enchere/create', ['timbres' => $selectTimbres, 'encheres' => $selectEncheres]);
     }
 
     public function store($data)
     {
+        if(empty($data['date_debut'])){
 
+            array_pop($data);
+        }
+        
         $validator = new Validator;
-
         $validator->field('timbre_id', $data['timbre_id'])->min(1)->max(45)->int()->required();
+
+        $validator->field('date_limite', $data['date_limite'])->max(16)->required();
+
+        
 
         if ($validator->isSuccess()) {
             $enchere = new Enchere;
@@ -147,9 +165,21 @@ class EnchereController
             }
         } else {
             $errors = $validator->getErrors();
+
+            $enchere = new Enchere;
+            $selectEncheres = $enchere->select();
+    
             $timbre = new Timbre;
-            $select = $timbre->select();
-            return View::render('enchere/create', ['errors' => $errors, 'enchere' => $data]);
+            $selectTimbres = $timbre->selectId($_SESSION['user_id'], 'user_id');
+    
+            $filter = new Filter;
+            $filter->field($selectTimbres, $selectEncheres)->absent('id', 'user_id');
+    
+            $selectTimbres = (array) $filter;
+            $selectTimbres = $selectTimbres['array'];
+
+ 
+            return View::render('enchere/create', ['errors' => $errors, 'enchere' => $data, 'timbres' => $selectTimbres, 'encheres' => $selectEncheres]);
         }
     }
 

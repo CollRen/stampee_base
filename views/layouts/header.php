@@ -71,6 +71,7 @@
         {% if session.privilege_id == 2 %}
         <li><a href="{{base}}/timbre">Ma liste de timbre</a></li>
         <li><a href="{{base}}/enchere">Enchères</a></li>
+        <li><a href="{{base}}/enchere/create">Créer une enchère</a></li>
         <li><a href="{{base}}/timrehasenchere">Mes enchères</a></li>
         {% endif %}
         {% endif %}

@@ -95,7 +95,10 @@ Membre édite timbre
 
 Membre Mise
 
-Membre ajout enchère
+[X] Membre ajout enchère
+
+
+- Ajouter 'Mes enchères' dans le menu du membre ( Ou créer une enchère s'il n'en a pas déjà => vers enchere/create)
 Membre modif enchère
 Membre suppr enchère
 
@@ -120,4 +123,7 @@ Gestionnaire Ajout enchères
 
 1. Encheres
  - Garder en mémoire les filtres lors du submit
+ - Membre ajout enchère à ses favories
+ - Enlever l'option de créer une enchère pour un timbre qui en a déjà (enchere a timbre_id -> user_id)
+ - ti bouton dans create: commence maintenant, sinon, formulaire date_debut
 
