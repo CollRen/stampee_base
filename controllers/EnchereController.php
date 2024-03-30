@@ -28,8 +28,6 @@ class EnchereController
 
     public function index()
     {
-
-
         if (isset($_GET) && $_GET != null) {
 
             $enchere = new Enchere;
@@ -98,7 +96,7 @@ class EnchereController
                 }
             } else {
 
-                return View::render('enchereclient/index', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
+                return View::render('enchereclient/index', ['encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
             }
         } else {
             return View::render('error');
