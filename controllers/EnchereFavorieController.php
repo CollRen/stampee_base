@@ -129,7 +129,7 @@ class EnchereFavorieController
 
         $validator = new Validator;
 
-        $validator->field('date_limite', $data['date_limite'])->min(1)->max(10)->required();
+        $validator->field('date_limite', $data['date_limite'])->max(20)->required();
 
         if ($validator->isSuccess()) {
             $enchereFavorie = new EnchereFavorie;

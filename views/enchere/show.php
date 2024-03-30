@@ -4,7 +4,7 @@
         <h2>enchere Show</h2>
         <hr>
         <p><strong>Enchere id</strong> {{ enchere.id }}</p>
-        <p><strong>Date début</strong> {{ enchere.debut }}</p>
+        <p><strong>Date début</strong> {{ enchere.date_debut }}</p>
         <p><strong>Date limite</strong> {{ enchere.date_limite }}</p>
 
         <a href="{{base}}/enchere/edit?id={{enchere.id}}" class="btn block">Edit</a>

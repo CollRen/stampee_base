@@ -177,6 +177,7 @@ class EnchereController
 
     public function edit($data = [])
     {
+
         $arrayCanEnter = [1, 2];
         Auth::verifyAcces($arrayCanEnter);
         if (isset($data['id']) && $data['id'] != null) {
@@ -196,11 +197,15 @@ class EnchereController
     }
     public function update($data, $get)
     {
+/*         print_r($data); 
+        echo '<br>';
+        print_r($get);die(); */
+        if (empty($data['date_debut'])) array_pop($data);
         $id = $_GET['id']; // S'il n'y a pas de changement
 
         $validator = new Validator;
 
-        $validator->field('date_limite', $data['date_limite'])->min(1)->max(10)->required();
+        $validator->field('date_limite', $data['date_limite'])->max(20)->required();
 
         if ($validator->isSuccess()) {
             $enchere = new Enchere;
