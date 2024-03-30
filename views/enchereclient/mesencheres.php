@@ -14,16 +14,18 @@
         <tbody>
         {% for enchere in encheres %}
         {% for timbre in timbres %}
+        {% if thisuser == timbre.user_id %}
         {% if timbre.id == enchere.timbre_id %}
 
             <tr>
                 <td><a href="{{ base }}/enchere/show?id={{ enchere.id }}">{{ enchere.id }}</a></td>
                 <td>{{ enchere.timbre_id }}</td>
-                <td>>{{ enchere.date_debut }}</td>
-                <td>>{{ enchere.date_limite }}</td>
+                <td>{{ enchere.date_debut }}</td>
+                <td>{{ enchere.date_limite }}</td>
 
             </tr>
 
+        {% endif %}
         {% endif %}
         {% endfor %}
         {% endfor %}

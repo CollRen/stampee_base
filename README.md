@@ -97,6 +97,8 @@ Membre Mise
 
 [X] Membre ajout enchère
 
+Limiter la vue des enchères à cet utilisateur
+Faire la page Coup de coeur du Lord
 
 - Ajouter 'Mes enchères' dans le menu du membre ( Ou créer une enchère s'il n'en a pas déjà => vers enchere/create)
 Membre modif enchère
@@ -119,6 +121,7 @@ Gestionnaire Ajout enchères
 
 
 
+
 ### Sprint 3
 
 1. Encheres
@@ -126,4 +129,22 @@ Gestionnaire Ajout enchères
  - Membre ajout enchère à ses favories
  - Enlever l'option de créer une enchère pour un timbre qui en a déjà (enchere a timbre_id -> user_id)
  - ti bouton dans create: commence maintenant, sinon, formulaire date_debut
+ - Membre devrait avoir accès à des informations pertinentes sur son profil d’acheteur et
+son historique d’offres.
+- Section "Profil du membre"
+    - Les offres en cours et leur état
+        - Mene: Offre en cours
+
+- Fonctionnalité de zoomer à l'intérieur des timbres
+- Naviguation à deux niveau
+    - Pouvoir naviguer facilement sur les (2) pages les plus importantes (enchères et offres)
+
+- Base de données
+    - Timbre
+        -> *couleur(s) (Select) Je ne le ferai pas
+        -> tirage (double)
+
+        -> dimensions (en mm) 
+            - largeur int
+            - longueur int
 
