@@ -101,6 +101,7 @@ Route::get('/enchere/edit', 'EnchereController@edit');
 Route::post('/enchere/edit', 'EnchereController@update');
 Route::post('/enchere/delete', 'EnchereController@delete');
 
+Route::get('/enchere/mesencheres', 'EnchereController@mesencheres');
 
 
 Route::get('/enchereclient', 'EnchereController@filtre');

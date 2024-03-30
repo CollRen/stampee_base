@@ -136,24 +136,16 @@ class EnchereController
         $selectTimbres = (array) $filter;
         $selectTimbres = $selectTimbres['array'];
 
-        // print_r($selectTimbres); die();
-
         return View::render('enchere/create', ['timbres' => $selectTimbres, 'encheres' => $selectEncheres]);
     }
 
     public function store($data)
     {
-        if(empty($data['date_debut'])){
+        if (empty($data['date_debut'])) array_pop($data);
 
-            array_pop($data);
-        }
-        
         $validator = new Validator;
         $validator->field('timbre_id', $data['timbre_id'])->min(1)->max(45)->int()->required();
-
         $validator->field('date_limite', $data['date_limite'])->max(16)->required();
-
-        
 
         if ($validator->isSuccess()) {
             $enchere = new Enchere;
@@ -168,17 +160,17 @@ class EnchereController
 
             $enchere = new Enchere;
             $selectEncheres = $enchere->select();
-    
+
             $timbre = new Timbre;
             $selectTimbres = $timbre->selectId($_SESSION['user_id'], 'user_id');
-    
+
             $filter = new Filter;
             $filter->field($selectTimbres, $selectEncheres)->absent('id', 'user_id');
-    
+
             $selectTimbres = (array) $filter;
             $selectTimbres = $selectTimbres['array'];
 
- 
+
             return View::render('enchere/create', ['errors' => $errors, 'enchere' => $data, 'timbres' => $selectTimbres, 'encheres' => $selectEncheres]);
         }
     }
@@ -241,5 +233,78 @@ class EnchereController
     {
         print_r($data);
         die();
+    }
+
+    public function mesencheres()
+    {
+        if (isset($_GET) && $_GET != null) {
+
+            $enchere = new Enchere;
+            $selectEncheres = $enchere->select();
+
+            $timbre = new Timbre;
+
+            $selectTimbres = [];
+            foreach ($selectEncheres as $key => $value) {
+                array_push($selectTimbres, $timbre->selectId($value['timbre_id']));
+            }
+
+            $filter = new Filter;
+            $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart', 'prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays')->presentArray('etat_conservation_id', 'etat_conservation')->booleen('authentifie', 'authentifie');
+
+            $selectTimbres = [];
+            $i = 0;
+            $selectTimbres = (array) $filter;
+
+            $selectTimbres = $selectTimbres['array'];
+
+            $etat = new Etat;
+            $selectEtats = $etat->select();
+
+            $timbreCats = new TimbreCategorie;
+            $selectCat = $timbreCats->select();
+
+            $user = new User;
+            $selectUsers = $user->select();
+
+            $pays = new Pays;
+            $selectPays = $pays->select();
+
+            $image = new Image;
+            $selectImages = $image->select();
+        } else {
+            $timbre = new Timbre;
+            $selectTimbres = $timbre->select();
+
+            $enchere = new Enchere;
+            $selectEncheres = $enchere->select();
+
+            $etat = new Etat;
+            $selectEtats = $etat->select();
+
+            $timbreCats = new TimbreCategorie;
+            $selectCat = $timbreCats->select();
+
+            $user = new User;
+            $selectUsers = $user->select();
+
+            $pays = new Pays;
+            $selectPays = $pays->select();
+
+            $image = new Image;
+            $selectImages = $image->select();
+        }
+
+        if ($selectEncheres) {
+            if (isset($_SESSION['user_id'])) {
+                    return View::render('enchereclient/mesencheres', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+
+            } else {
+
+                return View::render('enchereclient/index', ['encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
+            }
+        } else {
+            return View::render('error');
+        }
     }
 }
