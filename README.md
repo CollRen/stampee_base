@@ -116,5 +116,8 @@ Gestionnaire Ajout enchères
 
 
 
+### Sprint 3
 
+1. Encheres
+ - Garder en mémoire les filtres lors du submit
 
