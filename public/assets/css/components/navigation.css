@@ -1,25 +1,80 @@
+ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
 
+li {
+  color: var(--blanc);
+  font-family: var(--police-principale);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
 
-    ul {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 90%;
-        margin: 0 auto;
-    
-      }
-      
-      li {
-        color: var(--blanc);
-        font-family: var(--police-principale);
-        font-size: 1rem;
-        margin-bottom: 1rem;
-      } 
-      
-      li a {
-        display: block;
-        gap: var(--space-m);
-        text-align: center;
-        text-decoration: none;
-      }
-    
+li a {
+  display: block;
+  gap: var(--space-m);
+  text-align: center;
+  text-decoration: none;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: var(--fonce);
+}
+
+.navbar a {
+  float: left;
+  font-size: var(--space-m);
+  color: var(--blanc);
+  text-align: center;
+  padding: var(--space-s) var(--space-m);
+  text-decoration: none;
+}
+
+.subnav {
+  float: left;
+  overflow: hidden;
+}
+
+.subnav .subnavbtn {
+  font-size: var(--space-m);
+  border: none;
+  outline: none;
+  color: var(--blanc);
+  padding: var(--space-s) var(--space-m);
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover,
+.subnav:hover .subnavbtn {
+  background-color: var(--vert-fonce);
+}
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: var(--vert-fonce);
+  width: 100%;
+  z-index: 1;
+}
+
+.subnav-content a {
+  float: left;
+
+  text-decoration: none;
+}
+
+.subnav-content a:hover {
+  background-color:  var(--blanc);
+  color: var(--fonce);
+}
+
+.subnav:hover .subnav-content {
+  display: block;
+}

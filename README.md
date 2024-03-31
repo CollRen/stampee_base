@@ -122,22 +122,28 @@ Gestionnaire Ajout enchères
 
 > Prioritaire
 
+> Créer sous menu enchere: coup de coeur, mes encheres, enchère favorie et créer une enchère
+
+
 1. Coup de coeur Lord
+    1. Ajouter dans diagram entité ( Est déjà dans la bd)
 2. Enchère favorie (
     - Nettoie la fonction mesencheres dans enchereController
     - Part de là pour faire l'affichage des Enchères Favories
-    
-    - addToFavorie
+
+
+    - addToFavorie (Simplement un btn qui lance la fonction et affiche la page de nouveau)
         - enchere_id
         - user_id
         - est_favorie
-
 )
+
 3. Mise
     - createMise
         - enchere_id
         - user_id
         - prix_offert double
+4. Pouvoir ajouter une image lors de la création de timbre
 
 
 
@@ -149,12 +155,14 @@ Gestionnaire Ajout enchères
  - Garder en mémoire les filtres lors du submit
  - Membre ajout enchère à ses favories
  - Enlever l'option de créer une enchère pour un timbre qui en a déjà (enchere a timbre_id -> user_id)
- - ti bouton dans create: commence maintenant, sinon, formulaire date_debut
- - Membre devrait avoir accès à des informations pertinentes sur son profil d’acheteur et
+ - Ajouter un ti bouton dans create: 'Débute maintenant', sinon, formulaire date_debut
+ - Définir cette phrase du devis:
+ > Membre devrait avoir accès à des informations pertinentes sur son profil d’acheteur et
 son historique d’offres.
+
 - Section "Profil du membre"
     - Les offres en cours et leur état
-        - Mene: Offre en cours
+        - Menu: Offre en cours
 
 - Fonctionnalité de zoomer à l'intérieur des timbres
 - Naviguation à deux niveau
@@ -168,4 +176,8 @@ son historique d’offres.
         -> dimensions (en mm) 
             - largeur int
             - longueur int
+
+2. Contenu de la page d'accueil
+
+3. Style de la page catalogue
 

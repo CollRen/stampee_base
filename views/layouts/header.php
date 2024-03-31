@@ -41,24 +41,24 @@
 
       <div class="header-top_icons">
         <a href="./">
-        
+
           <i class="fa-solid fa-house icon_img1" role="img" aria-label="icon page d'accueil"></i></a>
         <a href="{% if session.privilege_id == 2 %}{{ base }}/user/show?id={{ users.id }}{% else %}{{ base }}/user/create{% endif %}">
           <i class="fa-solid fa-user icon_img1" role="img" aria-label="icon inscription ou connexion"></i></a>
         <i class="fa-solid fa-cart-shopping icon_img1" role="img" aria-label="icon inscription ou connexion"></i>
       </div>
     </div>
-    <nav class="header-nav">
-    
+    <nav class="header-nav navbar"> <!-- Pas navbar qui change grand chose -->
+
       <ul>
-        <li><a href="{{base}}/coupcoeurlord">Coup de coeur du Lord</a></li>
+        
         {% if session.privilege_id is defined %}
 
-        
+
         <!-- Menu admin -->
         {% if session.privilege_id == 1 %}
         <li><a href="{{base}}/timbre">Liste de timbre</a></li>
-<!--         <li><a href="{{base}}/etat">Etats</a></li>
+        <!--         <li><a href="{{base}}/etat">Etats</a></li>
         <li><a href="{{base}}/categorie">Catégorie</a></li> -->
         <li><a href="{{base}}/user">Users</a></li>
         <li><a href="{{base}}/privilege">Privilège</a></li>
@@ -70,14 +70,25 @@
 
         <!-- Menu membre -->
         {% if session.privilege_id == 2 %}
-        <li><a href="{{base}}/timbre">Ma liste de timbre</a></li>
-        <li><a href="{{base}}/enchere">Enchères</a></li>
-        <li><a href="{{base}}/enchere/create">Créer une enchère</a></li>
-        <li><a href="{{base}}/enchere/mesencheres">Mes enchères</a></li>
+        <div class="subnav">
+          <li><button class="subnavbtn">Enchères&nbsp;&nbsp;<i class="fa fa-caret-down"></i>
+        </button>
+        
+        <ul class="subnav-content">
+          <li><a href="{{base}}/enchere">Consulter</a></li>
+          <li><a href="{{base}}/enchere/create">Créer</a></li>
+          <li><a href="{{base}}/enchere/mesencheres">Ma liste</a></li>
+          <li><a href="{{base}}/enchere/mesencheresfavorites">Mes préférées</a></li>
+        </ul>
+        
+      </li>
+      
+    </div>
+    <li><a href="{{base}}/timbre">Ma liste de timbre</a></li>
         {% endif %}
         {% endif %}
 
-
+        <li><a href="{{base}}/coupcoeurlord">Coup de coeur du Lord</a></li>
         <!-- menu guest  -->
         {% if guest %}
         <li><a href="{{base}}/enchere">Enchères</a></li>
@@ -86,6 +97,7 @@
         {% else %}
         <li class="connexion connexion__connected"><a href="{{base}}/logout">Logout</a></li>
         {% endif %}
+        
       </ul>
     </nav>
-    </header>
+  </header>
