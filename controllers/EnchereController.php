@@ -101,11 +101,25 @@ class EnchereController
             $selectEncheres = [];
             $selectEncheres = (array) $filter;
             $REQUEST_URI = 'archive';
-            print_r($selectEncheres); die();
         }
 
         /**
-         * index des enchères active
+         * index des enchères favorites 
+         * 
+         * PAS DU TOUT TRAVAILLER: Il faut pouvoir créer des enchères favorites...
+         */
+        if($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/mesencheresfavorites') {
+
+            $enchereFavorie = new EnchereFavorie;
+            $selectEnchereFavorie = $enchereFavorie->select();
+            
+            $selectEncheres = [];
+            $selectEncheres = (array) $filter;
+            $REQUEST_URI = 'active';
+        }
+
+        /**
+         * index des enchères préférées
          */
         if($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/active') {
 
@@ -115,7 +129,6 @@ class EnchereController
             $selectEncheres = [];
             $selectEncheres = (array) $filter;
             $REQUEST_URI = 'active';
-            print_r($selectEncheres); die();
         }
 
         if ($selectEncheres) {
