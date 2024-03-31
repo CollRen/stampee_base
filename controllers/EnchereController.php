@@ -8,6 +8,7 @@ use App\Models\Enchere;
 use App\Models\EnchereFavorie;
 use App\Models\Etat;
 use App\Models\Image;
+use App\Models\Mise;
 use App\Models\TimbreCategorie;
 use App\Models\User;
 use App\Models\Pays;
@@ -149,16 +150,32 @@ class EnchereController
     }
 
     public function show($data = [])
-    {
+    {   
         if (isset($data['id']) && $data['id'] != null) {
 
             $enchere = new Enchere;
-            $selectId = $enchere->selectId($data['id']);
+            $selectEnchereId = $enchere->selectId($data['id']);
 
-            if ($selectId) {
+            if ($selectEnchereId) {
                 $timbre = new Timbre;
-                $select = $timbre->select();
-                return View::render('enchere/show', ['enchere' => $selectId]);
+                $selectTimbre = $timbre->selectId($selectEnchereId['timbre_id']);
+
+                $image = new Image;
+                $selectImages = $image->selectId($selectEnchereId['timbre_id'], 'timbre_id');
+
+                // print_r($selectImages); die();
+
+                $mise = new Mise;
+                $selectMises = $mise->selectId($selectEnchereId['id'], 'enchere_id');
+
+                $filter = new Filter;
+                $filter->field($selectMises)->max('prix_offert');
+
+                $selectMises = [];
+                $selectMise = (array) $filter;
+                $selectMise = $selectMise['array'];
+
+                return View::render('enchere/show', ['thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mise' => $selectMise]);
             } else {
                 return View::render('error');
             }

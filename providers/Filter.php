@@ -37,8 +37,9 @@ class Filter
         return $this;
     }
 
-    public function max($dbKey, $key)
+    public function max($dbKey, $key = null)
     {
+        // print_r($this->array); die(); // Array ( [enchere_id] => 23 [0] => 23 [user_id] => 2 [1] => 2 [prix_offert] => 600 [2] => 600 )
         if (isset($this->data[$key])) {
             for ($i = 0; $i < count($this->array); $i++) {
                 if ($dbKey == 'annee') {
@@ -51,9 +52,21 @@ class Filter
             }
             $this->array = $this->newArray;
             $this->newArray = [];
+        } else {
+            if(isset($this->array[1][0])){
+                for ($i = 1; $i < count($this->array); $i++) {
+                    if ($this->array[$i][$dbKey] > $this->array[$i-1][$dbKey]) {
+                        array_push($this->newArray, $this->array[$i]);
+                    }
+                }
+            } else {
+            array_push($this->newArray, $this->array);
         }
-        return $this;
+        $this->array = $this->newArray;
+        $this->newArray = [];
     }
+    return $this;
+}
 
     public function present($dbKey, $key)
     {
