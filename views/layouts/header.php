@@ -75,7 +75,7 @@
         </button>
         
         <ul class="subnav-content">
-          <li><a href="{{base}}/enchere">Actives</a></li>
+          <li><a href="{{base}}/enchere/active">Actives</a></li>
           <li><a href="{{base}}/enchere/create">Créer</a></li>
           <li><a href="{{base}}/enchere/mesencheres">Mes enchères</a></li>
           <li><a href="{{base}}/enchere/mesencheresfavorites">Mes préférées</a></li>

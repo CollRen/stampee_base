@@ -117,11 +117,24 @@ class Filter
         return $this;
     }
 
-    public function datePerimee($key)
+    public function datePassee($key)
     {       $now = date("Y-m-d H:i:s");
 
         foreach ($this->array as $uneEnchere) {
                     if ($uneEnchere[$key] < $now) {
+                        array_push($this->newArray, $uneEnchere);
+                    }
+                }
+            $this->array = $this->newArray;
+            $this->newArray = [];
+            return $this;
+        }
+
+        public function dateActive($key)
+    {       $now = date("Y-m-d H:i:s");
+
+        foreach ($this->array as $uneEnchere) {
+                    if ($uneEnchere[$key] >= $now) {
                         array_push($this->newArray, $uneEnchere);
                     }
                 }

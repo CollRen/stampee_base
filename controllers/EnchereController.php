@@ -29,8 +29,9 @@ class EnchereController
 
     public function index()
     {
+       
             //print_r($_SERVER);die(); // REDIRECT_URL] => /h24/stampee_base/stampeeFromRecette/enchere
-
+        $REQUEST_URI = '';
         if (isset($_GET) && $_GET != null) {
 
             $enchere = new Enchere;
@@ -93,14 +94,28 @@ class EnchereController
          * index des enchères archivées
          */
         if($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/archive') {
-
-            print_r($selectEncheres); die();
+            
             $filter = new Filter;
-            $filter->field($selectEncheres)->datePerimee('date_limite');
+            $filter->field($selectEncheres)->datePassee('date_limite');
             
             $selectEncheres = [];
             $selectEncheres = (array) $filter;
+            $REQUEST_URI = 'archive';
+            print_r($selectEncheres); die();
+        }
 
+        /**
+         * index des enchères active
+         */
+        if($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/active') {
+
+            $filter = new Filter;
+            $filter->field($selectEncheres)->dateActive('date_limite')->datePassee('date_debut');
+            
+            $selectEncheres = [];
+            $selectEncheres = (array) $filter;
+            $REQUEST_URI = 'active';
+            print_r($selectEncheres); die();
         }
 
         if ($selectEncheres) {
