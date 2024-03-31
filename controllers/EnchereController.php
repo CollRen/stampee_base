@@ -29,6 +29,8 @@ class EnchereController
 
     public function index()
     {
+            //print_r($_SERVER);die(); // REDIRECT_URL] => /h24/stampee_base/stampeeFromRecette/enchere
+
         if (isset($_GET) && $_GET != null) {
 
             $enchere = new Enchere;
@@ -85,6 +87,20 @@ class EnchereController
 
             $image = new Image;
             $selectImages = $image->select();
+        }
+
+        /**
+         * index des enchères archivées
+         */
+        if($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/archive') {
+
+            print_r($selectEncheres); die();
+            $filter = new Filter;
+            $filter->field($selectEncheres)->datePerimee('date_limite');
+            
+            $selectEncheres = [];
+            $selectEncheres = (array) $filter;
+
         }
 
         if ($selectEncheres) {
@@ -235,50 +251,15 @@ class EnchereController
         }
     }
 
-    public function filtre($data)
+    public function archive()
     {
-        print_r($data);
-        die();
+
+
     }
 
     public function mesencheres()
     {
-        if (isset($_GET) && $_GET != null) {
 
-            $enchere = new Enchere;
-            $selectEncheres = $enchere->select();
-
-            $timbre = new Timbre;
-
-            $selectTimbres = [];
-            foreach ($selectEncheres as $key => $value) {
-                array_push($selectTimbres, $timbre->selectId($value['timbre_id']));
-            }
-
-            $filter = new Filter;
-            $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart', 'prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays')->presentArray('etat_conservation_id', 'etat_conservation')->booleen('authentifie', 'authentifie');
-
-            $selectTimbres = [];
-            $i = 0;
-            $selectTimbres = (array) $filter;
-
-            $selectTimbres = $selectTimbres['array'];
-
-            $etat = new Etat;
-            $selectEtats = $etat->select();
-
-            $timbreCats = new TimbreCategorie;
-            $selectCat = $timbreCats->select();
-
-            $user = new User;
-            $selectUsers = $user->select();
-
-            $pays = new Pays;
-            $selectPays = $pays->select();
-
-            $image = new Image;
-            $selectImages = $image->select();
-        } else {
             $timbre = new Timbre;
             $selectTimbres = $timbre->select();
 
@@ -299,7 +280,6 @@ class EnchereController
 
             $image = new Image;
             $selectImages = $image->select();
-        }
 
         if ($selectEncheres) {
             if (isset($_SESSION['user_id'])) {

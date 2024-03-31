@@ -12,7 +12,7 @@ class Filter
 
     public $newArray = array();
 
-    public function field($array, $data)
+    public function field($array, $data = null)
     {
         $this->array = $array;
         $this->data = $data;
@@ -116,4 +116,17 @@ class Filter
         }
         return $this;
     }
-}
+
+    public function datePerimee($key)
+    {       $now = date("Y-m-d H:i:s");
+
+        foreach ($this->array as $uneEnchere) {
+                    if ($uneEnchere[$key] < $now) {
+                        array_push($this->newArray, $uneEnchere);
+                    }
+                }
+            $this->array = $this->newArray;
+            $this->newArray = [];
+            return $this;
+        }
+    }

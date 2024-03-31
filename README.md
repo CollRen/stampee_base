@@ -124,6 +124,10 @@ Gestionnaire Ajout enchères
 
 > Créer sous menu enchere: coup de coeur, mes encheres, enchère favorie et créer une enchère
 
+* Enchère archivées est fonctionnelle, mais pas si on filtre ensuite... oh peut-être ajouter un filtre 'enchères archivé' hidden et qui est à ON lorsqu'on arrvivé... puis qui le reste ensuite. Mais pourquoi hidden alors ?
+
+Donc, ajouter ce filtre, et l'activé automatiquement si on y arrive via le menu.
+
 
 1. Coup de coeur Lord
     1. Ajouter dans diagram entité ( Est déjà dans la bd)
@@ -152,11 +156,13 @@ Gestionnaire Ajout enchères
 ### Sprint 3
 
 1. Encheres
- - Garder en mémoire les filtres lors du submit
- - Membre ajout enchère à ses favories
- - Enlever l'option de créer une enchère pour un timbre qui en a déjà (enchere a timbre_id -> user_id)
- - Ajouter un ti bouton dans create: 'Débute maintenant', sinon, formulaire date_debut
- - Définir cette phrase du devis:
+    - Pouvoir commenter les enchères, archivées ou pas pourrait nous intéresser.
+    - Section enchères archivées
+    - Garder en mémoire les filtres lors du submit
+    - Membre ajout enchère à ses favories
+    - Enlever l'option de créer une enchère pour un timbre qui en a déjà (enchere a timbre_id -> user_id)
+    - Ajouter un ti bouton dans create: 'Débute maintenant', sinon, formulaire date_debut
+    - Définir cette phrase du devis:
  > Membre devrait avoir accès à des informations pertinentes sur son profil d’acheteur et
 son historique d’offres.
 
