@@ -24,7 +24,7 @@ class EnchereFavorie {
       },
       body: JSON.stringify(data),
     };
-    fetch("requetes/requetesAsync.php", oOptions)
+    fetch("{{ BASE }}controllers/EnchereFavorieController.php", oOptions)
       .then(function (reponse) {
         if (reponse.ok) return reponse.json();
         else throw new Error("La réponse n'est pas OK");
