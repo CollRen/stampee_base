@@ -88,6 +88,25 @@ Puis en gérant ces données en PHP
 ```
 
 ### Sprint 2
+
+1. Dès que le design et le contenu de permet, ajouter une enchère aux favories du membre en JS
+
+2. Dès que possible, faire l'ajout d'une mise
+
+
+1. Enchère active:
+
+    - Landing: filtres sont comme désactivés et affiche tous les résultats
+
+2. Créer une enchère ne devrait pas exister
+    - devrait être dans la liste de timbre..
+
+Ma liste de timbre
+
+Ajouter colonne: 
+
+- Mettre en enchère || Voir l'enchère
+
 [X] Invité Filte timbres
 [X] Invité Créer compte
 [X] Membre édite timbre
@@ -102,7 +121,7 @@ Faire la page Coup de coeur du Lord
 
 
 [X] Membre modif enchère
-[X] Membre suppr enchère
+[X] Membre suppr enchère Ne devrait pas être possible
 
 Pas nécessaire(
 

@@ -45,13 +45,14 @@ class EnchereController
                 array_push($selectTimbres, $timbre->selectId($value['timbre_id']));
             }
 
+            // print_r($selectTimbres); die();
+
             $filter = new Filter;
             $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart', 'prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays')->presentArray('etat_conservation_id', 'etat_conservation')->booleen('authentifie', 'authentifie');
 
-            $selectTimbres = [];
             $i = 0;
+            $selectTimbres = [];
             $selectTimbres = (array) $filter;
-
             $selectTimbres = $selectTimbres['array'];
 
             $etat = new Etat;
@@ -90,7 +91,7 @@ class EnchereController
             $image = new Image;
             $selectImages = $image->select();
         }
-
+        
         /**
          * index des enchères archivées
          */
@@ -100,7 +101,8 @@ class EnchereController
             $filter->field($selectEncheres)->datePassee('date_limite');
             
             $selectEncheres = [];
-            $selectEncheres = (array) $filter;
+            $selectEncheres = (array) $filter; 
+            $selectEncheres = $selectEncheres = $selectEncheres['array'];;
             $REQUEST_URI = 'archive';
         }
 
@@ -115,8 +117,9 @@ class EnchereController
             $selectEnchereFavorie = $enchereFavorie->select();
             
             $selectEncheres = [];
-            $selectEncheres = (array) $filter;
-            $REQUEST_URI = 'active';
+            $selectEncheres = (array) $filter; 
+            $selectEncheres = $selectEncheres = $selectEncheres['array'];;
+            $REQUEST_URI = 'mesencheresfavorites';
         }
 
         /**
@@ -129,19 +132,25 @@ class EnchereController
             
             $selectEncheres = [];
             $selectEncheres = (array) $filter;
+
+            $selectEncheres = $selectEncheres['array'];
             $REQUEST_URI = 'active';
+
+            //print_r($selectEncheres); die(); // Ça marche! grâce à $selectEncheres['array']
         }
+        //print_r($selectEncheres); die(); // ça créee un Array ( [0] alors je change pour $selectEncheres['array']. Mais le lendemain ça changes-tu ?
 
         if ($selectEncheres) {
             if (isset($_SESSION['user_id'])) {
+                
                 if ($_SESSION['user_id'] == 1) {
+                    
                     return View::render('enchere/index', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                 } else {
-
                     return View::render('enchereclient/index', ['thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                 }
             } else {
-
+                
                 return View::render('enchereclient/index', ['encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
             }
         } else {
@@ -191,12 +200,15 @@ class EnchereController
 
         $timbre = new Timbre;
         $selectTimbres = $timbre->selectId($_SESSION['user_id'], 'user_id');
-
+        
+        // print_r($selectTimbres); die;
         $filter = new Filter;
-        $filter->field($selectTimbres, $selectEncheres)->absent('id', 'user_id');
+        $filter->field($selectTimbres, $selectEncheres)->enleveSiPresent('id', 'timbre_id');
 
+        $selectTimbres = [];
         $selectTimbres = (array) $filter;
         $selectTimbres = $selectTimbres['array'];
+
 
         return View::render('enchere/create', ['timbres' => $selectTimbres, 'encheres' => $selectEncheres]);
     }
@@ -229,6 +241,7 @@ class EnchereController
             $filter = new Filter;
             $filter->field($selectTimbres, $selectEncheres)->absent('id', 'user_id');
 
+            $selectTimbres = [];
             $selectTimbres = (array) $filter;
             $selectTimbres = $selectTimbres['array'];
 
