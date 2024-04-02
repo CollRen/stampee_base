@@ -24,7 +24,7 @@ class Validator
         }
         return $this;
     }
-    
+
     public function fieldkeys($key1, $value1, $key2, $value2, $name = null)
     {
         $this->key1 = $key1;
@@ -141,6 +141,18 @@ class Validator
         if ($unique) {
             $this->errors[$this->key1] = "This $this->name must be unique";
         }
+        return $this;
+    }
+
+    public function dateActive($champDateDebut, $dateDebutEnchere)
+    {
+        $now = date("Y-m-d H:i:s");
+            if ($this->value[$this->key] >= $now) {
+                $this->errors[$this->key] = "L'enchère #$this->name est arrivée à expiration";
+            }
+            if ($this->value[$champDateDebut] < $dateDebutEnchere) {
+                $this->errors[$champDateDebut] = "L'enchère #$this->name n'a pas débuté, revenez après le $dateDebutEnchere";
+            }
         return $this;
     }
 

@@ -79,6 +79,18 @@ Route::post('/pays/delete', 'PaysController@delete');
 
 
 
+Route::get('/mise', 'MiseController@index');
+Route::get('/mise/show', 'MiseController@show');
+
+Route::get('/mise/create', 'MiseController@create');
+Route::post('/mise/create', 'MiseController@store');
+
+Route::get('/mise/edit', 'MiseController@edit');
+Route::post('/mise/edit', 'MiseController@update');
+Route::post('/mise/delete', 'MiseController@delete');
+
+
+
 Route::get('/enchereFavorie', 'EnchereFavorieController@index');
 Route::get('/enchereFavorie/show', 'EnchereFavorieController@show');
 

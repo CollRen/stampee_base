@@ -26,6 +26,10 @@ class View {
     static public function redirect($url){
         header('location:'.BASE.'/'.$url);
     }
+
+    static public function redirectTo($url){
+        header('location:'.BASE.'/'.$url);
+    }
 } 
 
 

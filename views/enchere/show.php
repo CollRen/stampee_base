@@ -7,7 +7,7 @@
                 <i class="fa-solid fa-chevron-left"></i>
                 <div class="photo-produit-g">
                     <!-- <img src="{{asset}}/img/timbres/catalogue_Brazil-CA-DP3_2-253x300.webp" alt="" /> -->
-                    
+
                     <img src="{{asset}}{{ images.adresse }}" alt="{{image.nom}}" />
                 </div>
                 <i class="fa-solid fa-chevron-right"></i>
@@ -37,9 +37,12 @@
                 <div class="misemax">Prix:&nbsp;{% if mise.enchere_id == enchere.id %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}<small>&nbsp;$</small></div>
             </div>
 
-            <div class="btn btn-miser">Augmenter la mise</div>
-            <label for="mise">Augmenter la mise</label>
-            <input type="number" id="mise" name="mise" min="{{ mise.prix_offert }}" value="{{ mise.prix_offert }}"/> <!-- On peut mettre + 1 ? -->
+            <a href="{{base}}/mise/create?enchere_id={{ enchere.id }}" class="btn btn-miser">Augmenter la mise</div>
+            <form action="{{base}}/mise/create?enchere_id={{ enchere.id }}">
+                <label for="mise">Augmenter la mise</label>
+                <input type="number" id="mise" name="mise" min="{% if mise.enchere_id == enchere.id %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}" value="{% if mise.enchere_id == enchere.id %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}" /> <!-- On peut mettre + 1 ? -->
+                <button type="submit">Enchérir</button>
+            </form>
         </div>
     </div>
 
@@ -47,7 +50,7 @@
     </div>
 </main>
 {% if timbre.user_id == thisuser %}
-    <aside class="main-index">
+<aside class="main-index">
     <div class="container">
         <h2>Modifier cet enchère</h2>
         <hr>

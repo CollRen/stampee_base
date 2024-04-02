@@ -116,7 +116,7 @@
           <h4>{{titre}}</h4>
         </div>
         <span>
-          <button data-js-action="miser">Miser</button>
+        <a href="{{ base }}/mise/show?enchere_id={{ enchere.id }}" class="btn" data-js-action="miser">Miser</a>
         </span>
       </div>
     </template>
