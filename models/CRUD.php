@@ -113,21 +113,20 @@ abstract class CRUD extends \PDO
     }
 
     /**
-     * Peut maintenant faire update avec une clé composée
+     * Peut maintenant faire update avec une clé composée, pour vrai
      */
     public function update($data, $id, $id2 = null)
     {
-        if ($this->selectId($id)) {
-            $data_keys = array_fill_keys($this->fillable, '');
-            $data = array_intersect_key($data, $data_keys);
+        if (!$id2) {
+            if ($this->selectId($id)) {
+                $data_keys = array_fill_keys($this->fillable, '');
+                $data = array_intersect_key($data, $data_keys);
 
-            $fieldName = null;
-            foreach ($data as $key => $value) {
-                $fieldName .= "$key = :$key, ";
-            }
-            $fieldName = rtrim($fieldName, ', ');
-
-            if (!$id2) {
+                $fieldName = null;
+                foreach ($data as $key => $value) {
+                    $fieldName .= "$key = :$key, ";
+                }
+                $fieldName = rtrim($fieldName, ', ');
                 $sql = "UPDATE $this->table SET $fieldName WHERE $this->primaryKey = :$this->primaryKey;";
 
                 $stmt = $this->prepare($sql);
@@ -135,25 +134,42 @@ abstract class CRUD extends \PDO
                 foreach ($data as $key => $value) {
                     $stmt->bindValue(":$key", $value);
                 }
-            } else {
-                $sql = "UPDATE $this->table SET $fieldName WHERE $this->primaryKey = :$this->primaryKey;";
-
-                $stmt = $this->prepare($sql);
-                $data[$this->primaryKey] = $id;
-                foreach ($data as $key => $value) {
-                    $stmt->bindValue(":$key", $value);
-                }
-            }
-            $stmt->execute();
-
-            $count = $stmt->rowCount();
-            if ($count == 1) {
-                return true;
             } else {
                 return false;
             }
         } else {
-            return false;
+
+            if ($this->selectIdTwoKeys($id, $id2)) { // Array ( [enchere_id] => 5 [0] => 5 [user_id] => 2 [1] => 2 [prix_offert] => 600 [2] => 600 )
+                $data_keys = array_fill_keys($this->fillable, '');
+                $data = array_intersect_key($data, $data_keys);
+
+                $fieldName = null;
+                foreach ($data as $key => $value) {
+                    $fieldName .= "$key = :$key, ";
+                }
+                $fieldName = rtrim($fieldName, ', ');
+                $sql = "UPDATE $this->table SET $fieldName WHERE $this->primaryKey = :$this->primaryKey AND $this->secondaryKey = :$this->secondaryKey;";
+
+                $stmt = $this->prepare($sql);
+                $data[$this->primaryKey] = $id;
+                foreach ($data as $key => $value) {
+                    $stmt->bindValue(":$key", $value);
+                }
+                $data[$this->secondaryKey] = $id2;
+                foreach ($data as $key => $value) {
+                    $stmt->bindValue(":$key", $value);
+                }
+            } else {
+                return false;
+            }
+
+            $stmt->execute();
+
+
+            $count = $stmt->rowCount();
+            if ($count >= 1) {
+                return true;
+            }
         }
     }
 

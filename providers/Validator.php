@@ -76,7 +76,7 @@ class Validator
     public function number()
     {
         if (!empty($this->value) && !is_numeric($this->value)) {
-            $this->errors[$this->key] = "Le champ $this->name Doit être de type 'number'.";
+            $this->errors[$this->key] = "Le champ $this->name doit être de type 'number'.";
         }
         return $this;
     }
