@@ -12,7 +12,6 @@
                 </div>
                 <i class="fa-solid fa-chevron-right"></i>
             </div>
-
             <div>
                 <div class="icon-produit">
                     <div class="jaime" data-js-favorie={{ enchere.id }}>
@@ -33,21 +32,28 @@
                 <p>
                     {{ timbre.description }}
                 </p>
-
                 <div class="misemax">Prix:&nbsp;{% if mise.enchere_id == enchere.id %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}<small>&nbsp;$</small></div>
+
+                <a href="{{base}}/mise/create?enchere_id={{ enchere.id }}" class="btn btn-miser">Augmenter la mise
+                </a>
             </div>
 
-            <a href="{{base}}/mise/create?enchere_id={{ enchere.id }}" class="btn btn-miser">Augmenter la mise</div>
-            <form action="{{base}}/mise/create?enchere_id={{ enchere.id }}">
+
+<!--             <form action="{{base}}/mise/create?enchere_id={{ enchere.id }}">
                 <label for="mise">Augmenter la mise</label>
-                <input type="number" id="mise" name="mise" min="{% if mise.enchere_id == enchere.id %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}" value="{% if mise.enchere_id == enchere.id %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}" /> <!-- On peut mettre + 1 ? -->
+                <input type="number" id="mise" name="mise" min="{% if mise.enchere_id == enchere.id %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}" value="{% if mise.enchere_id == enchere.id %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}" />
                 <button type="submit">Enchérir</button>
-            </form>
+            </form> -->
+
+            {% if errors.date_limite is defined %}
+            <span class="error">{{ errors.date_limite }}</span>
+            {% endif %}
+            
+            {% if errors.date_debut is defined %}
+            <span class="error">{{ errors.date_debut }}</span>
+            {% endif %}
         </div>
-    </div>
 
-
-    </div>
 </main>
 {% if timbre.user_id == thisuser %}
 <aside class="main-index">

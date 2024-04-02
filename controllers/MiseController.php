@@ -51,9 +51,10 @@ class MiseController
 
     public function create($get = [])
     {
+        $get['thisMise'] = 1;
+
         $enchere = new Enchere;
         $selectEnchereId = $enchere->selectId($get['enchere_id']);
-
 
         $validator = new Validator;
         $validator->field('date_limite', $selectEnchereId, $get['enchere_id'])->dateActive('date_debut', $selectEnchereId['date_debut']);
@@ -73,20 +74,10 @@ class MiseController
                     $image = new Image;
                     $selectImages = $image->selectId($selectEnchereId['timbre_id'], 'timbre_id');
 
-                    $mise = new Mise;
-                    $selectMises = $mise->selectId($selectEnchereId['enchere_id'], 'enchere_id');
-
-                    $filter = new Filter;
-                    $filter->field($selectMises)->max('prix_offert');
-
-                    $selectMises = [];
-                    $selectMises = (array) $filter;
-                    $selectMises = $selectMises['array'];
-
                     $errors = $validator->getErrors();
 
 
-                    return View::redirect('enchere/show?id='.$get['enchere_id'], ['errors' => $errors, 'thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'thisMise' => $get['thisMise'], 'mises' => $selectMises]);
+                    return View::render('enchere/show', ['errors' => $errors, 'thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'thisMise' => $get['thisMise']]);
                 } else {
                     
                     return View::render('error');
