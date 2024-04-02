@@ -147,7 +147,8 @@ class Validator
     public function dateActive($champDateDebut, $dateDebutEnchere)
     {
         $now = date("Y-m-d H:i:s");
-            if ($this->value[$this->key] >= $now) {
+
+            if ($this->value[$this->key] <= $now) {
                 $this->errors[$this->key] = "L'enchère #$this->name est arrivée à expiration";
             }
             if ($this->value[$champDateDebut] < $dateDebutEnchere) {
