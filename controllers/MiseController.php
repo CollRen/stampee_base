@@ -50,11 +50,13 @@ class MiseController
     }
 
     public function create($get = [])
-    {   
+    {
         // print_r($get); die();
         $enchere = new Enchere;
         $selectEnchereId = $enchere->selectId($get['enchere_id']);
-        
+
+        // print_r($selectEnchereId); die();
+
         //Valeur de départ du timbre
         $timbre = new Timbre;
         $selectTimbreId = $timbre->selectId($selectEnchereId['timbre_id']);
@@ -70,11 +72,11 @@ class MiseController
             $mise = new Mise;
             $selectMises = $mise->selectId($get['enchere_id'], 'enchere_id');
 
-            
+
             //Faire sortir l'enchère la plus élevé
-            if($selectMises) {
+            if ($selectMises) {
                 foreach ($selectMises as $selectMise) {
-                    if($selectMise > $miseMax) $miseMax = $selectMise;
+                    if ($selectMise > $miseMax) $miseMax = $selectMise;
                 }
             }
 
@@ -96,7 +98,7 @@ class MiseController
 
                     return View::render('enchere/show', ['errors' => $errors, 'thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages]);
                 } else {
-                    
+
                     return View::render('error');
                 }
             } else {
@@ -116,14 +118,13 @@ class MiseController
             $data['user_id'] = $_SESSION['user_id'];
 
             $mises = new Mise;
-            $selectMises = $mises->selectIdTwoKeys($data['enchere_id'], $data['user_id'], 'enchere_id', 'user_id' );
+            $selectMises = $mises->selectIdTwoKeys($data['enchere_id'], $data['user_id'], 'enchere_id', 'user_id');
             //print_r($selectMises); die(); // Array ( [enchere_id] => 5 [0] => 5 [user_id] => 2 [1] => 2 [prix_offert] => 600 [2] => 600 )
-            if($selectMises){
+            if ($selectMises) {
 
                 // echo 'selectMises'; die();
                 $mise = new Mise;
-                $insert = $mise->update($data, $data['enchere_id'], $data['user_id'] );
-
+                $insert = $mise->update($data, $data['enchere_id'], $data['user_id']);
             } else {
 
                 $mise = new Mise;
@@ -133,7 +134,7 @@ class MiseController
 
 
             if ($insert) {
-                return View::redirect('enchere/show?id='. $data['enchere_id']);
+                return View::redirect('enchere/show?id=' . $data['enchere_id'], ['thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mises' => $selectMises]);
             } else {
                 return View::render('error');
             }

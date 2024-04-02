@@ -32,6 +32,8 @@
                 <p>
                     {{ timbre.description }}
                 </p>
+
+                <p>Mise aux enchères # {{ mise.enchere_id }}</p>
                 <div class="misemax">Prix:&nbsp;{% if mise.enchere_id == enchere.id %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}<small>&nbsp;$</small></div>
 
                 <a href="{{base}}/mise/create?enchere_id={{ enchere.id }}" class="btn btn-miser">Augmenter la mise

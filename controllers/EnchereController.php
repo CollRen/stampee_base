@@ -177,14 +177,18 @@ class EnchereController
                 $mise = new Mise;
                 $selectMises = $mise->selectId($selectEnchereId['id'], 'enchere_id');
 
+                // print_r($selectMises); die();
+
                 $filter = new Filter;
                 $filter->field($selectMises)->max('prix_offert');
 
-                $selectMises = [];
+                // print_r($selectMises); die();
                 $selectMise = (array) $filter;
                 $selectMise = $selectMise['array'];
+                // print_r($selectMise); die();
 
-                return View::render('enchere/show', ['thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mise' => $selectMise]);
+
+                return View::render('enchere/show', ['thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mise' => $selectMise[0]]);
             } else {
                 return View::render('error');
             }
