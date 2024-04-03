@@ -53,7 +53,12 @@
 
         <input type="submit" class="btn" value="Update">
     </form>
+    <form action="{{base}}/timbre/delete" method="post">
+        <input type="hidden" name="id" value="{{ timbre.id }}">
+        <button class="btn block red">Delete</button>
+    </form>
 </div>
+
 
 </main>
 {{ include('layouts/footer.php') }}

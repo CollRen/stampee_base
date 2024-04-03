@@ -91,6 +91,22 @@ Route::post('/mise/delete', 'MiseController@delete');
 
 
 
+
+Route::get('/image', 'ImageController@index');
+Route::get('/image/show', 'ImageController@show');
+
+Route::get('/image/import', 'ImageController@import');
+Route::post('/image/import', 'ImageController@import');
+
+Route::get('/image/create', 'ImageController@create');
+Route::post('/image/create', 'ImageController@store');
+
+Route::get('/image/edit', 'ImageController@edit');
+Route::post('/image/edit', 'ImageController@update');
+Route::post('/image/delete', 'ImageController@delete');
+
+
+
 Route::get('/enchereFavorie', 'EnchereFavorieController@index');
 Route::get('/enchereFavorie/show', 'EnchereFavorieController@show');
 

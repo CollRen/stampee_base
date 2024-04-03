@@ -85,6 +85,7 @@
       </li>
       
     </div>
+    <li><a href="{{base}}/timbre/create">Ajouter un timbre</a></li>
     <li><a href="{{base}}/timbre">Ma liste de timbre</a></li>
         {% endif %}
         {% endif %}

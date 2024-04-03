@@ -1,9 +1,8 @@
 {{ include('layouts/header.php', { titre: 'Show connected', css: 'styles' })}}
 <main class="main-index">
 <div class="container">
-    <h2>Liste timbre, éventuellement, Ma liste de timbre</h2>
+    <h2>{{ timbre.titre }}</h2>
 
-    <p><strong>Titre:</strong>  {{ timbre.titre }}</p>
     <p><strong>Description:</strong> {{ timbre.description }}</p>
     <p><strong>Année:</strong> {{ timbre.annee }}</p>
     <p><strong>Catégorie:</strong> {{ categorie.nom }}</p>
@@ -14,12 +13,18 @@
     <p><strong>État du timbre:</strong> {{ etat.nom }}</p>
 
     <a href="{{base}}/timbre/edit?id={{timbre.id}}" class="btn block">Edit</a>
-    <form action="{{base}}/timbre/delete" method="post">
-        <input type="hidden" name="id" value="{{ timbre.id }}">
-        <button class="btn block red">Delete</button>
-    </form>
+
+    <form action="{{base}}/image/import" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+</form>
+
+
 
 </div>
+
+
 
 
 </main>

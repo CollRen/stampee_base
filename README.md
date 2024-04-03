@@ -1,5 +1,10 @@
 # Projet web 1
 
+## Questions pour Mamadou
+
+1. mise/create prix 3 on peut pas miser 4.25.
+
+
 ## Priorités
 
 1. 
@@ -18,10 +23,12 @@
 
 4. 
 - Landing: filtres sont comme désactivés et affiche tous les résultats
-- Ajuster les entrées de dates
 - Empêcher de créer une enchère pour un timbre déjà mis aux enchère
 - Bloquer le delete d'un timbre s'il y a une enchère dessus -> avec ti-message
+- timbre/showconnected.php plus beau-> À partir du enchere/show serait plus beau
 
+- Mettre le prix sur la tuile dans catalogue
+- Ajuster les entrées de dates (tuile catalogue, année seulement dans timbre/show et create si possible)
 
 - Empêcher de mettre un min plus bas que le max sélectionné et vice versa
 
