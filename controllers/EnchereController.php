@@ -219,6 +219,7 @@ class EnchereController
 
     public function store($data)
     {
+        // Si date_debut = '' l'enlever de l'envoie à la bd pour permettre à la bd d'y mettre la date du jour
         if (empty($data['date_debut'])) array_pop($data);
 
         $validator = new Validator;

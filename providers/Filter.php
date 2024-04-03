@@ -68,7 +68,7 @@ class Filter
     return $this;
 }
 
-    public function present($dbKey, $key)
+    public function enleveSiPresent($dbKey, $key)
     {
         if (isset($this->data[$key])) {
             for ($i = 0; $i < count($this->array); $i++) {
