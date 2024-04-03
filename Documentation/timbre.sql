@@ -163,3 +163,18 @@ ALTER TABLE stampee.actualite ADD actualite_user_id INT;
 ALTER TABLE stampee.actualite ADD CONSTRAINT fk_actualite_user_id FOREIGN KEY (actualite_user_id) REFERENCES stampee.user(id);
 
 ALTER TABLE stampee.actualite RENAME COLUMN user_id actualite_user_id;
+
+
+CREATE TABLE stampee.couleur(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nom VARCHAR(45)
+);
+
+INSERT INTO  stampee.couleur(`nom`) VALUES
+('Jaune'),
+('Orange'),
+('Turquoise'),
+('Noir'),
+('Violet'),
+('Rouge'),
+('Bleu');

@@ -57,9 +57,8 @@ Donc, ajouter ce filtre, et l'activé automatiquement si on y arrive via le menu
     - timbre
         - tirage (double)
         - couler(s)
-        - dimensions (en mm) 
-        - largeur int
-        - longueur int
+        - dimensions
+
     - Journal
 
 

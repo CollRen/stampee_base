@@ -119,6 +119,18 @@ Route::post('/image/delete', 'ImageController@delete');
 
 
 
+Route::get('/couleur', 'CouleurController@index');
+Route::get('/couleur/show', 'CouleurController@show');
+
+Route::get('/couleur/create', 'CouleurController@create');
+Route::post('/couleur/create', 'CouleurController@store');
+
+Route::get('/couleur/edit', 'CouleurController@edit');
+Route::post('/couleur/edit', 'CouleurController@update');
+Route::post('/couleur/delete', 'CouleurController@delete');
+
+
+
 Route::get('/enchereFavorie', 'EnchereFavorieController@index');
 Route::get('/enchereFavorie/show', 'EnchereFavorieController@show');
 
