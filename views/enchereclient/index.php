@@ -67,25 +67,6 @@
 
   <main class="main-grid" data-js-main>
 
-    <div class="main-grid__tuile">
-      <div>
-        <img src="{{asset}}/img/timbres/catalogue_brasilFootbal.jpeg" alt="Brasil Footbal" />
-        <h4>Stampee Senna</h4>
-      </div>
-      <a href="./produit.html" class="btn">Miser</a>
-      <a href="./produit.html" class="btn">En savoir plus</a>
-    </div>
-    
-    <div class="main-grid__tuile">
-      <div>
-        <img src="{{asset}}/img/timbres/catalogue_brasilFootbal.jpeg" alt="Brasil Footbal" />
-        <h4>Stampee Senna</h4>
-      </div>
-      <a href="./produit.html" class="btn">Miser</a>
-      <a href="./produit.html" class="btn">En savoir plus</a>
-    </div>
-
-
     {% for timbre in timbres %}
     {% for enchere in encheres %}
     {% if enchere.timbre_id == timbre.id %}
@@ -97,7 +78,7 @@
 
     <span>{{ enchere.date_limite }}</span>
     <span>
-      <button class="btn" data-js-action="miser">Miser</button>
+        <!-- <a href="href="{{base}}/mise/create?enchere_id={{ enchere.id }}" class="btn btn-miser">Miser</a> -->
       <a href="{{ base }}/enchere/show?id={{ enchere.id }}" class="btn">Détails</a>
     </span>
 

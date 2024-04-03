@@ -6,15 +6,19 @@
 - Permettre aux membres d'ajouter des images
 - step des mises ça bloque
 - Liste de timbre, c'est MA liste de timbre ?
+- Accueil: les trois picto en millieu:
+    1. Acheter => Consulter les enchères actives
+    2. Évaluation => Consulter les archives
+    3. Votre liste de timbre
 
 - Enlever les deux premiers timbres
 - Enlever btn "Miser" 
 
 
 - Contenu de la page d'accueil
-- Afficher les Coups de coeur Lord
+    - Afficher les Coups de coeur Lord (menu + Accueil)
 - Ajouter une enchère aux favories
-- Afficher 'mes préférées
+- Afficher 'mes préférées'
 
 4. 
 - Landing: filtres sont comme désactivés et affiche tous les résultats
@@ -52,6 +56,7 @@ Donc, ajouter ce filtre, et l'activé automatiquement si on y arrive via le menu
         - dimensions (en mm) 
         - largeur int
         - longueur int
+    - Journal
 
 
 ## Intéressant
