@@ -35,6 +35,7 @@ class EtatController
 
     public function show($data = [])
     {
+
         if (isset($data['id']) && $data['id'] != null) {
             $etat = new Etat;
             $selectId = $etat->selectId($data['id']);
@@ -98,11 +99,11 @@ class EtatController
         $validator = new Validator;
         $validator->field('nom', $data['nom'])->max(45);
 
-
+        
         if ($validator->isSuccess()) {
             $etat = new Etat;
             $update = $etat->update($data, $get['id']);
-
+            
             if ($update) {
                 return View::redirect('etat/show?id=' . $get['id']);
             } else {
@@ -110,7 +111,6 @@ class EtatController
             }
         } else {
             $errors = $validator->getErrors();
-            
             return View::render('etat/edit', ['errors' => $errors, 'etat' => $data]);
         }
     }

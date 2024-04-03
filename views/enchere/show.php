@@ -57,7 +57,7 @@
         </div>
 
 </main>
-{% if timbre.user_id == thisuser %}
+{% if timbre.user_id == thisuser or thisuser == 1 %}
 <aside class="main-index">
     <div class="container">
         <h2>Modifier cet enchère</h2>

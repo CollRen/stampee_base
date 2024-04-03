@@ -138,12 +138,13 @@ abstract class CRUD extends \PDO
      * Peut maintenant faire update avec une clé composée, pour vrai
      */
     public function update($data, $id, $id2 = null)
-    {
+    {   
+
         if (!$id2) {
+
             if ($this->selectId($id)) {
                 $data_keys = array_fill_keys($this->fillable, '');
                 $data = array_intersect_key($data, $data_keys);
-
                 $fieldName = null;
                 foreach ($data as $key => $value) {
                     $fieldName .= "$key = :$key, ";
@@ -151,6 +152,7 @@ abstract class CRUD extends \PDO
                 $fieldName = rtrim($fieldName, ', ');
                 $sql = "UPDATE $this->table SET $fieldName WHERE $this->primaryKey = :$this->primaryKey;";
 
+                
                 $stmt = $this->prepare($sql);
                 $data[$this->primaryKey] = $id;
                 foreach ($data as $key => $value) {
@@ -185,13 +187,14 @@ abstract class CRUD extends \PDO
                 return false;
             }
 
-            $stmt->execute();
+
+        }
+        $stmt->execute();
 
 
-            $count = $stmt->rowCount();
-            if ($count >= 1) {
-                return true;
-            }
+        $count = $stmt->rowCount();
+        if ($count >= 1) {
+            return true;
         }
     }
 

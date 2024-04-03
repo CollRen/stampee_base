@@ -17,7 +17,7 @@
             {% if errors.date_debut is defined %}
                     <span class="error">{{ errors.date_debut }}</span>
                 {% endif %}
-            <input type="hidden" id="id" name="id" value="{{ enchere.id }}" />
+            <input type="hidden" id="id" name="id" value="{{ enchere.id }}"/>
             <input type="submit" class="btn" value="Update">
         </form>
     </div>

@@ -260,6 +260,7 @@ class EnchereController
 
         $arrayCanEnter = [1, 2];
         Auth::verifyAcces($arrayCanEnter);
+
         if (isset($data['id']) && $data['id'] != null) {
             $enchere = new Enchere;
             $selectId = $enchere->selectId($data['id']);
@@ -284,7 +285,6 @@ class EnchereController
         $id = $_GET['id']; // S'il n'y a pas de changement
 
         $validator = new Validator;
-
         $validator->field('date_limite', $data['date_limite'])->max(20)->required();
 
         if ($validator->isSuccess()) {

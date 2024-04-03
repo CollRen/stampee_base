@@ -11,6 +11,7 @@
                 <span class="error">{{ errors.nom}}</span>
             {% endif %}
 
+            <input type="hidden" id="id" name="id" value="{{ etat.id }}"/>
             <input type="submit" class="btn" value="Update">
         </form>
     </div>

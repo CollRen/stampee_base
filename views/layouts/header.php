@@ -63,6 +63,7 @@
         <li><a href="{{base}}/user">Users</a></li>
         <li><a href="{{base}}/privilege">Privilège</a></li>
         <li><a href="{{base}}/enchere">Enchères</a></li>
+        <li><a href="{{base}}/etat">États timbres</a></li>
         <li><a href="{{base}}/enchereFavorie">Enchères favorie</a></li>
         <li><a href="{{base}}/actualite">Actualités</a></li>
         {% endif %}
