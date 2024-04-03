@@ -128,21 +128,6 @@ Route::post('/enchere/create', 'EnchereController@store');
 
 
 
-
-
-Route::get('/timbrehasenchere', 'TimbrehasenchereController@index');
-Route::get('/timbrehasenchere/show', 'TimbrehasenchereController@show');
-
-Route::get('/timbrehasenchere/create', 'TimbrehasenchereController@create');
-Route::post('/timbrehasenchere/create', 'TimbrehasenchereController@store');
-
-Route::get('/timbrehasenchere/edit', 'TimbrehasenchereController@edit');
-Route::post('/timbrehasenchere/edit', 'TimbrehasenchereController@update');
-Route::post('/timbrehasenchere/update', 'TimbreController@show');
-Route::post('/timbrehasenchere/delete', 'TimbrehasenchereController@delete');
-
-
-
 Route::get('/login', 'AuthController@index');
 Route::post('/login', 'AuthController@store');
 Route::get('/logout', 'AuthController@delete');
