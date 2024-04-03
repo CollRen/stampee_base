@@ -68,7 +68,7 @@ class Validator
     public function min($length)
     {
         if (strlen($this->value) < $length) {
-            $this->errors[$this->key] = "Le champ $this->name doit contenir de plus de $length caractères";
+            $this->errors[$this->key] = "Le champ $this->name doit contenir plus de $length caractères";
         }
         return $this;
     }

@@ -62,7 +62,7 @@ class UserController
             $data['password'] = $user->hashPassword($data['password']);
             $insert = $user->insert($data);
             if ($insert) {
-                return View::redirect('login');
+                return View::redirect('user/show?id='.$insert);
             } else {
                 return View::render('error');
             }
@@ -102,7 +102,7 @@ class UserController
     public function show($data = [])
     {          
         if(isset($data['id']) && $data['id'] != null){
-            echo $data['id']; echo 'oui id'; die();
+
         } else {
             $data['id'] = $_SESSION['user_id'];
         }

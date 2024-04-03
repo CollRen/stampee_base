@@ -9,6 +9,7 @@
 
 1. 
 - Permettre aux membres d'ajouter des images
+- Enchère, le premier item est plus haut que les autres?
 - step des mises ça bloque
 - Liste de timbre, c'est MA liste de timbre ?
 - Accueil: les trois picto en millieu:

@@ -79,6 +79,18 @@ Route::post('/pays/delete', 'PaysController@delete');
 
 
 
+Route::get('/privilege', 'PrivilegeController@index');
+Route::get('/privilege/show', 'PrivilegeController@show');
+
+Route::get('/privilege/create', 'PrivilegeController@create');
+Route::post('/privilege/create', 'PrivilegeController@store');
+
+Route::get('/privilege/edit', 'PrivilegeController@edit');
+Route::post('/privilege/edit', 'PrivilegeController@update');
+Route::post('/privilege/delete', 'PrivilegeController@delete');
+
+
+
 Route::get('/mise', 'MiseController@index');
 Route::get('/mise/show', 'MiseController@show');
 

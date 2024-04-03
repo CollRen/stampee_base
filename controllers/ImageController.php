@@ -65,7 +65,13 @@ class ImageController
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $chemin. basename($_FILES["fileToUpload"]["name"]))) {
                 echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
 
-                // $insert = $image->store(htmlspecialchars(basename($_FILES["fileToUpload"]["name"])));
+                $insert = $image->insert(htmlspecialchars(basename($_FILES["fileToUpload"]["name"])));
+                // 'nom', 'est_principale', 'adresse', 'timbre_id'
+                /* 'nom',
+                '1',
+                '/img/timbres/'.htmlspecialchars(basename($_FILES["fileToUpload"]["name"])),
+                 'timbre_id' 
+                 */
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
