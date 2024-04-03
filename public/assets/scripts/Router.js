@@ -1,35 +1,34 @@
 import { accueil } from "./Accueil.js";
-import { getEncheresDetail } from "./EnchereService.js";
+import { addToFavorie } from "./EnchereFavorie.js";
 
 export default class Router {
   constructor() {
 
     this._routes = [
       ["", accueil],
-      ["/afficher/:id", getEncheresDetail],
+      ["/addToFavorie/:id", addToFavorie],
     ];
 
     this.init();
   }
 
   init() {
-    this.options = document.querySelectorAll("[data-js-encheres]");
+    //this.options = document.querySelectorAll("[data-js-encheres]");
+    this.btnFavori = document.querySelector("[data-js-favorie]");
 
-    this.options.forEach(
-      function (e) {
-        e.addEventListener(
+
+
+    this.btnFavori.addEventListener(
           "click",
           function (onClick) {
-            let action = onClick.target.dataset.jsAction,
-            id = onClick.currentTarget.dataset.jsEncheres;
+            let action = 'addToFavorie',
+            id = onClick.currentTarget.dataset.jsFavorie;
             let hash = `#!/${action}/${id}`;
             window.location = hash;
 
           }.bind(this)
         );
-      }.bind(this)
-    );
-
+      
     window.addEventListener(
       "hashchange",
       function () {

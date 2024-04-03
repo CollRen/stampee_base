@@ -1,6 +1,6 @@
-{{ include('layouts/header.php', { titre: 'Show', css: 'styles' })}}
+{{ include('layouts/header.php', { titre: 'Show', css: 'styles', js: 'main' })}}
 
-<main class="main-produit">
+<main class="main-produit" data-js-component="Router">
     <div class="page-produit">
         <div class="timbre">
             <div class="timbre-photo">
@@ -39,13 +39,6 @@
                 <a href="{{base}}/mise/create?enchere_id={{ enchere.id }}" class="btn btn-miser">Augmenter la mise
                 </a>
             </div>
-
-
-<!--             <form action="{{base}}/mise/create?enchere_id={{ enchere.id }}">
-                <label for="mise">Augmenter la mise</label>
-                <input type="number" id="mise" name="mise" min="{% if mise.enchere_id == enchere.id %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}" value="{% if mise.enchere_id == enchere.id %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}" />
-                <button type="submit">Enchérir</button>
-            </form> -->
 
             {% if errors.date_limite is defined %}
             <span class="error">{{ errors.date_limite }}</span>

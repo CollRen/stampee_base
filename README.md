@@ -10,9 +10,9 @@
 1. 
 - Journal de l'historique des offres d'un utilisateur
 - Permettre aux membres d'ajouter des images
-- Enchère, le premier item est plus haut que les autres?
+- Menu enchère, le premier item est plus haut que les autres?
 - step des mises ça bloque
-- Liste de timbre, c'est MA liste de timbre ?
+
 - Accueil: les trois picto en millieu:
     1. Acheter => Consulter les enchères actives
     2. Évaluation => Consulter les archives

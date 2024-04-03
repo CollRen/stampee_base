@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Providers\JournalStore;
 use App\Providers\Auth;
 use App\Models\Timbre;
 use App\Models\User;
@@ -14,7 +13,6 @@ use App\Models\Enchere;
 
 use App\Providers\View;
 use App\Providers\Validator;
-use DateTime;
 use Dompdf\Dompdf;
 
 
@@ -31,7 +29,6 @@ class TimbreController
     public function index()
 
     {
-
         $timbre = new Timbre;
         $selectTimbres = [];
         if (isset($_SESSION['user_id'])) {

@@ -83,6 +83,7 @@ class EnchereFavorieController
 
     public function store($data)
     {
+        
 
         $validator = new Validator;
 

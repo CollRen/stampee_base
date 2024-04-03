@@ -4,17 +4,17 @@ class EnchereFavorie {
   _elDetails;
   constructor() {
     // Variable en rapport l'ajout d'une enchère aux favories d'un membre
-    this._elDetails = document.querySelectorAll("[data-js-template-container]");
-    this.addEnchereToFavorie = this.addEnchereToFavorie.bind(this);
+    // this._elDetails = document.querySelectorAll("[data-js-template-container]");
+    this.addToFavorie = this.addToFavorie.bind(this);
   }
 
   /**
    * Récupère en asynchrone les encheres
    * @param {String} id
    */
-  addEnchereToFavorie(id) {
+  addToFavorie(id) {
     let data = {
-      action: "getEnchereDetail",
+      action: "storefavorie",
       id: id,
     };
     let oOptions = {
@@ -24,7 +24,10 @@ class EnchereFavorie {
       },
       body: JSON.stringify(data),
     };
-    fetch("{{ BASE }}controllers/EnchereFavorieController.php", oOptions)
+
+
+    //fetch("{{ BASE }}controllers/EnchereFavorieController.php", oOptions)
+    fetch("http://localhost:8000/h24/stampee_base/stampeeFromRecette/enchere/storefavorie", oOptions)
       .then(function (reponse) {
         if (reponse.ok) return reponse.json();
         else throw new Error("La réponse n'est pas OK");
@@ -48,4 +51,4 @@ class EnchereFavorie {
       });
   }
 }
-export const { addEnchereToFavorie } = new EnchereFavorie();
+export const { addToFavorie } = new EnchereFavorie();

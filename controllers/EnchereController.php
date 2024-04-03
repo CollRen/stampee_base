@@ -30,8 +30,7 @@ class EnchereController
 
     public function index()
     {
-       
-            //print_r($_SERVER);die(); // REDIRECT_URL] => /h24/stampee_base/stampeeFromRecette/enchere
+        //print_r($_SERVER);die(); // REDIRECT_URL] => /h24/stampee_base/stampeeFromRecette/enchere
         $REQUEST_URI = '';
         if (isset($_GET) && $_GET != null) {
 
@@ -91,17 +90,17 @@ class EnchereController
             $image = new Image;
             $selectImages = $image->select();
         }
-        
+
         /**
          * index des enchères archivées
          */
-        if($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/archive') {
-            
+        if ($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/archive') {
+
             $filter = new Filter;
             $filter->field($selectEncheres)->datePassee('date_limite');
-            
+
             $selectEncheres = [];
-            $selectEncheres = (array) $filter; 
+            $selectEncheres = (array) $filter;
             $selectEncheres = $selectEncheres = $selectEncheres['array'];;
             $REQUEST_URI = 'archive';
         }
@@ -111,13 +110,13 @@ class EnchereController
          * 
          * PAS DU TOUT TRAVAILLER: Il faut pouvoir créer des enchères favorites...
          */
-        if($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/mesencheresfavorites') {
+        if ($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/mesencheresfavorites') {
 
             $enchereFavorie = new EnchereFavorie;
             $selectEnchereFavorie = $enchereFavorie->select();
-            
+
             $selectEncheres = [];
-            $selectEncheres = (array) $filter; 
+            $selectEncheres = (array) $filter;
             $selectEncheres = $selectEncheres = $selectEncheres['array'];;
             $REQUEST_URI = 'mesencheresfavorites';
         }
@@ -125,11 +124,12 @@ class EnchereController
         /**
          * index des enchères préférées
          */
-        if($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/active') {
+        if ($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/active') {
+
 
             $filter = new Filter;
             $filter->field($selectEncheres)->dateActive('date_limite')->datePassee('date_debut');
-            
+
             $selectEncheres = [];
             $selectEncheres = (array) $filter;
 
@@ -142,15 +142,15 @@ class EnchereController
 
         if ($selectEncheres) {
             if (isset($_SESSION['user_id'])) {
-                
+
                 if ($_SESSION['user_id'] == 1) {
-                    
+
                     return View::render('enchere/index', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                 } else {
                     return View::render('enchereclient/index', ['thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                 }
             } else {
-                
+
                 return View::render('enchereclient/index', ['encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
             }
         } else {
@@ -159,7 +159,7 @@ class EnchereController
     }
 
     public function show($data = [])
-    {   
+    {
         if (isset($data['id']) && $data['id'] != null) {
 
             $enchere = new Enchere;
@@ -204,7 +204,7 @@ class EnchereController
 
         $timbre = new Timbre;
         $selectTimbres = $timbre->selectId($_SESSION['user_id'], 'user_id');
-        
+
         // print_r($selectTimbres); die;
         $filter = new Filter;
         $filter->field($selectTimbres, $selectEncheres)->enleveSiPresent('id', 'timbre_id');
@@ -278,7 +278,7 @@ class EnchereController
     }
     public function update($data, $get)
     {
-/*         print_r($data); 
+        /*         print_r($data); 
         echo '<br>';
         print_r($get);die(); */
         if (empty($data['date_debut'])) array_pop($data);
@@ -316,45 +316,64 @@ class EnchereController
 
     public function archive()
     {
-
-
     }
 
     public function mesencheres()
     {
 
-            $timbre = new Timbre;
-            $selectTimbres = $timbre->select();
+        $timbre = new Timbre;
+        $selectTimbres = $timbre->select();
 
-            $enchere = new Enchere;
-            $selectEncheres = $enchere->select();
+        $enchere = new Enchere;
+        $selectEncheres = $enchere->select();
 
-            $etat = new Etat;
-            $selectEtats = $etat->select();
+        $etat = new Etat;
+        $selectEtats = $etat->select();
 
-            $timbreCats = new TimbreCategorie;
-            $selectCat = $timbreCats->select();
+        $timbreCats = new TimbreCategorie;
+        $selectCat = $timbreCats->select();
 
-            $user = new User;
-            $selectUsers = $user->select();
+        $user = new User;
+        $selectUsers = $user->select();
 
-            $pays = new Pays;
-            $selectPays = $pays->select();
+        $pays = new Pays;
+        $selectPays = $pays->select();
 
-            $image = new Image;
-            $selectImages = $image->select();
+        $image = new Image;
+        $selectImages = $image->select();
 
         if ($selectEncheres) {
             if (isset($_SESSION['user_id'])) {
-                    return View::render('enchereclient/mesencheres', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
-
+                return View::render('enchereclient/mesencheres', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
             } else {
-                echo 'enchereclient/index'; die();
+                echo 'enchereclient/index';
+                die();
                 return View::render('enchereclient/index', ['encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
             }
         } else {
-            echo 'dernier else'; die();
+            echo 'dernier else';
+            die();
             return View::render('error');
         }
+    }
+
+    public function storefavorie()
+    {
+        $request_payload = file_get_contents('php://input');
+        $data = json_decode($request_payload, true);
+
+        if(isset($_POST['id'])){
+            $enchere_id = htmlspecialchars($_POST['id']);
+            $datas = [];
+            $query = [$datas['enchere_id'] => $enchere_id, $datas['user_id'] => $_SESSION['user_id'], $datas['est_favorie'] => 1]; 
+
+            $favorie = new EnchereFavorie;
+            $return_id = $favorie->insertTwoKeys($datas);
+
+        echo $return_id;
+    } else {
+        echo 'Erreur query string';
+    }
+        
     }
 }
