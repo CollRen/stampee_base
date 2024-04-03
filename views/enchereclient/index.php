@@ -76,11 +76,11 @@
       <img src="{{asset}}{% for image in images %}{% if image.timbre_id == timbre.id %}{{image.adresse}}" alt="{{image.nom}}{% endif %}{% endfor %}" />
       <h4>{{timbre.titre}}</h4>
 
-    <span>{{ enchere.date_limite }}</span>
-    <span>
+    <span>Date limite: {{ enchere.date_limite }}</span>
+
         <!-- <a href="href="{{base}}/mise/create?enchere_id={{ enchere.id }}" class="btn btn-miser">Miser</a> -->
       <a href="{{ base }}/enchere/show?id={{ enchere.id }}" class="btn">Détails</a>
-    </span>
+
 
     </div>
 

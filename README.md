@@ -11,10 +11,6 @@
     2. Évaluation => Consulter les archives
     3. Votre liste de timbre
 
-- Enlever les deux premiers timbres
-- Enlever btn "Miser" 
-
-
 - Contenu de la page d'accueil
     - Afficher les Coups de coeur Lord (menu + Accueil)
 - Ajouter une enchère aux favories
