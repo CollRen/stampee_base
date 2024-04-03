@@ -51,9 +51,12 @@ class MiseController
 
     public function create($get = [])
     {
+
         // print_r($get); die();
         $enchere = new Enchere;
         $selectEnchereId = $enchere->selectId($get['enchere_id']);
+
+
 
         // print_r($selectEnchereId); die();
 
@@ -67,22 +70,24 @@ class MiseController
         $validator->field('date_limite', $selectEnchereId, $get['enchere_id'])->dateActive('date_debut', $selectEnchereId['date_debut']);
 
         if ($validator->isSuccess()) {
-
+            // echo 'validator succeded'; die();
             $selectMises = [];
             $mise = new Mise;
             $selectMises = $mise->selectId($get['enchere_id'], 'enchere_id');
 
+            // print_r($selectMises); die(); Vide
 
             //Faire sortir l'enchère la plus élevé
             if ($selectMises) {
+
                 foreach ($selectMises as $selectMise) {
                     if ($selectMise > $miseMax) $miseMax = $selectMise;
                 }
+                return View::render('mise/create', ['enchere' => $selectEnchereId, 'misemax' => $miseMax]);
+            } else {
+                // echo 'ici'; die();
+                return View::render('mise/create', ['enchere' => $selectEnchereId, 'misemax' => $miseMax]);
             }
-
-            //print_r($selectMises); die(); // Array ( [enchere_id] => 5 [0] => 5 [user_id] => 2 [1] => 2 [prix_offert] => 600 [2] => 600 )
-
-            return View::render('mise/create', ['enchere' => $selectEnchereId, 'misemax' => $miseMax]);
         } else {
             if (isset($get['enchere_id']) && $get['enchere_id'] != null) {
 
@@ -110,32 +115,45 @@ class MiseController
 
     public function store($data)
     {
+        
+        $enchere = new Enchere;
+        $selectEnchereId = $enchere->selectId($data['enchere_id']);
+
+        $timbre = new Timbre;
+        $selectTimbre = $timbre->selectId($selectEnchereId['timbre_id']);
+
+        $miseMax = $selectTimbre['prix_depart'];
+        $insert = '';
+
+        
 
         $validator = new Validator;
-        $validator->field('prix_offert', $data)->lower(700);
+        $validator->field('prix_offert', $data)->lower($miseMax);
 
         if ($validator->isSuccess()) {
             $data['user_id'] = $_SESSION['user_id'];
 
             $mises = new Mise;
             $selectMises = $mises->selectIdTwoKeys($data['enchere_id'], $data['user_id'], 'enchere_id', 'user_id');
+            // echo 'test'; die();
             //print_r($selectMises); die(); // Array ( [enchere_id] => 5 [0] => 5 [user_id] => 2 [1] => 2 [prix_offert] => 600 [2] => 600 )
             if ($selectMises) {
-
-                // echo 'selectMises'; die();
+                //echo 'selectMise ok'; die();
                 $mise = new Mise;
                 $insert = $mise->update($data, $data['enchere_id'], $data['user_id']);
             } else {
-
+                //echo 'selectMise pas ok'; die();
                 $mise = new Mise;
-                $insert = $mise->insert($data);
+                $insert = $mise->insertTwoKeys($data);
             }
 
 
 
             if ($insert) {
+                echo 'insert ok';
                 return View::redirect('enchere/show?id=' . $data['enchere_id'], ['thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mises' => $selectMises]);
             } else {
+                echo 'insert pas ok';
                 return View::render('error');
             }
         } else {

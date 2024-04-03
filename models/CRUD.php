@@ -94,7 +94,29 @@ abstract class CRUD extends \PDO
             return false;
         }
     }
+    
+    public function insertTwoKeys($data)
+    {
+        //print_r($data); die();
+        $data_keys = array_fill_keys($this->fillable, '');
+        // print_r($data_keys); die();
+        $data = array_intersect_key($data, $data_keys);
+        // print_r($data); die();
+        $fieldName = implode(', ', array_keys($data));
+        // print_r($fieldName); die();
+        $fieldValue = ':' . implode(', :', array_keys($data));
+        $sql = "INSERT INTO $this->table ($fieldName) VALUES ($fieldValue);";
+        $stmt = $this->prepare($sql);
+        foreach ($data as $key => $value) {
+            $stmt->bindValue(":$key", $value);
+        }
+        if ($stmt->execute()) {
+            return true;
+        } else {
 
+            return false;
+        }
+    }
     public function delete($value)
     {
         if ($this->selectId($value)) {

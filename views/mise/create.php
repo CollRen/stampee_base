@@ -7,7 +7,7 @@
                 <input type="number" name="prix_offert" min="{{ misemax }}" value="{{ misemax }}">
             </label>
 
-            <label for="enchere_id">Montant misé
+            <label for="enchere_id">
                 <input type="hidden" name="enchere_id" value="{{ enchere.id }}">
             </label>
             {% if errors.name is defined %}

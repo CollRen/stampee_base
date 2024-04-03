@@ -348,10 +348,11 @@ class EnchereController
                     return View::render('enchereclient/mesencheres', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
 
             } else {
-
+                echo 'enchereclient/index'; die();
                 return View::render('enchereclient/index', ['encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
             }
         } else {
+            echo 'dernier else'; die();
             return View::render('error');
         }
     }
