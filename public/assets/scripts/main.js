@@ -1,4 +1,4 @@
-import { classesMapping } from "./classMapping.js";
+/*import { classesMapping } from "./classMapping.js";
 import Filtres from "./Filtres.js";
 
 
@@ -9,6 +9,8 @@ import Filtres from "./Filtres.js";
 /*     this._elEncheres = document.querySelectorAll('[data-js-encheres]'); */
 
 // Lancer les comportement sur les filtres de la page catalogue
+
+/*
 new Filtres(elFiltres);
 
 
