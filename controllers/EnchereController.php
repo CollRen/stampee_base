@@ -107,7 +107,10 @@ class EnchereController
         /**
          * index des enchères archivées
          */
-        if ($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/archive') {
+
+
+        if (str_contains($_SERVER['REQUEST_URI'], '/archive')) {
+            // if ($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/archive') {
 
             $filter = new Filter;
             $filter->field($selectEncheres)->datePassee('date_limite');
@@ -121,24 +124,43 @@ class EnchereController
         /**
          * index des enchères favorites 
          * 
-         * PAS DU TOUT TRAVAILLER: Il faut pouvoir créer des enchères favorites...
          */
-        if ($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/mesencheresfavorites') {
-
+        if (str_contains($_SERVER['REQUEST_URI'], '/favories')) {
+            /* enchere_id, user_id */
             $enchereFavorie = new EnchereFavorie;
-            $selectEnchereFavorie = $enchereFavorie->select();
+            $selectEnchereFavorie = $enchereFavorie->selectId($_SESSION['user_id'], 'user_id');
+/*             echo '<pre>';
+            print_r($selectEnchereFavorie); die(); */
 
+
+            $enchere = new Enchere;
             $selectEncheres = [];
-            $selectEncheres = (array) $filter;
-            $selectEncheres = $selectEncheres = $selectEncheres['array'];;
-            $REQUEST_URI = 'mesencheresfavorites';
+            for ($i=0; $i < count($selectEnchereFavorie); $i++) { 
+
+                $y = $enchere->selectId($selectEnchereFavorie[$i]['enchere_id']);
+                array_push($selectEncheres, $y);
+                
+            }
+
+            $REQUEST_URI = 'favories';
+        }
+    
+        /**
+         * index des enchères favorites 
+         * 
+         */
+        if (str_contains($_SERVER['REQUEST_URI'], '/coupcoeurlord')) {
+
+            $enchere = new Enchere;
+            $selectEncheres = $enchere->selectId(1, 'est_coup_coeur_lord');
+
+            $REQUEST_URI = 'coupcoeurlord';
         }
 
         /**
          * index des enchères préférées
          */
-        if ($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/active') {
-
+        if (str_contains($_SERVER['REQUEST_URI'], '/active')) {
 
             $filter = new Filter;
             $filter->field($selectEncheres)->dateActive('date_limite')->datePassee('date_debut');
@@ -165,7 +187,7 @@ class EnchereController
                     } else {
                         if (!isset($get['etats_conservation'])) {
 
-                            return View::render('enchereclient/index', ['filtrePayss' => $get['pays'],'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+                            return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                         } else {
 
                             return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'etats_conservation' => $get['etat_conservation'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);

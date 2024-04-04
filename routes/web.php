@@ -157,6 +157,8 @@ Route::post('/enchere/delete', 'EnchereController@delete');
 Route::get('/enchere/mesencheres', 'EnchereController@mesencheres');
 Route::get('/enchere/archive', 'EnchereController@index');
 Route::get('/enchere/active', 'EnchereController@index');
+Route::get('/enchere/favories', 'EnchereController@index');
+Route::get('/enchere/coupcoeurlord', 'EnchereController@index');
 Route::get('/enchere/mesencheresfavorites', 'EnchereController@index');
 Route::get('/enchere/mesencheresfavorites', 'EnchereController@mesencheresfavorites');
 

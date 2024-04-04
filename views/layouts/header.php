@@ -79,7 +79,7 @@
           <li><a href="{{base}}/enchere/active">Actives</a></li>
           <li><a href="{{base}}/enchere/create">Créer</a></li>
           <li><a href="{{base}}/enchere/mesencheres">Mes enchères</a></li>
-          <li><a href="{{base}}/enchere/mesencheresfavorites">Mes préférées</a></li>
+          <li><a href="{{base}}/enchere/favories">Mes favories</a></li>
           <li><a href="{{base}}/enchere/archive">Archive</a></li>
         </ul>
         
@@ -91,7 +91,7 @@
         {% endif %}
         {% endif %}
 
-        <li><a href="{{base}}/coupcoeurlord">Coup de coeur du Lord</a></li>
+        <li><a href="{{base}}/enchere/coupcoeurlord">Coup de coeur du Lord</a></li>
         <!-- menu guest  -->
         {% if guest %}
         <li><a href="{{base}}/enchere">Enchères</a></li>
