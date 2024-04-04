@@ -8,7 +8,7 @@
 ## Priorités
 
 1. 
-- Permettre aux membres d'ajouter des images
+
 - Menu enchère, le premier item est plus haut que les autres?
 - step des mises ça bloque
 

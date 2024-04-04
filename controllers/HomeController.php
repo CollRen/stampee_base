@@ -1,10 +1,12 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\ExampleModel;
+
 use App\Models\Timbre;
 use App\Models\Enchere;
 use App\Models\EnchereFavorie;
+use App\Models\Image;
+use App\Models\Mise;
 use App\Models\User;
 use App\Models\Actualite;
 use App\Providers\View;
@@ -19,10 +21,16 @@ class HomeController {
         $selectTimbre = $timbre->select();
 
         $enchere = new Enchere;
-        $selectEncheres = $enchere->select();
+        $selectEncheres = $enchere->selectId(1, 'est_coup_coeur_lord');
+
+        $mise = new Mise;
+        $selectMises = $mise->select();
 
         $actualite = new Actualite;
         $selectActualite = $actualite->select();
+
+        $image = new Image;
+        $selectImages = $image->select();
 
 
         
@@ -38,7 +46,7 @@ class HomeController {
         //$selectEncheresFavorie = $enchere->selectIdTwoKeys($selectFavories['enchere_id'], $_SESSION['user_id']);
 
         //include 'views/home.php';
-       View::render('home/index', ['timbres' => $selectTimbre, 'encheres' => $selectEncheres, 'actualites' => $selectActualite]);
+       View::render('home/index', ['mises' => $selectMises, 'images' => $selectImages, 'timbres' => $selectTimbre, 'encheres' => $selectEncheres, 'actualites' => $selectActualite]);
     }
 
     public function home(){
