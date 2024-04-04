@@ -30,18 +30,17 @@ class EnchereController
 
     public function index()
     {
-        // print_r($_GET); die();
 
-        if(isset($_GET['prix_minimum'])) $get['prix_minimum'] = $_GET['prix_minimum'];
-        if(isset($_GET['prix_maximum'])) $get['prix_maximum'] = $_GET['prix_maximum'];
-        if(isset($_GET['annee_minimum'])) $get['annee_minimum'] = $_GET['annee_minimum'];
-        if(isset($_GET['annee_maximum'])) $get['annee_maximum'] = $_GET['annee_maximum'];
-        if(isset($_GET['pays'])) $get['pays'] = $_GET['pays'];
-        if(isset($_GET['est_coup_coeur_lord'])) $get['est_coup_coeur_lord'] = $_GET['est_coup_coeur_lord'];
-        if(isset($_GET['etat_conservation'])) $get['etat_conservation'] = $_GET['etat_conservation'];
-        if(isset($_GET['authentifie'])) $get['authentifie'] = $_GET['authentifie'];
+        if (isset($_GET['prix_minimum'])) $get['prix_minimum'] = $_GET['prix_minimum'];
+        if (isset($_GET['prix_maximum'])) $get['prix_maximum'] = $_GET['prix_maximum'];
+        if (isset($_GET['annee_minimum'])) $get['annee_minimum'] = $_GET['annee_minimum'];
+        if (isset($_GET['annee_maximum'])) $get['annee_maximum'] = $_GET['annee_maximum'];
+        if (isset($_GET['pays'])) $get['pays'] = $_GET['pays'];
+        if (isset($_GET['est_coup_coeur_lord'])) $get['est_coup_coeur_lord'] = $_GET['est_coup_coeur_lord'];
+        if (isset($_GET['etat_conservation'])) $get['etat_conservation'] = $_GET['etat_conservation'];
+        if (isset($_GET['authentifie'])) $get['authentifie'] = $_GET['authentifie'];
 
-        
+
 
         //print_r($_SERVER);die(); // REDIRECT_URL] => /h24/stampee_base/stampeeFromRecette/enchere
         $REQUEST_URI = '';
@@ -61,7 +60,7 @@ class EnchereController
 
             $filter = new Filter;
             $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart', 'prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays')->presentArray('etat_conservation_id', 'etat_conservation')->booleen('authentifie', 'authentifie');
-            
+
 
             $i = 0;
             $selectTimbres = [];
@@ -161,12 +160,16 @@ class EnchereController
 
                     return View::render('enchere/index', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                 } else {
-                    if(!isset($get)) {
+                    if (!isset($get)) {
                         return View::render('enchereclient/index', ['thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
-
                     } else {
+                        if (!isset($get['etats_conservation'])) {
 
-                        return View::render('enchereclient/index', ['filtrePayss' =>$get['pays'],'etats_conservation'=>$get['etat_conservation'],'filtres' => $get,'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+                            return View::render('enchereclient/index', ['filtrePayss' => $get['pays'],'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+                        } else {
+
+                            return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'etats_conservation' => $get['etat_conservation'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+                        }
                     }
                 }
             } else {
@@ -378,18 +381,18 @@ class EnchereController
     }
 
     function ajouteTachePhp($user_id, $enchere_id, $est_favorie)
-{
-	$query = "INSERT INTO enchere_favorie (`user_id`, `enchere_id`, `est_favorie`) 
+    {
+        $query = "INSERT INTO enchere_favorie (`user_id`, `enchere_id`, `est_favorie`) 
 				  VALUES ('" . $user_id . "','" . $enchere_id . "','" . $est_favorie . "')";
-	return executeRequete($query, true);
-}
+        return executeRequete($query, true);
+    }
 
     public function storefavorie()
     {
         $request_payload = file_get_contents('php://input');
         $data = json_decode($request_payload, true);
 
-        if(isset($data['user_id']) && isset($data['enchere_id']) && isset($data['est_favorie'])){
+        if (isset($data['user_id']) && isset($data['enchere_id']) && isset($data['est_favorie'])) {
             $user_id = htmlspecialchars($data['user_id']);
             $enchere_id = htmlspecialchars($data['enchere_id']);
             $est_favorie = htmlspecialchars($data['est_favorie']);
@@ -401,11 +404,10 @@ class EnchereController
             $return_id = $EnchereFavorie->executeRequete($query, true);
 
             echo $return_id;
-
         } else {
             echo 'Erreur query string';
         }
-           /*  $datas = [];
+        /*  $datas = [];
             $query = [$datas['enchere_id'] => $enchere_id, $datas['user_id'] => $_SESSION['user_id'], $datas['est_favorie'] => 1]; 
 
             $favorie = new EnchereFavorie;
@@ -415,6 +417,5 @@ class EnchereController
     } else {
         echo 'Erreur query string';
     } */
-        
     }
 }
