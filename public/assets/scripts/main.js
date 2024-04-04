@@ -5,7 +5,7 @@ import Filtres from "./Filtres.js";
 (function(){
 //  let directory = getDirectory();
   //console.log(directory);
-
+  
     let elComponents = document.querySelectorAll("[data-js-component]");
 
 

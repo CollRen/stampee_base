@@ -357,14 +357,35 @@ class EnchereController
         }
     }
 
+    function ajouteTachePhp($user_id, $enchere_id, $est_favorie)
+{
+	$query = "INSERT INTO enchere_favorie (`user_id`, `enchere_id`, `est_favorie`) 
+				  VALUES ('" . $user_id . "','" . $enchere_id . "','" . $est_favorie . "')";
+	return executeRequete($query, true);
+}
+
     public function storefavorie()
     {
         $request_payload = file_get_contents('php://input');
         $data = json_decode($request_payload, true);
 
-        if(isset($_POST['id'])){
-            $enchere_id = htmlspecialchars($_POST['id']);
-            $datas = [];
+        if(isset($data['user_id']) && isset($data['enchere_id']) && isset($data['est_favorie'])){
+            $user_id = htmlspecialchars($data['user_id']);
+            $enchere_id = htmlspecialchars($data['enchere_id']);
+            $est_favorie = htmlspecialchars($data['est_favorie']);
+
+            $query = "INSERT INTO enchere_favorie (`user_id`, `enchere_id`, `est_favorie`) 
+				  VALUES ('" . $user_id . "','" . $enchere_id . "','" . $est_favorie . "')";
+
+            $EnchereFavorie = new EnchereFavorie;
+            $return_id = $EnchereFavorie->executeRequete($query, true);
+
+            echo $return_id;
+
+        } else {
+            echo 'Erreur query string';
+        }
+           /*  $datas = [];
             $query = [$datas['enchere_id'] => $enchere_id, $datas['user_id'] => $_SESSION['user_id'], $datas['est_favorie'] => 1]; 
 
             $favorie = new EnchereFavorie;
@@ -373,7 +394,7 @@ class EnchereController
         echo $return_id;
     } else {
         echo 'Erreur query string';
-    }
+    } */
         
     }
 }
