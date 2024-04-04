@@ -85,6 +85,7 @@ class Filter
     // Copie de enleveSiPresent
     public function present($dbKey, $key)
     {
+        if($this->data[$key] == 'Faite votre choix') return $this;
         if (isset($this->data[$key])) {
             for ($i = 0; $i < count($this->array); $i++) {
                 if ($this->array[$i][$dbKey] == $this->data[$key]) {
@@ -101,7 +102,7 @@ class Filter
     {
 
         if (isset($this->data[$key])) {
-
+            
             foreach ($this->data[$key] as $id) {
                 for ($i = 0; $i < count($this->array); $i++) {
                     if ($this->array[$i][$dbKey] == $id) {

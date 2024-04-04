@@ -30,6 +30,19 @@ class EnchereController
 
     public function index()
     {
+        // print_r($_GET); die();
+
+        if(isset($_GET['prix_minimum'])) $get['prix_minimum'] = $_GET['prix_minimum'];
+        if(isset($_GET['prix_maximum'])) $get['prix_maximum'] = $_GET['prix_maximum'];
+        if(isset($_GET['annee_minimum'])) $get['annee_minimum'] = $_GET['annee_minimum'];
+        if(isset($_GET['annee_maximum'])) $get['annee_maximum'] = $_GET['annee_maximum'];
+        if(isset($_GET['pays'])) $get['pays'] = $_GET['pays'];
+        if(isset($_GET['est_coup_coeur_lord'])) $get['est_coup_coeur_lord'] = $_GET['est_coup_coeur_lord'];
+        if(isset($_GET['etat_conservation'])) $get['etat_conservation'] = $_GET['etat_conservation'];
+        if(isset($_GET['authentifie'])) $get['authentifie'] = $_GET['authentifie'];
+
+        
+
         //print_r($_SERVER);die(); // REDIRECT_URL] => /h24/stampee_base/stampeeFromRecette/enchere
         $REQUEST_URI = '';
         if (isset($_GET) && $_GET != null) {
@@ -48,6 +61,7 @@ class EnchereController
 
             $filter = new Filter;
             $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart', 'prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays')->presentArray('etat_conservation_id', 'etat_conservation')->booleen('authentifie', 'authentifie');
+            
 
             $i = 0;
             $selectTimbres = [];
@@ -147,7 +161,13 @@ class EnchereController
 
                     return View::render('enchere/index', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                 } else {
-                    return View::render('enchereclient/index', ['thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+                    if(!isset($get)) {
+                        return View::render('enchereclient/index', ['thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+
+                    } else {
+
+                        return View::render('enchereclient/index', ['filtrePayss' =>$get['pays'],'etats_conservation'=>$get['etat_conservation'],'filtres' => $get,'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+                    }
                 }
             } else {
 
