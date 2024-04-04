@@ -135,16 +135,6 @@ INSERT INTO timbres.privilege (`privilege`) VALUES
 ('Etat');
 
 
-CREATE TABLE timbres.journal(
-id INT AUTO_INCREMENT PRIMARY KEY,
-ip_address VARCHAR(45),
-date TIMESTAMP(6),
-username VARCHAR(50),
-page_visited VARCHAR(125),
-user_id INT,
-CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user (id)
-);
-
 INSERT INTO `timbres` .`user` (`id`, `name`, `username`, `password`, `email`, `privilege_id`) VALUES
 (0, 'guest', 'guest@guest.com', '$2y$10$GQsG5y6T2GDmQlwB7u8ui.FCyEnHDtlJ6rZJ.xr3ofA2kB.olsBXy', 'guest@guest.com', 0),
 (1, 'René', 'rensax@me.com', '$2y$10$GQsG5y6T2GDmQlwB7u8ui.FCyEnHDtlJ6rZJ.xr3ofA2kB.olsBXy', 'rensax@me.com', 1),

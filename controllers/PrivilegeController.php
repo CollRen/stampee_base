@@ -2,7 +2,7 @@
 namespace App\Controllers;
 
 use App\Providers\Auth;
-use App\Providers\JournalStore;
+
 use App\Models\Privilege;
 use App\Providers\View;
 use App\Providers\Validator;

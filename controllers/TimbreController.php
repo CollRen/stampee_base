@@ -115,15 +115,18 @@ class TimbreController
         $timbreCategorie = new TimbreCategorie;
         $timbreCategorieSelect = $timbreCategorie->select();
 
+        
         $timbreEtat = new Etat;
         $timbreEtatSelect = $timbreEtat->select();
-
+        
         $pays = new Pays;
         $selectPays = $pays->select();
-
+        
         $enchere = new Enchere;
         $selectEnchere = $enchere->select();
-
+        
+        
+        // print_r($timbreCategorieSelect); die();
 
         return View::render('timbre/create', ['timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect, 'payss' => $selectPays, 'encheres' => $selectEnchere]);
     }

@@ -8,7 +8,6 @@
 ## Priorités
 
 1. 
-- Journal de l'historique des offres d'un utilisateur
 - Permettre aux membres d'ajouter des images
 - Menu enchère, le premier item est plus haut que les autres?
 - step des mises ça bloque
@@ -54,13 +53,6 @@ Donc, ajouter ce filtre, et l'activé automatiquement si on y arrive via le menu
 ## SQL
 
 1. À ajouter
-
-    - timbre
-        - tirage (double)
-        - couler(s)
-        - dimensions
-
-    - Journal
 
 
 ## Intéressant
