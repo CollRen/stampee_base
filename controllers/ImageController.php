@@ -53,6 +53,7 @@ class ImageController
 
     public function import($get)
     {
+        // print_r($get); die();
         $image = new Image;
         $message = $image->upload();
 
@@ -64,8 +65,13 @@ class ImageController
             $chemin = '/Applications/MAMP/htdocs/h24/stampee_base/stampeeFromRecette/public/assets/img/timbres/';
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $chemin. basename($_FILES["fileToUpload"]["name"]))) {
                 echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+                $data['adresse'] = '/img/timbres/' . htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
+                $data['nom'] = htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
+                $data['est_principale'] = 1;
+                $data['timbre_id'] = $get['timbre_id'];
 
-                $insert = $image->insert(htmlspecialchars(basename($_FILES["fileToUpload"]["name"])));
+
+                $insert = $image->insert($data);
                 // 'nom', 'est_principale', 'adresse', 'timbre_id'
                 /* 'nom',
                 '1',

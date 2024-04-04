@@ -17,6 +17,7 @@
     <form action="{{base}}/image/import" method="post" enctype="multipart/form-data">
   Select image to upload:
   <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="hidden" name="timbre_id" value="{{timbre.id}}">
   <input type="submit" value="Upload Image" name="submit">
 </form>
 
