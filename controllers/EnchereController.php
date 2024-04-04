@@ -31,6 +31,15 @@ class EnchereController
     public function index()
     {
 
+        $get['prix_minimum'] = 0;
+        $get['prix_maximum'] = 1000;
+        $get['annee_minimum'] = 1850;
+        $get['annee_maximum'] = 2025;
+        $get['pays'] = 0;
+        $get['est_coup_coeur_lord'] = false;
+        $get['authentifie'] = 1;
+
+
         if (isset($_GET['prix_minimum'])) $get['prix_minimum'] = $_GET['prix_minimum'];
         if (isset($_GET['prix_maximum'])) $get['prix_maximum'] = $_GET['prix_maximum'];
         if (isset($_GET['annee_minimum'])) $get['annee_minimum'] = $_GET['annee_minimum'];
@@ -155,6 +164,7 @@ class EnchereController
             $selectEncheres = $enchere->selectId(1, 'est_coup_coeur_lord');
 
             $REQUEST_URI = 'coupcoeurlord';
+            $get['est_coup_coeur_lord'] = true;
         }
 
         /**
