@@ -65,16 +65,25 @@ class MiseController
 
         if ($validator->isSuccess()) {
 
+
             $selectMises = [];
             $mise = new Mise;
             $selectMises = $mise->selectId($get['enchere_id'], 'enchere_id');
 
+
+
             //Faire sortir l'enchère la plus élevé
             if ($selectMises) {
-
+                if (!isset($selectMises[1])) {
                 foreach ($selectMises as $selectMise) {
                     if ($selectMise > $miseMax) $miseMax = $selectMise;
                 }
+            } else {
+                    $miseMax = $mise->selectMax('prix_offert', $selectEnchereId['id'], 'enchere_id');
+        
+                    if($miseMax[0] != '') $miseMax = $miseMax[0] ;
+                }
+            
                 return View::render('mise/create', ['enchere' => $selectEnchereId, 'misemax' => $miseMax]);
             } else {
 

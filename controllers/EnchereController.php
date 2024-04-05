@@ -220,23 +220,27 @@ class EnchereController
                 $image = new Image;
                 $selectImages = $image->selectId($selectEnchereId['timbre_id'], 'timbre_id');
 
-
-
                 $mise = new Mise;
-                $selectMises = $mise->selectId($selectEnchereId['id'], 'enchere_id');
+                // $selectMises = $mise->selectId($selectEnchereId['id'], 'enchere_id');
+                $selectMise = $mise->selectMax('prix_offert', $selectEnchereId['id'], 'enchere_id');
+                
+                
+                $selectMise['prix_offert'] = $selectMise['MAX(prix_offert)'];
+                $selectMise['enchere_id'] = $selectEnchereId['id'];
+                // print_r($selectMise); die();
 
-
-
-                $filter = new Filter;
-                $filter->field($selectMises)->max('prix_offert');
-
-
+                
+/*                 $filter = new Filter;
+                $filter->field($selectMises)->maxCopie('prix_offert');
+                
+                
                 $selectMise = (array) $filter;
-                $selectMise = $selectMise['array'];
+                $selectMise = $selectMise['array']; */
+                
+                // print_r($selectMise[0]); die();
 
 
-
-                return View::render('enchere/show', ['thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mise' => $selectMise[0]]);
+                return View::render('enchere/show', ['thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mise' => $selectMise]);
             } else {
                 return View::render('error');
             }

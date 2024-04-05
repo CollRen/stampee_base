@@ -67,6 +67,36 @@ class Filter
     return $this;
 }
 
+    public function maxCopie($dbKey, $key = null)
+    {
+        if (isset($this->array[$dbKey])) {
+            for ($i = 0; $i < count($this->array); $i++) {
+                if ($dbKey == 'annee') {
+                    $this->array[$i][$dbKey] = substr($this->array[$i][$dbKey], 0, 4);
+                }
+                if ($dbKey == 'annee') date('Y', $this->array[$i][$dbKey]);
+                if ($this->array[$i][$dbKey] < $this->data[$key]) {
+                    array_push($this->newArray, $this->array[$i]);
+                }
+            }
+            $this->array = $this->newArray;
+            $this->newArray = [];
+        } else {
+            if(isset($this->array[1][0])){
+                for ($i = 1; $i < count($this->array); $i++) {
+                    if ($this->array[$i][$dbKey] > $this->array[$i-1][$dbKey]) {
+                        array_push($this->newArray, $this->array[$i]);
+                    }
+                }
+            } else {
+            array_push($this->newArray, $this->array);
+        }
+        $this->array = $this->newArray;
+        $this->newArray = [];
+    }
+    return $this;
+}
+
     public function enleveSiPresent($dbKey, $key)
     {
         if (isset($this->data[$key])) {
