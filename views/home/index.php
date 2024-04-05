@@ -45,21 +45,6 @@
     </div>
   </hero>
 
-  <section class="index-services">
-    <div class="index-services_icones">
-      <img src="{{ asset }}/img/icons/collection.svg" class="index-services_svg" alt="image d'illustration du service de vente" />
-      <h2>Achetez dès maintenant</h2>
-    </div>
-    <div class="index-services_icones">
-      <img src="{{ asset }}/img/icons/evaluation.svg" class="index-services_svg" alt="image d'illustration du service de evaluation de timbres" />
-      <h2>Faites une évaluation</h2>
-    </div>
-    <div class="index-services_icones">
-      <img src="{{ asset }}/img/icons/worldstamp.svg" class="index-services_svg" alt="image d'illustration pour la page commencez votre collection" />
-      <h2>Commencez une collection</h2>
-    </div>
-  </section>
-
   <section class="index-encheres">
     <div class="index-encheres_gallerie">
       <h2>Les coups de coeur</h2>
