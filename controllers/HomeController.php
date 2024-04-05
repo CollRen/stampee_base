@@ -43,7 +43,15 @@ class HomeController {
         $enchereFavorie = new EnchereFavorie;
         $selectFavories = $enchereFavorie->select();
 
-        //$selectEncheresFavorie = $enchere->selectIdTwoKeys($selectFavories['enchere_id'], $_SESSION['user_id']);
+
+
+        for ($i=0; $i < count($selectEncheres) ; $i++) {
+
+            $selectEncheres[$i]['date_limite'] = date("m.d.y");
+            print_r($selectEncheres[$i]['date_limite']);
+                     
+        }
+
 
         //include 'views/home.php';
        View::render('home/index', ['mises' => $selectMises, 'images' => $selectImages, 'timbres' => $selectTimbre, 'encheres' => $selectEncheres, 'actualites' => $selectActualite]);

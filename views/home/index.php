@@ -95,7 +95,7 @@
     {% for actualite in actualites %}
     <div class="nouvelle-p">
       <p>
-        {{ actualite.date }} - {{ actualite.text }}
+        {{ actualite.date }}&nbsp;&nbsp;{{ actualite.text }}
       </p>
     </div>
 

@@ -29,7 +29,7 @@
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ base }}/enchere/create" class="btn" >enchere Create</a>
+    <a href="{{ base }}/enchere/create" class="btn">enchere Create</a>
 
     </main>
 {{ include('layouts/footer.php') }}
