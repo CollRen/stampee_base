@@ -125,7 +125,7 @@ class MiseController
         if ($validator->isSuccess()) {
             $data['user_id'] = $_SESSION['user_id'];
 
-            $mises = new Mise;
+/*             $mises = new Mise;
             $selectMises = $mises->selectIdTwoKeys($data['enchere_id'], $data['user_id'], 'enchere_id', 'user_id');
           
             if ($selectMises) {
@@ -136,10 +136,12 @@ class MiseController
 
                 $mise = new Mise;
                 $insert = $mise->insertTwoKeys($data);
-            }
+            } */
 
 
-
+            $mise = new Mise;
+            $insert = $mise->insertTwoKeys($data);
+            
             if ($insert) {
                 echo 'insert ok';
                 return View::redirect('enchere/show?id=' . $data['enchere_id'], ['thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mises' => $selectMises]);

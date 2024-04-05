@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 
@@ -11,10 +12,11 @@ use App\Models\User;
 use App\Models\Actualite;
 use App\Providers\View;
 
-class HomeController {
-    
-    public function index(){
+class HomeController
+{
 
+    public function index()
+    {
 
         /* Pour l'affichage des actualités */
         $timbre = new Timbre;
@@ -32,32 +34,54 @@ class HomeController {
         $image = new Image;
         $selectImages = $image->select();
 
-
-        
-        for ($i=0; $i < count($selectActualite) ; $i++) { 
-            $selectActualite[$i]['date'] = date_format(date_create($selectActualite[$i]['date']), 'Y-m-d'); 
+        for ($i = 0; $i < count($selectActualite); $i++) {
+            $selectActualite[$i]['date'] = date_format(date_create($selectActualite[$i]['date']), 'Y-m-d');
         }
-        
-        /* Affichage des coups de coeur Lord */
 
+
+        /* Pour l'affichage des coups de coeur Lord */
         $enchereFavorie = new EnchereFavorie;
         $selectFavories = $enchereFavorie->select();
 
 
 
-        for ($i=0; $i < count($selectEncheres) ; $i++) {
-
+        for ($i = 0; $i < count($selectEncheres); $i++) {
             $selectEncheres[$i]['date_limite'] = date("m.d.y");
-            print_r($selectEncheres[$i]['date_limite']);
-                     
         }
+
+        /**
+         * Ajouter à $selectEncheres le prix_depart du timbre
+         */
+        for ($i = 0; $i < count($selectEncheres); $i++) {
+
+            for ($y = 0; $y < count($selectTimbre); $y++) {
+                if ($selectEncheres[$i]['timbre_id'] == $selectTimbre[$y]['id']) {
+                    $selectEncheres[$i]['prix'] = $selectTimbre[$y]['prix_depart'];
+                }
+            }
+        }
+
+        
+        // echo '<pre>';
+        // print_r($selectEncheres[0]['id']); die();
+
+        // echo '<pre>';
+        // print_r($selectMises[0]['enchere_id']); die();
+
+        // && $selectEncheres[$y]['prix'] < $selectMises[$i]['prix_offert']
+
+    
+
+
+
 
 
         //include 'views/home.php';
-       View::render('home/index', ['mises' => $selectMises, 'images' => $selectImages, 'timbres' => $selectTimbre, 'encheres' => $selectEncheres, 'actualites' => $selectActualite]);
+        View::render('home/index', ['mises' => $selectMises, 'images' => $selectImages, 'timbres' => $selectTimbre, 'encheres' => $selectEncheres, 'actualites' => $selectActualite]);
     }
 
-    public function home(){
+    public function home()
+    {
         $data = 'Hello from HomeController';
         include 'views/home.php';
     }

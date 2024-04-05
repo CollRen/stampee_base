@@ -30,6 +30,27 @@ abstract class CRUD extends \PDO
         }
     }
 
+    final public function selectMax($colName, $value, $field = null)
+    {
+        if ($field == null) {
+            $field = $this->primaryKey;
+        }
+        $sql = "SELECT MAX($colName) FROM $this->table WHERE $field = :$field;";
+
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(":$field", $value);
+        $stmt->execute();
+        $count = $stmt->rowCount();
+
+        if ($count == 1) {
+            return $stmt->fetch();
+        } else if ($count > 1) {
+            return $stmt->fetchAll();
+        } else {
+            return false;
+        }
+    }
+
     final public function selectId($value, $field = null)
     {
         if ($field == null) {
@@ -211,4 +232,6 @@ abstract class CRUD extends \PDO
             return false;
         }
     }
+
+    
 }
