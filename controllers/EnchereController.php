@@ -134,25 +134,35 @@ class EnchereController
             $enchereFavorie = new EnchereFavorie;
             $selectEnchereFavorie = $enchereFavorie->selectId($_SESSION['user_id'], 'user_id');
 
-
-            if(isset($selectEnchereFavorie[0])){
-
-                $enchere = new Enchere;
-                $selectEncheres = [];
-                for ($i=0; $i < count($selectEnchereFavorie); $i++) { 
-    
-                    $y = $enchere->selectId($selectEnchereFavorie[$i]['enchere_id']);
+            $selectEncheres = [];
+            if (isset($selectEnchereFavorie[0])) {
+                
+                if (!isset($selectEnchereFavorie[0][0])) {
+                    $y = $enchere->selectId($selectEnchereFavorie['enchere_id']);
                     array_push($selectEncheres, $y);
+
+                    // print_r($selectEncheres); die();
+                } else {
+
+                    $enchere = new Enchere;
+                    $selectEncheres = [];
+                    for ($i = 0; $i < count($selectEnchereFavorie); $i++) {
+
+                        $y = $enchere->selectId($selectEnchereFavorie[$i]['enchere_id']);
+                        array_push($selectEncheres, $y);
+                    }
                 }
-                $message = "Vous n'avez pas de favorie";
             } else {
-                $selectEncheres = [];
+
                 $message = "Vous n'avez pas de favorie";
             }
 
             $REQUEST_URI = 'favories';
+            // print_r($selectEncheres); die();
         }
-    
+
+        //print_r($selectEncheres); die();
+
         /**
          * index des enchères favorites 
          * 
@@ -179,29 +189,27 @@ class EnchereController
 
             $selectEncheres = $selectEncheres['array'];
             $REQUEST_URI = 'active';
-
-
         }
 
         if ($selectEncheres) {
-            
+
             if (isset($_SESSION['user_id'])) {
-                
+
                 if ($_SESSION['user_id'] == 1) {
-                    
+
                     return View::render('enchere/index', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                 } else {
-                    
+
                     if (!isset($get)) {
-                        
+
                         return View::render('enchereclient/index', ['thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                     } else {
-                        
+
                         if (!isset($get['etats_conservation'])) {
-                            
+
                             return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                         } else {
-                            
+
                             return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'etats_conservation' => $get['etat_conservation'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                         }
                     }
@@ -211,10 +219,10 @@ class EnchereController
                 return View::render('enchereclient/index', ['encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
             }
         } else {
-                if(isset($message)){
-                    return View::render('enchereclient/index', ['message' => $message, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
-                }
-                
+            if (isset($message)) {
+                return View::render('enchereclient/index', ['message' => $message, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
+            }
+
             return View::render('error');
         }
     }
@@ -236,20 +244,20 @@ class EnchereController
                 $mise = new Mise;
                 // $selectMises = $mise->selectId($selectEnchereId['id'], 'enchere_id');
                 $selectMise = $mise->selectMax('prix_offert', $selectEnchereId['id'], 'enchere_id');
-                
-                
+
+
                 $selectMise['prix_offert'] = $selectMise['MAX(prix_offert)'];
                 $selectMise['enchere_id'] = $selectEnchereId['id'];
                 // print_r($selectMise); die();
 
-                
-/*                 $filter = new Filter;
+
+                /*                 $filter = new Filter;
                 $filter->field($selectMises)->maxCopie('prix_offert');
                 
                 
                 $selectMise = (array) $filter;
                 $selectMise = $selectMise['array']; */
-                
+
                 // print_r($selectMise[0]); die();
 
 
@@ -446,6 +454,5 @@ class EnchereController
         } else {
             echo 'Erreur query string';
         }
-
     }
 }
