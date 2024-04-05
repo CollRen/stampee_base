@@ -37,6 +37,8 @@ abstract class CRUD extends \PDO
         }
         $sql = "SELECT MAX($colName) FROM $this->table WHERE $field = :$field;";
 
+        // print_r($sql); die();
+
         $stmt = $this->prepare($sql);
         $stmt->bindValue(":$field", $value);
         $stmt->execute();

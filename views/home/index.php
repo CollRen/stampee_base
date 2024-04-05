@@ -73,8 +73,7 @@
           <div class="photo-index-produit">
             <h3>{{timbre.titre}}</h3>
             <img src="{{asset}}{% for image in images %}{% if image.timbre_id == timbre.id %}{{image.adresse}}" alt="{{image.nom}}{% endif %}{% endfor %}" />
-            <p>Prix:&nbsp;{% for mise in mises %}{% if mise.enchere_id == enchere.id %}
-              {{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}{% endfor %}<small>&nbsp;$</small></p>
+            <p>Prix:&nbsp;{{ enchere.prix }}<small>&nbsp;$</small></p>
             <p>Date limite: {{ enchere.date_limite }} ⌛</p>
             <div class="enchere_description_btns">
               <a href="{{ base }}/enchere/show?id={{ enchere.id }}" class="btn">Détails</a>

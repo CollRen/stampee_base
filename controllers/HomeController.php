@@ -70,7 +70,16 @@ class HomeController
 
         // && $selectEncheres[$y]['prix'] < $selectMises[$i]['prix_offert']
 
-    
+        // print_r($selectEncheres[0]); die();
+
+
+        // Ajoute la valeur maximal des mises sur une enchère, s'il y a une ou des mises.
+        for ($i = 0; $i < count($selectEncheres); $i++) {
+            $miseMax = $mise->selectMax('prix_offert', $selectEncheres[$i]['id'], 'enchere_id');
+
+            if($miseMax[0] != '') $selectEncheres[$i]['prix'] = $miseMax[0] ;
+        }
+
 
 
 
