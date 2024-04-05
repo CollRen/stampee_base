@@ -135,14 +135,19 @@ class EnchereController
             $selectEnchereFavorie = $enchereFavorie->selectId($_SESSION['user_id'], 'user_id');
 
 
+            if(isset($selectEnchereFavorie[0])){
 
-            $enchere = new Enchere;
-            $selectEncheres = [];
-            for ($i=0; $i < count($selectEnchereFavorie); $i++) { 
-
-                $y = $enchere->selectId($selectEnchereFavorie[$i]['enchere_id']);
-                array_push($selectEncheres, $y);
-                
+                $enchere = new Enchere;
+                $selectEncheres = [];
+                for ($i=0; $i < count($selectEnchereFavorie); $i++) { 
+    
+                    $y = $enchere->selectId($selectEnchereFavorie[$i]['enchere_id']);
+                    array_push($selectEncheres, $y);
+                }
+                $message = "Vous n'avez pas de favorie";
+            } else {
+                $selectEncheres = [];
+                $message = "Vous n'avez pas de favorie";
             }
 
             $REQUEST_URI = 'favories';
@@ -179,20 +184,24 @@ class EnchereController
         }
 
         if ($selectEncheres) {
+            
             if (isset($_SESSION['user_id'])) {
-
+                
                 if ($_SESSION['user_id'] == 1) {
-
+                    
                     return View::render('enchere/index', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                 } else {
+                    
                     if (!isset($get)) {
+                        
                         return View::render('enchereclient/index', ['thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                     } else {
+                        
                         if (!isset($get['etats_conservation'])) {
-
+                            
                             return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                         } else {
-
+                            
                             return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'etats_conservation' => $get['etat_conservation'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                         }
                     }
@@ -202,6 +211,10 @@ class EnchereController
                 return View::render('enchereclient/index', ['encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
             }
         } else {
+                if(isset($message)){
+                    return View::render('enchereclient/index', ['message' => $message, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
+                }
+                
             return View::render('error');
         }
     }

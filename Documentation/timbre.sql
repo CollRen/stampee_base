@@ -76,14 +76,28 @@ est_coup_coeur_lord TINYINT(1) DEFAULT 0,
 CONSTRAINT `fk_timbre_enchere_id`
     FOREIGN KEY (`timbre_id`)
     REFERENCES `stampee`.`timbre` (`id`));
+
+
+
+CREATE TABLE stampee.enchere_favorie(
+enchere_id INT,
+user_id INT,
+est_favorie TINYINT(1),
+CONSTRAINT pk_enchere_favorie PRIMARY KEY (enchere_id, user_id),
+CONSTRAINT fk_enchere_id FOREIGN KEY (enchere_id) REFERENCES stampee.enchere (id),
+CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES stampee.user (id)
+);
     
 CREATE TABLE stampee.enchere_favorie(
 enchere_id INT,
 user_id INT,
 est_favorie TINYINT(1),
+PRMARY KEY (enchere_id, user_id)
 CONSTRAINT fk_enchere_id FOREIGN KEY (enchere_id) REFERENCES stampee.enchere (id),
 CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES stampee.user (id)
 );
+
+PRIMARY KEY
 
 CREATE TABLE stampee.mise(
 enchere_id INT,

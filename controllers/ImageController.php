@@ -63,7 +63,7 @@ class ImageController
         } else {
             $chemin = '/Applications/MAMP/htdocs/h24/stampee_base/stampeeFromRecette/public/assets/img/timbres/';
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $chemin. basename($_FILES["fileToUpload"]["name"]))) {
-                echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+                //echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
                 $data['adresse'] = '/img/timbres/' . htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
                 $data['nom'] = htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
                 $data['est_principale'] = 1;
@@ -71,7 +71,11 @@ class ImageController
 
 
                 $insert = $image->insert($data);
-                
+                if($insert) {
+                    return View::redirect('timbre');
+                } else {
+                    echo 'Il y a eu une erreur';
+                }
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }

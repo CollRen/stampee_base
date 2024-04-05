@@ -88,6 +88,12 @@
 
   <main class="main-grid" data-js-main>
 
+    {% if message is defined %}
+
+  <h2>{{ message }}</h2>
+  <a href="{{base}}/">Retour à l'accueil</a>
+    {% else %}
+
     {% for timbre in timbres %}
     {% for enchere in encheres %}
     {% if enchere.timbre_id == timbre.id %}
@@ -105,6 +111,7 @@
     {% endif %}
     {% endfor %}
     {% endfor %}
+    {% endif %}
     </div>
     </div>
   </main>

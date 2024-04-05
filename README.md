@@ -8,6 +8,9 @@
 ## Priorités
 
 1. 
+Pour avoir le chemi de la page où l'on se trouve 
+        echo getcwd(); die();
+        https://drive.google.com/drive/folders/1Z5efWwdfhm4slPtISICRCrS3Xge0yK7d?usp=sharing
 
 - Menu enchère, le premier item est plus haut que les autres?
 - step des mises ça bloque
