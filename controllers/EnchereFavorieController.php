@@ -35,12 +35,12 @@ class EnchereFavorieController
                     $selectEnchere = $enchere->selectId($selectFavories[$i]['enchere_id']);
                     $selectEncheres[$i] = [$selectEnchere];
         }
-        print_r($selectEncheres); die();
+
 
         $user = new User;
         $selectUser = $user->selectId($selectFavories['user_id']);
 
-        print_r($_SESSION['user_id']); die();
+
         if($selectFavories['user_id'] == $_SESSION['user_id']){
             echo 'YO';
         }

@@ -53,7 +53,6 @@ class ImageController
 
     public function import($get)
     {
-        // print_r($get); die();
         $image = new Image;
         $message = $image->upload();
 
@@ -72,12 +71,7 @@ class ImageController
 
 
                 $insert = $image->insert($data);
-                // 'nom', 'est_principale', 'adresse', 'timbre_id'
-                /* 'nom',
-                '1',
-                '/img/timbres/'.htmlspecialchars(basename($_FILES["fileToUpload"]["name"])),
-                 'timbre_id' 
-                 */
+                
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }

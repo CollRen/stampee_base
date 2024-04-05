@@ -69,7 +69,6 @@ class TimbreCategorieController {
     }
 
     public function edit($data = []){
-        // print_r($data); die();
         if(isset($data['id']) && $data['id']!=null){
             $categorie = new TimbreCategorie;
             $selectId = $categorie->selectId($data['id']);
@@ -86,12 +85,6 @@ class TimbreCategorieController {
     public function update($data, $get){
         $categorie = new TimbreCategorie;
         $selectId = $categorie->selectId($get['id']);
-
-/*         echo '$data:<br>';
-        print_r($data);
-        echo '$get:<br>';
-        print_r($selectId);
-        die(); */ // $data c'est newValue et $selectId oldValue
 
         if($selectId){
         $oldValue = $selectId['nom'];

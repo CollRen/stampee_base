@@ -83,8 +83,7 @@ class TimbreController
 
             $enchere = new Enchere;
             $selectEncheres = $enchere->selectId($data['id'], 'timbre_id');
-            // print_r($selectEncheres); die();
-            // if ($selectEncheres) $selectId['date_limite'] = $selectEncheres['date_limite'];
+
 
             $timbreHis[] = '';
             $i = 0;
@@ -125,8 +124,6 @@ class TimbreController
         $enchere = new Enchere;
         $selectEnchere = $enchere->select();
         
-        
-        // print_r($timbreCategorieSelect); die();
 
         return View::render('timbre/create', ['timbreCategories' => $timbreCategorieSelect, 'timbreEtats' => $timbreEtatSelect, 'payss' => $selectPays, 'encheres' => $selectEnchere]);
     }
@@ -220,8 +217,6 @@ class TimbreController
         if (!isset($data['authentifie'])) $data['authentifie'] = '0';
 
 
-        /* Array ( [titre] => Premier timbre [description] => Le plus beau au monde [annee] => 2008-11-11 [prix_depart] => 10.14 [etat_conservation_id] => 1 [timbre_categorie_id] => 2 )
-Array ( [id] => 1 ) */
         $arrayCanEnter = [1, 2, 3];
         Auth::verifyAcces($arrayCanEnter);
 
@@ -270,25 +265,4 @@ Array ( [id] => 1 ) */
         }
     }
 
-    public function pdf()
-    {
-
-        $pageToPrint = file_get_contents($_SERVER['HTTP_REFERER']);
-
-
-
-        // instantiate and use the dompdf class
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($pageToPrint);
-
-        // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
-
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        // Output the generated PDF to Browser
-        $dompdf->stream();
-        //return View::redirect('timbre/pdf');
-    }
 }

@@ -51,14 +51,8 @@ class MiseController
 
     public function create($get = [])
     {
-
-        // print_r($get); die();
         $enchere = new Enchere;
         $selectEnchereId = $enchere->selectId($get['enchere_id']);
-
-
-
-        // print_r($selectEnchereId); die();
 
         //Valeur de départ du timbre
         $timbre = new Timbre;
@@ -70,12 +64,10 @@ class MiseController
         $validator->field('date_limite', $selectEnchereId, $get['enchere_id'])->dateActive('date_debut', $selectEnchereId['date_debut']);
 
         if ($validator->isSuccess()) {
-            // echo 'validator succeded'; die();
+
             $selectMises = [];
             $mise = new Mise;
             $selectMises = $mise->selectId($get['enchere_id'], 'enchere_id');
-
-            // print_r($selectMises); die(); Vide
 
             //Faire sortir l'enchère la plus élevé
             if ($selectMises) {
@@ -85,7 +77,7 @@ class MiseController
                 }
                 return View::render('mise/create', ['enchere' => $selectEnchereId, 'misemax' => $miseMax]);
             } else {
-                // echo 'ici'; die();
+
                 return View::render('mise/create', ['enchere' => $selectEnchereId, 'misemax' => $miseMax]);
             }
         } else {
@@ -135,14 +127,13 @@ class MiseController
 
             $mises = new Mise;
             $selectMises = $mises->selectIdTwoKeys($data['enchere_id'], $data['user_id'], 'enchere_id', 'user_id');
-            // echo 'test'; die();
-            //print_r($selectMises); die(); // Array ( [enchere_id] => 5 [0] => 5 [user_id] => 2 [1] => 2 [prix_offert] => 600 [2] => 600 )
+          
             if ($selectMises) {
-                //echo 'selectMise ok'; die();
+
                 $mise = new Mise;
                 $insert = $mise->update($data, $data['enchere_id'], $data['user_id']);
             } else {
-                //echo 'selectMise pas ok'; die();
+
                 $mise = new Mise;
                 $insert = $mise->insertTwoKeys($data);
             }

@@ -4,7 +4,7 @@
     <table>
         <thead>
             <tr>
-                <th># d'enchères</th>
+                <th># d'enchères&nbsp;(&nbsp;Lien&nbsp;)</th>
                 <th># du timbre</th>
                 <th>Date début</th>
                 <th>Date limite</th>

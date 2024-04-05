@@ -5980,7 +5980,6 @@ EOT;
                             $info['filterMethod'] = ord($data[$p + 19]);
                             $info['interlaceMethod'] = ord($data[$p + 20]);
 
-                            //print_r($info);
                             $haveHeader = 1;
                             if ($info['compressionMethod'] != 0) {
                                 $error = 1;
@@ -6154,7 +6153,6 @@ EOT;
                 return;
             }
 
-            //print_r($info);
             // so this image is ok... add it in.
             $this->numImages++;
             $im = $this->numImages;

@@ -49,9 +49,6 @@ class EnchereController
         if (isset($_GET['etat_conservation'])) $get['etat_conservation'] = $_GET['etat_conservation'];
         if (isset($_GET['authentifie'])) $get['authentifie'] = $_GET['authentifie'];
 
-
-
-        //print_r($_SERVER);die(); // REDIRECT_URL] => /h24/stampee_base/stampeeFromRecette/enchere
         $REQUEST_URI = '';
         if (isset($_GET) && $_GET != null) {
 
@@ -64,8 +61,6 @@ class EnchereController
             foreach ($selectEncheres as $key => $value) {
                 array_push($selectTimbres, $timbre->selectId($value['timbre_id']));
             }
-
-            // print_r($selectTimbres); die();
 
             $filter = new Filter;
             $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart', 'prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays')->presentArray('etat_conservation_id', 'etat_conservation')->booleen('authentifie', 'authentifie');
@@ -135,11 +130,10 @@ class EnchereController
          * 
          */
         if (str_contains($_SERVER['REQUEST_URI'], '/favories')) {
-            /* enchere_id, user_id */
+
             $enchereFavorie = new EnchereFavorie;
             $selectEnchereFavorie = $enchereFavorie->selectId($_SESSION['user_id'], 'user_id');
-/*             echo '<pre>';
-            print_r($selectEnchereFavorie); die(); */
+
 
 
             $enchere = new Enchere;
@@ -181,9 +175,8 @@ class EnchereController
             $selectEncheres = $selectEncheres['array'];
             $REQUEST_URI = 'active';
 
-            //print_r($selectEncheres); die(); // Ça marche! grâce à $selectEncheres['array']
+
         }
-        //print_r($selectEncheres); die(); // ça créee un Array ( [0] alors je change pour $selectEncheres['array']. Mais le lendemain ça changes-tu ?
 
         if ($selectEncheres) {
             if (isset($_SESSION['user_id'])) {
@@ -227,20 +220,20 @@ class EnchereController
                 $image = new Image;
                 $selectImages = $image->selectId($selectEnchereId['timbre_id'], 'timbre_id');
 
-                // print_r($selectImages); die();
+
 
                 $mise = new Mise;
                 $selectMises = $mise->selectId($selectEnchereId['id'], 'enchere_id');
 
-                // print_r($selectMises); die();
+
 
                 $filter = new Filter;
                 $filter->field($selectMises)->max('prix_offert');
 
-                // print_r($selectMises); die();
+
                 $selectMise = (array) $filter;
                 $selectMise = $selectMise['array'];
-                // print_r($selectMise); die();
+
 
 
                 return View::render('enchere/show', ['thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mise' => $selectMise[0]]);
@@ -260,7 +253,6 @@ class EnchereController
         $timbre = new Timbre;
         $selectTimbres = $timbre->selectId($_SESSION['user_id'], 'user_id');
 
-        // print_r($selectTimbres); die;
         $filter = new Filter;
         $filter->field($selectTimbres, $selectEncheres)->enleveSiPresent('id', 'timbre_id');
 
@@ -274,7 +266,7 @@ class EnchereController
 
     public function store($data)
     {
-        // Si date_debut = '' l'enlever de l'envoie à la bd pour permettre à la bd d'y mettre la date du jour
+
         if (empty($data['date_debut'])) array_pop($data);
 
         $validator = new Validator;
@@ -333,9 +325,7 @@ class EnchereController
     }
     public function update($data, $get)
     {
-        /*         print_r($data); 
-        echo '<br>';
-        print_r($get);die(); */
+
         if (empty($data['date_debut'])) array_pop($data);
         $id = $_GET['id']; // S'il n'y a pas de changement
 
@@ -439,15 +429,6 @@ class EnchereController
         } else {
             echo 'Erreur query string';
         }
-        /*  $datas = [];
-            $query = [$datas['enchere_id'] => $enchere_id, $datas['user_id'] => $_SESSION['user_id'], $datas['est_favorie'] => 1]; 
 
-            $favorie = new EnchereFavorie;
-            $return_id = $favorie->insertTwoKeys($datas);
-
-        echo $return_id;
-    } else {
-        echo 'Erreur query string';
-    } */
     }
 }

@@ -45,7 +45,6 @@ class Validator
         if ($this->value == $oldValue) {
             $this->errors[$this->key] = "Vous n'avez pas apporté de modification à $this->name";
         }
-        //print_r($this); die();
         return $this;
     }
 

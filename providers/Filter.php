@@ -39,7 +39,6 @@ class Filter
 
     public function max($dbKey, $key = null)
     {
-        // print_r($this->array); die(); // Array ( [enchere_id] => 23 [0] => 23 [user_id] => 2 [1] => 2 [prix_offert] => 600 [2] => 600 )
         if (isset($this->data[$key])) {
             for ($i = 0; $i < count($this->array); $i++) {
                 if ($dbKey == 'annee') {
