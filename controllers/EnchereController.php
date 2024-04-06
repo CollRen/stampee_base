@@ -25,12 +25,11 @@ class EnchereController
     {
         $enchere = new Enchere;
         $arrayAuth = $enchere->isAuth();
-        //Auth::verifyAcces($arrayAuth);
     }
 
     public function index()
     {
-
+        //Initialisation des filtres afin qu'ils ne filtrent rien
         $get['prix_minimum'] = 0;
         $get['prix_maximum'] = 1000;
         $get['annee_minimum'] = 1850;
@@ -38,8 +37,6 @@ class EnchereController
         $get['pays'] = 0;
         $get['est_coup_coeur_lord'] = false;
         $get['authentifie'] = 1;
-
-
         if (isset($_GET['prix_minimum'])) $get['prix_minimum'] = $_GET['prix_minimum'];
         if (isset($_GET['prix_maximum'])) $get['prix_maximum'] = $_GET['prix_maximum'];
         if (isset($_GET['annee_minimum'])) $get['annee_minimum'] = $_GET['annee_minimum'];
@@ -48,14 +45,33 @@ class EnchereController
         if (isset($_GET['est_coup_coeur_lord'])) $get['est_coup_coeur_lord'] = $_GET['est_coup_coeur_lord'];
         if (isset($_GET['etat_conservation'])) $get['etat_conservation'] = $_GET['etat_conservation'];
         if (isset($_GET['authentifie'])) $get['authentifie'] = $_GET['authentifie'];
-
         $REQUEST_URI = '';
+
+        $enchere = new Enchere;
+        $selectEncheres = $enchere->select();
+
+        $etat = new Etat;
+        $selectEtats = $etat->select();
+
+        $timbreCats = new TimbreCategorie;
+        $selectCat = $timbreCats->select();
+
+        $user = new User;
+        $selectUsers = $user->select();
+
+        $pays = new Pays;
+        $selectPays = $pays->select();
+
+        $image = new Image;
+        $selectImages = $image->select();
+
+        $timbre = new Timbre;
+        $selectTimbres = $timbre->select();
+
+        /**
+         * Lancement des filtres
+         */
         if (isset($_GET) && $_GET != null) {
-
-            $enchere = new Enchere;
-            $selectEncheres = $enchere->select();
-
-            $timbre = new Timbre;
 
             $selectTimbres = [];
             foreach ($selectEncheres as $key => $value) {
@@ -65,54 +81,15 @@ class EnchereController
             $filter = new Filter;
             $filter->field($selectTimbres, $_GET)->min('prix_depart', 'prix_minimum')->max('prix_depart', 'prix_maximum')->min('annee', 'annee_minimum')->max('annee', 'annee_maximum')->present('pays_id', 'pays')->presentArray('etat_conservation_id', 'etat_conservation')->booleen('authentifie', 'authentifie');
 
-
             $i = 0;
             $selectTimbres = [];
             $selectTimbres = (array) $filter;
             $selectTimbres = $selectTimbres['array'];
-
-            $etat = new Etat;
-            $selectEtats = $etat->select();
-
-            $timbreCats = new TimbreCategorie;
-            $selectCat = $timbreCats->select();
-
-            $user = new User;
-            $selectUsers = $user->select();
-
-            $pays = new Pays;
-            $selectPays = $pays->select();
-
-            $image = new Image;
-            $selectImages = $image->select();
-        } else {
-            $timbre = new Timbre;
-            $selectTimbres = $timbre->select();
-
-            $enchere = new Enchere;
-            $selectEncheres = $enchere->select();
-
-            $etat = new Etat;
-            $selectEtats = $etat->select();
-
-            $timbreCats = new TimbreCategorie;
-            $selectCat = $timbreCats->select();
-
-            $user = new User;
-            $selectUsers = $user->select();
-
-            $pays = new Pays;
-            $selectPays = $pays->select();
-
-            $image = new Image;
-            $selectImages = $image->select();
         }
 
         /**
          * index des enchères archivées
          */
-
-
         if (str_contains($_SERVER['REQUEST_URI'], '/archive')) {
             // if ($_SERVER['REQUEST_URI'] == '/h24/stampee_base/stampeeFromRecette/enchere/archive') {
 
@@ -127,7 +104,6 @@ class EnchereController
 
         /**
          * index des enchères favorites 
-         * 
          */
         if (str_contains($_SERVER['REQUEST_URI'], '/favories')) {
 
@@ -136,12 +112,10 @@ class EnchereController
 
             $selectEncheres = [];
             if (isset($selectEnchereFavorie[0])) {
-                
+
                 if (!isset($selectEnchereFavorie[0][0])) {
                     $y = $enchere->selectId($selectEnchereFavorie['enchere_id']);
                     array_push($selectEncheres, $y);
-
-                    // print_r($selectEncheres); die();
                 } else {
 
                     $enchere = new Enchere;
@@ -158,14 +132,10 @@ class EnchereController
             }
 
             $REQUEST_URI = 'favories';
-            // print_r($selectEncheres); die();
         }
-
-        //print_r($selectEncheres); die();
 
         /**
          * index des enchères favorites 
-         * 
          */
         if (str_contains($_SERVER['REQUEST_URI'], '/coupcoeurlord')) {
 
@@ -192,9 +162,7 @@ class EnchereController
         }
 
         if ($selectEncheres) {
-
             if (isset($_SESSION['user_id'])) {
-
                 if ($_SESSION['user_id'] == 1) {
 
                     return View::render('enchere/index', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
@@ -248,18 +216,6 @@ class EnchereController
 
                 $selectMise['prix_offert'] = $selectMise['MAX(prix_offert)'];
                 $selectMise['enchere_id'] = $selectEnchereId['id'];
-                // print_r($selectMise); die();
-
-
-                /*                 $filter = new Filter;
-                $filter->field($selectMises)->maxCopie('prix_offert');
-                
-                
-                $selectMise = (array) $filter;
-                $selectMise = $selectMise['array']; */
-
-                // print_r($selectMise[0]); die();
-
 
                 return View::render('enchere/show', ['thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mise' => $selectMise]);
             } else {
@@ -284,7 +240,6 @@ class EnchereController
         $selectTimbres = [];
         $selectTimbres = (array) $filter;
         $selectTimbres = $selectTimbres['array'];
-
 
         return View::render('enchere/create', ['timbres' => $selectTimbres, 'encheres' => $selectEncheres]);
     }
@@ -322,7 +277,6 @@ class EnchereController
             $selectTimbres = (array) $filter;
             $selectTimbres = $selectTimbres['array'];
 
-
             return View::render('enchere/create', ['errors' => $errors, 'enchere' => $data, 'timbres' => $selectTimbres, 'encheres' => $selectEncheres]);
         }
     }
@@ -350,7 +304,6 @@ class EnchereController
     }
     public function update($data, $get)
     {
-
         if (empty($data['date_debut'])) array_pop($data);
         $id = $_GET['id']; // S'il n'y a pas de changement
 
@@ -384,13 +337,8 @@ class EnchereController
         }
     }
 
-    public function archive()
-    {
-    }
-
     public function mesencheres()
     {
-
         $timbre = new Timbre;
         $selectTimbres = $timbre->select();
 
