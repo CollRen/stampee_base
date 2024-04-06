@@ -37,8 +37,9 @@
                 </p>
                 
                 <p>Mise aux enchères # {{ enchere.id }}</p>
+                <p>Authentification {% if timbre.authentifie == 1 %}Oui{% else %}Non{% endif %}</p>
                 <div class="misemax">Prix:&nbsp;{% if mise.enchere_id == enchere.id and mise.prix_offert > timbre.prix_depart %}{{ mise.prix_offert }}{% else %}{{ timbre.prix_depart }}{% endif %}<small>&nbsp;$</small></div>
-
+                <p>Date limite: {{ enchere.date_limite }}</p>
                 <a href="{{base}}/mise/create?enchere_id={{ enchere.id }}" class="btn btn-miser">Augmenter la mise
                 </a>
             </div>

@@ -147,7 +147,7 @@ class EnchereController
         }
 
         /**
-         * index des enchères préférées
+         * index des enchères actives
          */
         if (str_contains($_SERVER['REQUEST_URI'], '/active')) {
 
@@ -161,8 +161,13 @@ class EnchereController
             $REQUEST_URI = 'active';
         }
 
+        $count = count($selectEncheres);
+        // print_r($count); die();
+
+
         if ($selectEncheres) {
             if (isset($_SESSION['user_id'])) {
+                
                 if ($_SESSION['user_id'] == 1) {
 
                     return View::render('enchere/index', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
@@ -174,11 +179,11 @@ class EnchereController
                     } else {
 
                         if (!isset($get['etat_conservation'])) {
-
+                            
                             return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                         } else {
-                                
-                            return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'etats_conservation' => $get['etat_conservation'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
+                            
+                            return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'etats_conservation' => $get['etat_conservation']]);
                         }
                     }
                 }
@@ -201,6 +206,7 @@ class EnchereController
 
             $enchere = new Enchere;
             $selectEnchereId = $enchere->selectId($data['id']);
+
 
             if ($selectEnchereId) {
                 $timbre = new Timbre;
