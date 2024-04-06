@@ -5,7 +5,7 @@ use App\Models\CRUD;
 class TimbreCategorie extends CRUD{
     protected $table = 'timbre_categorie';
     protected $primaryKey = 'id';
-    protected $isAuth = [1, 2];
+    protected $isAuth = [1];
     protected $fillable = ['nom'];
 
 

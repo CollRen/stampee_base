@@ -210,7 +210,6 @@ class EnchereController
                 $selectImages = $image->selectId($selectEnchereId['timbre_id'], 'timbre_id');
 
                 $mise = new Mise;
-                // $selectMises = $mise->selectId($selectEnchereId['id'], 'enchere_id');
                 $selectMise = $mise->selectMax('prix_offert', $selectEnchereId['id'], 'enchere_id');
 
 
