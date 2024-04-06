@@ -16,7 +16,7 @@ use App\Models\Timbre;
 use App\Providers\View;
 use App\Providers\Validator;
 use App\Providers\Filter;
-
+use Twig\Node\Expression\ConstantExpression;
 
 class EnchereController
 {
@@ -173,11 +173,11 @@ class EnchereController
                         return View::render('enchereclient/index', ['thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                     } else {
 
-                        if (!isset($get['etats_conservation'])) {
+                        if (!isset($get['etat_conservation'])) {
 
                             return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                         } else {
-
+                                
                             return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'etats_conservation' => $get['etat_conservation'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                         }
                     }
@@ -212,11 +212,13 @@ class EnchereController
                 $mise = new Mise;
                 $selectMise = $mise->selectMax('prix_offert', $selectEnchereId['id'], 'enchere_id');
 
+                $etat = new Etat;
+                $selectEtat = $etat->selectId($selectTimbre['etat_conservation_id']);
 
                 $selectMise['prix_offert'] = $selectMise['MAX(prix_offert)'];
                 $selectMise['enchere_id'] = $selectEnchereId['id'];
 
-                return View::render('enchere/show', ['thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mise' => $selectMise]);
+                return View::render('enchere/show', ['etat' => $selectEtat['nom'], 'thisuser' => $_SESSION['user_id'], 'enchere' => $selectEnchereId, 'timbre' => $selectTimbre, 'images' => $selectImages, 'mise' => $selectMise]);
             } else {
                 return View::render('error');
             }

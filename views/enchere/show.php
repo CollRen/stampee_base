@@ -29,8 +29,11 @@
             <div class="section-detail">
 
                 <h3>{{ timbre.titre }}</h3>
+                <h4>État de conservation</h4>
+                <p>{{ etat }}</p>
+                
                 <p>
-                    {{ timbre.description }}
+                    Description - {{ timbre.description }}
                 </p>
                 
                 <p>Mise aux enchères # {{ enchere.id }}</p>
@@ -39,14 +42,6 @@
                 <a href="{{base}}/mise/create?enchere_id={{ enchere.id }}" class="btn btn-miser">Augmenter la mise
                 </a>
             </div>
-
-            {% if errors.date_limite is defined %}
-            <span class="error">{{ errors.date_limite }}</span>
-            {% endif %}
-            
-            {% if errors.date_debut is defined %}
-            <span class="error">{{ errors.date_debut }}</span>
-            {% endif %}
         </div>
 
 </main>
