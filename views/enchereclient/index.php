@@ -99,6 +99,7 @@
       <!-- <a href="href="{{base}}/mise/create?enchere_id={{ enchere.id }}" class="btn btn-miser">Miser</a> -->
       <a href="{{ base }}/enchere/show?id={{ enchere.id }}" class="btn">Détails</a>
     </div>
+
     {% endif %}
     {% endfor %}
     {% endfor %}

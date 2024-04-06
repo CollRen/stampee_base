@@ -162,13 +162,11 @@ class EnchereController
         }
 
         $count = count($selectEncheres);
-        // print_r($count); die();
 
 
         if ($selectEncheres) {
-            if (isset($_SESSION['user_id'])) {
-                
-                if ($_SESSION['user_id'] == 1) {
+            if(!isset($_SESSION['user_id'])) $_SESSION['user_id'] = 0;
+            if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == 1) {
 
                     return View::render('enchere/index', ['thisuser' => $_SESSION['user_id'], 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                 } else {
@@ -179,7 +177,6 @@ class EnchereController
                     } else {
 
                         if (!isset($get['etat_conservation'])) {
-                            
                             return View::render('enchereclient/index', ['filtrePayss' => $get['pays'], 'filtres' => $get, 'thisuser' => $_SESSION['user_id'], 'images' => $selectImages, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers]);
                         } else {
                             
@@ -187,10 +184,7 @@ class EnchereController
                         }
                     }
                 }
-            } else {
-
-                return View::render('enchereclient/index', ['encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
-            }
+            
         } else {
             if (isset($message)) {
                 return View::render('enchereclient/index', ['message' => $message, 'encheres' => $selectEncheres, 'timbres' => $selectTimbres, 'timbreCats' => $selectCat, 'etats' => $selectEtats, 'payss' => $selectPays, 'users' => $selectUsers, 'images' => $selectImages]);
