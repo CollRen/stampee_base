@@ -7,11 +7,6 @@
       <label for="prix_minimum">Minimum:<output id="value_prix_min"></output></label>
       <input id="prix_minimum" type="range" name="prix_minimum" min="0" max="1000" step="25" class="aside_menu__input_range" value="{% if filtres.prix_minimum is defined %}{{ filtres.prix_minimum }}{% else %}0{% endif %}" />
 
-
-
-
-
-
       <label for="prix_maximum">Maximum:<output id="value_prix_max"></output></label>
       <input id="prix_maximum" type="range" name="prix_maximum" min="0" max="1000" step="25" class="aside_menu__input_range" value="{% if filtres.prix_maximum is defined %}{{ filtres.prix_maximum }}{% else %}1000{% endif %}" />
 
@@ -40,12 +35,8 @@
           <h3>Coup de coeur Lord</h3>
           <div class="aside_menu_input_coup_coeur_lord">
 
-
-
             <label for="est_coup_coeur_lord">Cocher pour ne voir que ses coups de coeurs</label>
-            <input id="est_coup_coeur_lord" type="checkbox" name="est_coup_coeur_lord" value="true"{% if filtres.est_coup_coeur_lord is defined %}
-            checked
-            {% endif %}/>
+            <input id="est_coup_coeur_lord" type="checkbox" name="est_coup_coeur_lord" value="true" {% if filtres.est_coup_coeur_lord is defined %} checked {% endif %} />
 
           </div>
 
@@ -72,13 +63,13 @@
 
         <div class="aside_menu_input_autentication_options">
           <label for="authentifie">Oui</label>
-          <input type="radio" name="authentifie" value="1" />
+          <input type="radio" name="authentifie" value="1" {% if filtres.authentifie == 1 %}checked{% endif %}/>
 
           <label for="authentifie">Non</label>
-          <input type="radio" name="authentifie" value="0" />
+          <input type="radio" name="authentifie" value="0" {% if filtres.authentifie == 0 %}checked{% endif %}/>
 
           <label for="authentifie">Oui ou non</label>
-          <input type="radio" name="authentifie" value="2" />
+          <input type="radio" name="authentifie" value="2" {% if filtres.authentifie == 2 %}checked{% endif %}/>
         </div>
       </div>
 
@@ -90,8 +81,8 @@
 
     {% if message is defined %}
 
-  <h2>{{ message }}</h2>
-  <a href="{{base}}/">Retour à l'accueil</a>
+    <h2>{{ message }}</h2>
+    <a href="{{base}}/">Retour à l'accueil</a>
     {% else %}
 
     {% for timbre in timbres %}
