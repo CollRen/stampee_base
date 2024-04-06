@@ -292,10 +292,14 @@ class EnchereController
             $enchere = new Enchere;
             $selectId = $enchere->selectId($data['id']);
             if ($selectId) {
+
                 $timbre = new Timbre;
                 $select = $timbre->select();
 
-                return View::render('enchere/edit', ['enchere' => $selectId]);
+                $user = new User;
+                $selectUsers = $user->selectId($_SESSION['user_id']);
+
+                return View::render('enchere/edit', ['user' => $selectUsers, 'enchere' => $selectId]);
             } else {
                 return View::render('error');
             }
@@ -308,10 +312,13 @@ class EnchereController
         if (empty($data['date_debut'])) array_pop($data);
         $id = $_GET['id']; // S'il n'y a pas de changement
 
+        if(!isset($data['est_coup_coeur_lord'])) $data['est_coup_coeur_lord'] = 0;
         $validator = new Validator;
         $validator->field('date_limite', $data['date_limite'])->max(20)->required();
+        $validator->field('est_coup_coeur_lord', $data['est_coup_coeur_lord'])->max(1);
 
         if ($validator->isSuccess()) {
+
             $enchere = new Enchere;
             $update = $enchere->update($data, $get['id']);
 

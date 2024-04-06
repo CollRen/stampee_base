@@ -2,6 +2,7 @@
 <main class="main-index">
     <div class="container">
         <h2>Enchère Edit</h2>
+        <h2>{{ enchere.id }}</h2>
         <form method="post">
 
             <label for="date_limite">Date limite
@@ -17,6 +18,20 @@
             {% if errors.date_debut is defined %}
                     <span class="error">{{ errors.date_debut }}</span>
                 {% endif %}
+
+
+
+
+                {% if user.privilege_id == 1 %}
+
+                <label for="est_coup_coeur_lord">Est coup de coeur lord
+                <input type="checkbox" name="est_coup_coeur_lord"{% if enchere.est_coup_coeur_lord == 1 %} checked {% endif %} value="1" >
+            </label>
+            
+            {% else %}
+            <input type="hidden" name="est_coup_coeur_lord"{% if enchere.est_coup_coeur_lord == 1 %} value="1" {% else %} value="0" {% endif %}>
+                {% endif %}
+
             <input type="hidden" id="id" name="id" value="{{ enchere.id }}"/>
             <input type="submit" class="btn" value="Update">
         </form>

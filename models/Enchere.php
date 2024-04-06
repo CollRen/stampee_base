@@ -6,7 +6,7 @@ class Enchere extends CRUD{
     protected $table = 'enchere';
     protected $primaryKey = 'id';
     protected $isAuth = [1, 2];
-    protected $fillable = ['date_limite', 'date_debut', 'timbre_id'];
+    protected $fillable = ['date_limite', 'date_debut', 'timbre_id', 'est_coup_coeur_lord'];
 }
 
 	
