@@ -148,6 +148,7 @@ Route::get('/enchere/show', 'EnchereController@show');
 
 Route::get('/enchere/create', 'EnchereController@create');
 Route::post('/enchere/storefavorie', 'EnchereController@storefavorie');
+Route::get('/enchere/storefavorie', 'EnchereController@storefavorie');
 Route::post('/enchere/create', 'EnchereController@store');
 
 Route::get('/enchere/edit', 'EnchereController@edit');

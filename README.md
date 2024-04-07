@@ -1,5 +1,8 @@
 # Projet web 1
 
+appelFetchApp("https://www.prodrdm.com/home/wuatrpaz/public_html/stampeeFromRecette/enchere/storefavorie", this.oOptions)
+
+
 ## Questions pour Mamadou
 
 1. mise/create prix 3 on peut pas miser 4.25.

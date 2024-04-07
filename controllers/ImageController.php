@@ -61,6 +61,8 @@ class ImageController
             echo "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
         } else {
+            // /home/wuatrpaz/public_html/stampeeFromRecette
+            // $chemin = '/home/wuatrpaz/public_html/stampeeFromRecette/public/assets/img/timbres/';
             $chemin = '/Applications/MAMP/htdocs/h24/stampee_base/stampeeFromRecette/public/assets/img/timbres/';
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $chemin. basename($_FILES["fileToUpload"]["name"]))) {
                 //echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";

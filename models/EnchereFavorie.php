@@ -24,7 +24,11 @@ public function connexionDB() {
 	define('DB_HOST', 'localhost');
 	define('DB_USER', 'root');
 	define('DB_PASSWORD', 'root');			// MAC
-	//define('DB_PASSWORD', '');			// Windows
+
+	// define('DB_HOST', 'localhost');
+	// define('DB_USER', 'wuatrpaz_rensax');
+	// define('DB_PASSWORD', 'MosX1u2rOl}{');			
+
 
 	$laConnexion = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 
@@ -33,6 +37,7 @@ public function connexionDB() {
 		die('Erreur de connexion à la base de données. ' . mysqli_connect_error());
 	}
 
+	// $db = mysqli_select_db($laConnexion, 'stampi');
 	$db = mysqli_select_db($laConnexion, 'stampee');
 
 	if (!$db) {
@@ -50,12 +55,14 @@ function executeRequete($requete, $insert = false)
 {
 
 	$laConnexion = mysqli_connect('localhost', 'root', 'root');
+	// $laConnexion = mysqli_connect('localhost', 'wuatrpaz_rensax', 'MosX1u2rOl}{');
 
 	if (!$laConnexion) {
 		// La connexion n'a pas fonctionné
 		die('Erreur de connexion à la base de données. ' . mysqli_connect_error());
 	}
 
+	// $db = mysqli_select_db($laConnexion, 'wuatrpaz_stampi');
 	$db = mysqli_select_db($laConnexion, 'stampee');
 
 	if (!$db) {

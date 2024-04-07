@@ -74,7 +74,7 @@ class EnchereFavorie {
   }
 
   appelFetch() {
-    
+    // appelFetchApp("https://www.prodrdm.com/stampeeFromRecette/enchere/storefavorie", this.oOptions)
     appelFetchApp("http://localhost:8000/h24/stampee_base/stampeeFromRecette/enchere/storefavorie", this.oOptions)
       .then(
         function (data) {
