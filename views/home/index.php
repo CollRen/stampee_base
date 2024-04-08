@@ -4,9 +4,9 @@
     <div class="index-hero__carroussel">
       <div class="index-hero-photo">
         <i class="fa-solid fa-chevron-left"></i>
-        <div class="index-hero-photo-g">
+
           <img class="hero-photo" src="{{ asset }}/img/timbres/timbreCA.webp" loading="lazy" alt="image du timbre aux enchères de derniere minute" />
-        </div>
+
         <i class="fa-solid fa-chevron-right"></i>
       </div>
 

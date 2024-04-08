@@ -1,4 +1,3 @@
-import App from "./App.js";
 import { appelFetchApp } from "./App3.js";
 class EnchereFavorie {
   _elTemplateEnchere;

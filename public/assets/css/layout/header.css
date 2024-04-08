@@ -97,6 +97,23 @@
             display: none;
         }
 
+        & .header-top {
+            position:relative;
+        }
+
+        & .header-nav_mobil--show > * {
+            width: fit-content;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: flex-start;
+            position:absolute;
+            align-items: flex-end;
+            right: 0;
+            top: var( --space-xgs); 
+            z-index: 2;
+            background-color: var(--vert-fonce);
+        }
+
         & .fa-bars {
             display: flex;
             align-items: center;

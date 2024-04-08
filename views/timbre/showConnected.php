@@ -18,7 +18,7 @@
   Select image to upload:
   <input type="file" name="fileToUpload" id="fileToUpload">
   <input type="hidden" name="timbre_id" value="{{timbre.id}}">
-  <input type="submit" value="Upload Image" name="submit">
+  <input class="btn" type="submit" value="Upload Image" name="submit">
 </form>
 
 

@@ -9,7 +9,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="{{ asset }}/img/logos/Stampee_logo_pale_header.svg" type="image/x-icon" alt="logo Stampee" />
-  <script type="module" src="{{ asset }}/scripts/{{ js }}.js" defer></script>
+  <script type="module" src="{{ asset }}/scripts/main.js" defer></script>
   <!-- Pour production -->
   <!-- <link rel="stylesheet" href="build/css/stylesfinaux.css"> -->
   <!--     <link rel="stylesheet" href="{{ asset }}/css/styles.css" /> -->
@@ -37,7 +37,7 @@
         <input type="text" class="barre-recherche__champ" placeholder="Recherchez le timbre souhaité" />
         <i class="fa-solid fa-magnifying-glass icon_img1" alt="icon recherche"></i>
       </div>
-      <i class="fa-solid fa-bars" alt="icon menu portable"></i>
+      <i class="fa-solid fa-bars fa-solid_mobil" alt="icon menu portable"></i>
 
       <div class="header-top_icons">
         <a href="./">
@@ -48,7 +48,7 @@
         <i class="fa-solid fa-cart-shopping icon_img1" role="img" aria-label="icon inscription ou connexion"></i>
       </div>
     </div>
-    <nav class="header-nav navbar"> <!-- Pas navbar qui change grand chose -->
+    <nav class="header-nav navbar header-nav_mobil--show "> <!-- Pas navbar qui change grand chose -->
 
       <ul>
         
